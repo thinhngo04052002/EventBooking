@@ -1,0 +1,51 @@
+[
+    {
+        "ID":1,
+        "IDDoiTac":1,
+        "ThanhToan":"Đã thanh toán",
+        "TenSuKien":"Bonk Pink",
+        "TheLoai":"Nhạc sống",
+        "ThongTinSuKien":"BLACKPINK hiện đang là nhóm nhạc nữ ngôi sao toàn cầu,  độ nổi tiếng đã đạt đến tầm quốc tế nên để mời được các cô gái nhà yG không phải điều dễ dàng. Thế nhưng với các fan Kpop, đây là niềm hy vọng vô cùng lớn để có thể nhìn thấy tận mắt BLACKPINK tại Việt Nam.",
+        "DiaChi":"Đường Lê Đức Thọ, Phường Mỹ Đình 1, Quận Nam Từ Liêm, Hà Nội",
+        "DiaDiem":{
+            "QuocGia":"Việt Nam",
+            "ThanhPho":"Hà Nội",
+            "NoiToChuc":"Sân vận động Mỹ Đình"                
+        },
+        "DuongDan":"BonkPink-15072024",
+        "LoiCamOn":"Cảm ơn bạn đã quan tâm đến sự kiện..."
+    },
+    {
+        "ID":2,
+        "IDDoiTac":1,
+        "ThanhToan":"Chưa thanh toán",
+        "TenSuKien":"Nhạc khúc mùa xuân",
+        "TheLoai":"Nhạc sống",
+        "ThongTinSuKien":"Xuân đã về mời bà con ghé coi",
+        "DiaChi":"75 Lạc Long Quân, Tân Thành , Tân Phú, Hồ Chí Minh",
+        "DiaDiem":{
+            "QuocGia":"Việt Nam",
+            "ThanhPho":"Hồ Chí Minh",
+            "NoiToChuc":"Nhà hát Trương Vương 2"                
+        },
+        "DuongDan":"NhacKhucMuaXuan-12372024",
+        "LoiCamOn":"Cảm ơn bạn đã quan tâm đến sự kiện..."
+    }
+    ,
+    {
+        "ID":3,
+        "IDDoiTac":2,
+        "ThanhToan":"Đã thanh toán",
+        "TenSuKien":"Đông ấm",
+        "TheLoai":"Nhạc sống",
+        "ThongTinSuKien":"Đông về tình về",
+        "DiaChi":"65 Lê Trọng Tấn, Hải Châu, Hải Châu, Đà Nẵng",
+        "DiaDiem":{
+            "QuocGia":"Việt Nam",
+            "ThanhPho":"Đà Nẵng",
+            "NoiToChuc":"Nhà hát Trương Vương 2"                
+        },
+        "DuongDan":"DongAm-12372256",
+        "LoiCamOn":"Cảm ơn bạn đã quan tâm đến sự kiện..."
+    }
+]
