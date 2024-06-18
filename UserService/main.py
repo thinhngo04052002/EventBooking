@@ -33,10 +33,18 @@ def get_db():
         db.close()
 
 db_dependency=Annotated[Session,Depends(get_db)]
+## TẠO TÀI KHOẢN
 @app.post("/users/DangKy",status_code=status.HTTP_201_CREATED)
 async def DangKyTaiKhoan(user:taiKhoanBase,db:db_dependency):
     db_user=models.TaiKhoan(**user.dict())
     db.add(db_user)
     db.commit()
 
+##TÌM TÀI KHOẢN THEO ID 
+@app.get("/users/userid={user_id}",status_code=status.HTTP_200_OK)
+async def TimKiemTaiKhoanTheoID(user_id:int,db:db_dependency):
+    user=db.query(models.TaiKhoan).filter(models.TaiKhoan.id==user_id).first()
+    if user is None:
+        raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
+    return user
 
