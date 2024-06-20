@@ -79,6 +79,29 @@ class PasswordChangeRequest(BaseModel):
     new_password: str
 #Function : Create access_token 
 
+
+class DoiTac(BaseModel):
+    id_taikhoan: int
+    tendoitac:str
+    sdt:str
+    diachi:str
+    email:str
+    nguoidaidien:str
+    masothue:str
+    logo:str
+    class Config:
+        orm_mode = True
+
+class NganHang(BaseModel):
+    id_doitac: int
+    tenNganHang:str
+    sotaikhoan:str
+    chinhanh:str
+    chuTaikhoan:str
+
+
+
+
 def create_access_token(data:dict,expires_delta:timedelta):
     to_encode=data.copy()
     expire=datetime.utcnow()+expires_delta
@@ -88,7 +111,7 @@ def create_access_token(data:dict,expires_delta:timedelta):
 
 def get_user_by_username(db:Session,username:str):
     print(username)
-    print(models.TaiKhoan.username)
+    
     return db.query(models.TaiKhoan).filter(models.TaiKhoan.username==username).first()
 
     
@@ -147,6 +170,8 @@ def validate_token_and_extract_username(token: str) -> str:
     try:
         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username = decoded_token.get("sub")
+        print(decoded_token)
+        print(username)
         if username is None:
             raise ValueError("Không tìm thấy tên người dùng!")
         return username
@@ -206,6 +231,8 @@ async def TaoNguoiDung(account:NguoiDungBase,db:db_dependency):
     db_user = db.query(models.TaiKhoan).filter(models.TaiKhoan.id == account.id_taikhoan).first()
     if db_user is None:
         raise HTTPException(status_code=400, detail="id người dùng không tồn tại")
+    if db_user.vaitro != "KH":
+        raise HTTPException(status_code=400, detail="Vai trò của tài khoản không phải là KH")
     db_account=models.NguoiDung(**account.dict())
     db.add(db_account)
     db.commit()

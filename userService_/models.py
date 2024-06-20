@@ -28,3 +28,35 @@ class NguoiDung(Base):
     __table_args__ = (
         UniqueConstraint('id_taikhoan', name='unique_id_tai_khoan'),
     )
+
+class DoiTac(Base):
+    __tablename__ = 'doitac'
+    id = Column(Integer, primary_key=True, index=True,autoincrement=True)
+    id_taikhoan = Column(Integer, ForeignKey("taikhoan.id",ondelete='CASCADE'),nullable=False)
+    tendoitac = Column(String(100), nullable=False)
+    sdt=Column(String(10),nullable=False)
+    diachi=Column(String(500),nullable=False)
+    email=Column(String(50))
+    nguoidaidien= Column(String(100), nullable=False)
+    masothue=Column(String(100),nullable=False)
+    logo=Column(String(100),nullable=True)
+    __table_args__ = (
+        UniqueConstraint('id_taikhoan', name='unique_id_tai_khoan_doitac'),
+    )
+
+class NganHang(Base):
+    __tablename__ = 'nganhang'
+    id = Column(Integer, primary_key=True, index=True,autoincrement=True)
+    id_doitac = Column(Integer, ForeignKey("doitac.id",ondelete='CASCADE'),nullable=False)
+    tenNganhang = Column(String(100), nullable=False)
+    sotaikhoan = Column(String(100), nullable=False)
+    chinhanh= Column(String(100), nullable=False)
+    chuTaikhoan = Column(String(100), nullable=False)
+    __table_args__=(
+        UniqueConstraint('id_doitac', name='unique_id_doi_tac'),
+    )
+    
+
+    
+    
+    
