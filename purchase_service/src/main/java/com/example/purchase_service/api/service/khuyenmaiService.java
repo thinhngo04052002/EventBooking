@@ -22,6 +22,10 @@ public class khuyenmaiService {
         return repo.findById(id);
     }
 
+    public List<khuyenmai> getKhuyenMaiByIdSuKien(int IDSuKien) {
+        return repo.findByIdsukien(IDSuKien);
+    }
+
     public khuyenmai createKhuyenmai(addKhuyenmaiDto dto) {
         // Tạo một đối tượng khuyenmai mới
         khuyenmai khuyenmai = new khuyenmai();
@@ -38,6 +42,16 @@ public class khuyenmaiService {
             updateKhuyenmai.setIdsukien(dto.getIdsukien());
             updateKhuyenmai.setChietkhau(dto.getChietkhau());
             updateKhuyenmai.setMakhuyenmai(dto.getMakhuyenmai());
+            return repo.save(updateKhuyenmai);
+        } else {
+            return null;
+        }
+    }
+
+    public khuyenmai UpdateIDSuKien(int id, int IDSuKien) {
+        khuyenmai updateKhuyenmai = repo.findById(id);
+        if (updateKhuyenmai != null) {
+            updateKhuyenmai.setIdsukien(IDSuKien);
             return repo.save(updateKhuyenmai);
         } else {
             return null;
