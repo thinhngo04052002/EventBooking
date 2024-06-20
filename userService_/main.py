@@ -1,6 +1,6 @@
 from fastapi import FastAPI,HTTPException,Depends,status
 from pydantic import BaseModel
-from  typing import Annotated
+from  typing import Annotated, List
 import models 
 from database import engine,SessionLocal
 from sqlalchemy.orm import Session
@@ -53,6 +53,16 @@ class Token(BaseModel):
     access_token:str
     token_type:str
 
+class TaiKhoanList(BaseModel):
+    id: int
+    username: str
+    email: str
+    vaitro: str
+    tinhtrang: str
+
+    class Config:
+        orm_mode = True
+
 class UserOut(BaseModel):
     id: int
     username:str
@@ -80,7 +90,7 @@ class PasswordChangeRequest(BaseModel):
 #Function : Create access_token 
 
 
-class DoiTac(BaseModel):
+class DoiTacBase(BaseModel):
     id_taikhoan: int
     tendoitac:str
     sdt:str
@@ -92,9 +102,9 @@ class DoiTac(BaseModel):
     class Config:
         orm_mode = True
 
-class NganHang(BaseModel):
+class NganHangBase(BaseModel):
     id_doitac: int
-    tenNganHang:str
+    tenNganhang:str
     sotaikhoan:str
     chinhanh:str
     chuTaikhoan:str
@@ -190,11 +200,23 @@ db_dependency=Annotated[Session,Depends(get_db)]
 # async def DangKyTaiKhoan(user:TaiKhoanBase,db:db_dependency):
 #     db_user=models.TaiKhoan(**user.dict())
 #     db.add(db_user)
-#     db.commit()
+#     db.
+# commit()
   
 
 #ENDPOINTS 
-@app.post("/user/register",response_model=TaiKhoan)
+def get_all_taikhoan(db: Session):
+    return db.query(models.TaiKhoan).all()
+
+@app.get("/taikhoan/listALL", response_model=List[TaiKhoanList])
+async def DanhSachTaiKhoan( db: Session = Depends(get_db)):
+    list = get_all_taikhoan(db)
+    return list
+
+
+
+
+@app.post("/taikhoan/register",response_model=TaiKhoan)
 async def DangKyTaiKhoan(user:TaiKhoan_CreateBase,db:db_dependency ):
     db_user=get_user_by_username(db,username=user.username)
     if db_user:
@@ -202,7 +224,7 @@ async def DangKyTaiKhoan(user:TaiKhoan_CreateBase,db:db_dependency ):
     user.password =pwd_context.hash(user.password)
     return create_user(db=db,user=user)
     
-@app.post("/user/login",response_model=Token)
+@app.post("/taikhoan/login",response_model=Token)
 async def login_for_access_token(form_data:OAuth2PasswordRequestForm = Depends(), db:Session=Depends(get_db)):
     user=authenticate_user(db,form_data.username,form_data.password)
     if not user:
@@ -214,7 +236,7 @@ async def login_for_access_token(form_data:OAuth2PasswordRequestForm = Depends()
 
 
 
-@app.get("/users/userid={user_id}",status_code=status.HTTP_200_OK)
+@app.get("/taikhoan/userid={user_id}",status_code=status.HTTP_200_OK)
 async def TimKiemTaiKhoanTheoID(user_id:int,db:db_dependency):
     user=db.query(models.TaiKhoan).filter(models.TaiKhoan.id==user_id).first()
     if  user is None:
@@ -251,14 +273,15 @@ async def TaoNguoiDung(account:NguoiDungBase,db:db_dependency):
 
 
 
-@app.get("/users/info/userid={user_id}",status_code=status.HTTP_200_OK)
-async def TimKiemTaiKhoanTheoID(user_id:int,db:db_dependency):
+
+@app.get("/nguoidung/info/userid={user_id}",status_code=status.HTTP_200_OK)
+async def ThongtinNguoiDungTheoID(user_id:int,db:db_dependency):
     info=db.query(models.NguoiDung).filter(models.NguoiDung.id_taikhoan==user_id).first()
     if  info is None:
         raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
     return info
 
-@app.post("/user/change-password", status_code=status.HTTP_200_OK)
+@app.post("/taikhoan/change-password", status_code=status.HTTP_200_OK)
 async def doi_mat_khau(password_change_request: PasswordChangeRequest, token: Annotated[str, Depends(oauth2_scheme)], db: db_dependency):
     username = validate_token_and_extract_username(token)
     user = get_user_by_username(db, username)
@@ -267,4 +290,34 @@ async def doi_mat_khau(password_change_request: PasswordChangeRequest, token: An
     user.hashed_password = pwd_context.hash(password_change_request.new_password)
     db.commit()
     return {"msg": "Đổi mật khẩu thành công"}
+
+@app.post("/doitac/create",status_code=status.HTTP_201_CREATED)
+async def TaoDoiTac(doitac:DoiTacBase,db:db_dependency):
+    existing_nguoi_dung = db.query(models.DoiTac).filter_by(id_taikhoan=doitac.id_taikhoan).first()
+    if existing_nguoi_dung:
+        raise HTTPException(status_code=400, detail="Tài khoản đã là đối tác")
+    db_user = db.query(models.TaiKhoan).filter(models.TaiKhoan.id == doitac.id_taikhoan).first()
+    if db_user is None:
+        raise HTTPException(status_code=400, detail="id người dùng không tồn tại")
+    if db_user.vaitro != "ADDVSK":
+        raise HTTPException(status_code=400, detail="Vai trò của tài khoản không phải là KH")
+    db_account=models.DoiTac(**doitac.dict())
+    db.add(db_account)
+    db.commit()
+
+@app.post("/doitac/nganhang/create",status_code=status.HTTP_201_CREATED)
+async def ThietLapNganHang(nganhang:NganHangBase,db:db_dependency):
+    existing_doitac = db.query(models.NganHang).filter_by(id_doitac =nganhang.id_doitac).first()
+    if existing_doitac:
+        raise HTTPException(status_code=400, detail="Đối tác đã đăng ký ngân hàng")
+    print("0K")
+    db_doitac = db.query(models.DoiTac).filter(models.DoiTac.id == nganhang.id_doitac).first()
+    print("OK2")
+    if db_doitac is None:
+        raise HTTPException(status_code=400, detail="Kiểm tra lại ID đối tác")
+    print("OK3")
+    db_bank=models.NganHang(**nganhang.dict())
+    db.add(db_bank)
+    db.commit()
+
 
