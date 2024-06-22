@@ -1,6 +1,6 @@
 from fastapi import FastAPI,HTTPException,Depends,status
 from pydantic import BaseModel
-from  typing import Annotated, List
+from  typing import Annotated, List, Optional
 import models 
 from database import engine,SessionLocal
 from sqlalchemy.orm import Session
@@ -63,6 +63,10 @@ class TaiKhoanList(BaseModel):
     class Config:
         orm_mode = True
 
+
+class TaiKhoanUpdateStatus(BaseModel):
+    tinhtrang: str
+
 class UserOut(BaseModel):
     id: int
     username:str
@@ -101,6 +105,27 @@ class DoiTacBase(BaseModel):
     logo:str
     class Config:
         orm_mode = True
+class NguoiDungUpdate(BaseModel):
+    hoten: Optional[str] = None
+    gioitinh: Optional[str] = None
+    ngaysinh: Optional[str] = None
+    sdt: Optional[str] = None
+    diachi: Optional[str] = None
+    class Config:
+        orm_mode = True
+
+class DoiTacUpdate(BaseModel):
+    tendoitac: Optional[str] = None
+    sdt: Optional[str] = None
+    diachi: Optional[str] = None
+    email: Optional[str] = None
+    nguoidaidien: Optional[str] = None
+    masothue: Optional[str] = None
+    logo: Optional[str] = None
+
+    class Config:
+        orm_mode = True
+
 
 class NganHangBase(BaseModel):
     id_doitac: int
@@ -204,9 +229,17 @@ db_dependency=Annotated[Session,Depends(get_db)]
 # commit()
   
 
+
 #ENDPOINTS 
 def get_all_taikhoan(db: Session):
     return db.query(models.TaiKhoan).all()
+
+def get_user_by_id(db:Session, id:int):
+    user= db.query(models.TaiKhoan).filter(models.TaiKhoan.id==id).all()
+    if user is None:
+        raise HTTPException(status_code=400, detail="id người dùng không tồn tại")
+    return user
+
 
 @app.get("/taikhoan/listALL", response_model=List[TaiKhoanList])
 async def DanhSachTaiKhoan( db: Session = Depends(get_db)):
@@ -242,6 +275,27 @@ async def TimKiemTaiKhoanTheoID(user_id:int,db:db_dependency):
     if  user is None:
         raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
     return user
+
+@app.delete("/taikhoan/xoataikhoan/id={user_id}",status_code=status.HTTP_200_OK)
+async def XoaTaiKhoan(user_id:int,db:db_dependency):
+    user=db.query(models.TaiKhoan).filter(models.TaiKhoan.id==user_id).first()
+    if  user is None:
+        raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
+    nguoidung=db.query(models.NguoiDung).filter(models.NguoiDung.id_taikhoan==user_id).first()
+    doitac=db.query(models.DoiTac).filter(models.DoiTac.id_taikhoan==user_id).first()
+
+    if nguoidung:
+        db.delete(nguoidung)
+        print("Đã xoá người dùng")
+    if doitac:
+        db.delete(doitac)
+        print("Đã xoá đối tác")
+    print(user)
+    db.delete(user)
+    db.commit()
+
+
+
 
 
 @app.post("/nguoidung/create",status_code=status.HTTP_201_CREATED)
@@ -321,3 +375,65 @@ async def ThietLapNganHang(nganhang:NganHangBase,db:db_dependency):
     db.commit()
 
 
+
+
+@app.get("/doitac/info/id={doitac_id}",status_code=status.HTTP_200_OK)
+async def ThongtinNguoiDungTheoID(doitac_id:int,db:db_dependency):
+    info=db.query(models.DoiTac).filter(models.DoiTac.id==doitac_id).first()
+    if  info is None:
+        raise HTTPException(status_code=404,detail="Không tìm thấy thông tin")
+    return info
+
+def update_taikhoan_status(db: Session, user_id: int, status: str):
+    taikhoan = db.query(models.TaiKhoan).filter(models.TaiKhoan.id == user_id).first()
+    if not taikhoan:
+        return None
+    taikhoan.tinhtrang = status
+    db.commit()
+    db.refresh(taikhoan)
+    return taikhoan
+
+@app.put("/taikhoan/update_status/id={user_id}", response_model=TaiKhoanList)
+async def update_taikhoan_tinhtrang(user_id: int, status: TaiKhoanUpdateStatus, db: Session = Depends(get_db)):
+    updated_user = update_taikhoan_status(db, user_id, status.tinhtrang)
+    if updated_user is None:
+        raise HTTPException(status_code=404, detail="Không tìm thấy tài khoản")
+    return updated_user
+
+
+def update_doitac(db: Session, doitac_id: int, update_data: DoiTacUpdate):
+    doitac = db.query(models.DoiTac).filter(models.DoiTac.id == doitac_id).first()
+    if not doitac:
+        return None
+
+    for key, value in update_data.dict(exclude_unset=True).items():
+        setattr(doitac, key, value)
+    
+    db.commit()
+    db.refresh(doitac)
+    return doitac
+
+
+@app.put("/doitac/update/id={doitac_id}", response_model=DoiTacBase)
+async def update_doitac_endpoint(doitac_id: int, update_data: DoiTacUpdate, db: Session = Depends(get_db)):
+    updated_doitac = update_doitac(db, doitac_id, update_data)
+    if updated_doitac is None:
+        raise HTTPException(status_code=404, detail="Không tìm thấy đối tác")
+    return updated_doitac
+
+def update_nguoidung(db:Session, user_id:int, update_data:NguoiDungUpdate):
+    nguoidung=db.query(models.NguoiDung).filter(models.NguoiDung.id_taikhoan==user_id).first()
+    if not nguoidung:
+        return None
+    for key,value in update_data.dict(exclude_unset=True).items():
+        setattr(nguoidung,key,value)
+    db.commit()
+    db.refresh(nguoidung)
+    return nguoidung
+
+@app.put("/nguoidung/update/user_id={user_id}", response_model=NguoiDungBase)
+async def update_doitac_endpoint(user_id: int, update_data: NguoiDungUpdate, db: Session = Depends(get_db)):
+    updated_nguoidung = update_doitac(db, user_id, update_data)
+    if updated_nguoidung is None:
+        raise HTTPException(status_code=404, detail="Không tìm thấy đối tác")
+    return update_nguoidung
