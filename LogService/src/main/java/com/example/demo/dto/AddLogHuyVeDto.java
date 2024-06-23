@@ -2,7 +2,7 @@ package com.example.demo.dto;
 
 import java.math.BigDecimal;
 
-public class AddLoggingHuyVeDto {
+public class AddLogHuyVeDto {
     private Integer IdVe;
     private BigDecimal SoTienHoan;
     private Integer IdKhachHang;
