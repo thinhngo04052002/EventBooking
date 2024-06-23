@@ -269,14 +269,14 @@ async def login_for_access_token(form_data:OAuth2PasswordRequestForm = Depends()
 
 
 
-@app.get("/taikhoan/userid={user_id}",status_code=status.HTTP_200_OK)
+@app.get("/taikhoan/search/userid={user_id}",status_code=status.HTTP_200_OK)
 async def TimKiemTaiKhoanTheoID(user_id:int,db:db_dependency):
     user=db.query(models.TaiKhoan).filter(models.TaiKhoan.id==user_id).first()
     if  user is None:
         raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
     return user
 
-@app.delete("/taikhoan/xoataikhoan/id={user_id}",status_code=status.HTTP_200_OK)
+@app.delete("/taikhoan/delete/id={user_id}",status_code=status.HTTP_200_OK)
 async def XoaTaiKhoan(user_id:int,db:db_dependency):
     user=db.query(models.TaiKhoan).filter(models.TaiKhoan.id==user_id).first()
     if  user is None:
@@ -335,7 +335,7 @@ async def ThongtinNguoiDungTheoID(user_id:int,db:db_dependency):
         raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
     return info
 
-@app.post("/taikhoan/change-password", status_code=status.HTTP_200_OK)
+@app.post("/taikhoan/changepassword", status_code=status.HTTP_200_OK)
 async def doi_mat_khau(password_change_request: PasswordChangeRequest, token: Annotated[str, Depends(oauth2_scheme)], db: db_dependency):
     username = validate_token_and_extract_username(token)
     user = get_user_by_username(db, username)
