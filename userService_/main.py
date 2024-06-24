@@ -8,10 +8,11 @@ from jose import jwt,JWTError
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer,OAuth2PasswordRequestForm
 from datetime import timedelta,datetime
-
-
-
+import uvicorn
 app=FastAPI()
+
+
+
 #create all database tables 
 models.Base.metadata.create_all(bind=engine)
 oauth2_scheme=OAuth2PasswordBearer(tokenUrl="token")
@@ -437,3 +438,7 @@ async def update_doitac_endpoint(user_id: int, update_data: NguoiDungUpdate, db:
     if updated_nguoidung is None:
         raise HTTPException(status_code=404, detail="Không tìm thấy đối tác")
     return update_nguoidung
+
+if __name__ == "__main__":
+    
+    uvicorn.run(app, host="0.0.0.0", port=8005)  # Change the port here to 8005
