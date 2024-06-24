@@ -2,7 +2,7 @@ package com.example.demo.dto;
 
 import java.math.BigDecimal;
 
-public class AddLoggingDoiVeThanhToanThemDto {
+public class AddLogDoiVeThanhToanThemDto {
     private Integer IdVeCu;
     private Integer IdVeMoi;
     private BigDecimal SoTienThanhToanThem;

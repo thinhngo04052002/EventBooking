@@ -19,7 +19,7 @@ import com.example.purchase_service.api.model.khuyenmai;
 import com.example.purchase_service.api.service.khuyenmaiService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/khuyenmai")
 public class khuyenmaiController {
     private khuyenmaiService khuyenmaiService;
 
@@ -33,13 +33,18 @@ public class khuyenmaiController {
         return khuyenmaiService.getAllKhuyenMai();
     }
 
-    @GetMapping("/khuyenmai/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getkhuyenmai(@PathVariable int id) {
         khuyenmai khuyenmai = khuyenmaiService.getKhuyenMaiById(id);
         if (khuyenmai == null) {
             return ResponseEntity.badRequest().body("Không tồn tại khuyenmai.");
         }
         return ResponseEntity.ok(khuyenmai);
+    }
+
+    @GetMapping("/GetByIDSukien")
+    public List<khuyenmai> GetByIDSukien(int IDSuKien) {
+        return khuyenmaiService.getKhuyenMaiByIdSuKien(IDSuKien);
     }
 
     @PostMapping("/khuyenmai")
@@ -52,7 +57,7 @@ public class khuyenmaiController {
         }
     }
 
-    @PutMapping("/khuyenmai/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateKhuyenmai(@PathVariable("id") int id, @RequestBody addKhuyenmaiDto dto) {
         try {
             khuyenmai updatedKhuyenmai = khuyenmaiService.updateKhuyenmai(id, dto);
@@ -65,7 +70,20 @@ public class khuyenmaiController {
         }
     }
 
-    @DeleteMapping("/khuyenmai/{id}")
+    @PutMapping("/UpdateIDSuKien/{id}/{IDSuKien}")
+    public ResponseEntity<?> UpdateIDSuKien(@PathVariable("id") int id, @PathVariable("IDSuKien") int IDSuKien) {
+        try {
+            khuyenmai updatedKhuyenmai = khuyenmaiService.UpdateIDSuKien(id, IDSuKien);
+            if (updatedKhuyenmai == null)
+                return ResponseEntity.badRequest().body("Không tồn tại mã khuyến mãi có ID: " + id);
+            else
+                return ResponseEntity.ok(updatedKhuyenmai);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Không thể cập nhật mã khuyến mãi: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteKhuyenmai(@PathVariable("id") int id) {
         boolean deleted = khuyenmaiService.deleteKhuyenmai(id);
         if (deleted) {

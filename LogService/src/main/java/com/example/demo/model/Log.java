@@ -4,8 +4,8 @@ import java.time.Instant;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Logging")
-public class Logging {
+@Document(collection = "Log")
+public class Log {
     @Id
     private String _id;
     private String TenHanhDong;
@@ -13,11 +13,11 @@ public class Logging {
     private String MoTa;
     private String DiaChiIPThietBi;
 
-    public Logging() {
+    public Log() {
         super();
     }
 
-    public Logging(String _id, String tenHanhDong, Instant thoiGian, String moTa, String diaChiIPThietBi) {
+    public Log(String _id, String tenHanhDong, Instant thoiGian, String moTa, String diaChiIPThietBi) {
         super();
         this._id = _id;
         TenHanhDong = tenHanhDong;

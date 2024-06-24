@@ -18,38 +18,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.AddLoggingDoiVeHoanTienDto;
-import com.example.demo.dto.AddLoggingDoiVeThanhToanThemDto;
-import com.example.demo.dto.AddLoggingHuyVeDto;
-import com.example.demo.dto.AddLoggingMuaVeDto;
-import com.example.demo.model.Logging;
-import com.example.demo.repository.LoggingRepository;
+import com.example.demo.dto.AddLogDoiVeHoanTienDto;
+import com.example.demo.dto.AddLogDoiVeThanhToanThemDto;
+import com.example.demo.dto.AddLogHuyVeDto;
+import com.example.demo.dto.AddLogMuaVeDto;
+import com.example.demo.model.Log;
+import com.example.demo.repository.LogRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/logging")
-public class LoggingController {
+@RequestMapping("/Log")
+public class LogController {
     @Autowired
-    private LoggingRepository repo;
+    private LogRepository repo;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Logging>> getAllLogging() {
+    public ResponseEntity<List<Log>> getAllLog() {
         try {
-            List<Logging> logginglist = new ArrayList<Logging>();
-            repo.findAll().forEach(logginglist::add);
-            if (logginglist.isEmpty()) {
+            List<Log> Loglist = new ArrayList<Log>();
+            repo.findAll().forEach(Loglist::add);
+            if (Loglist.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(logginglist, HttpStatus.OK);
+            return new ResponseEntity<>(Loglist, HttpStatus.OK);
         } catch (Exception e) {
-            List<Logging> logginglist = new ArrayList<Logging>();
-            return new ResponseEntity<>(logginglist, HttpStatus.INTERNAL_SERVER_ERROR);
+            List<Log> Loglist = new ArrayList<Log>();
+            return new ResponseEntity<>(Loglist, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // @PostMapping("/add")
-    // public ResponseEntity<Logging> AddLogging(@RequestBody Logging Logging,
+    // public ResponseEntity<Log> AddLog(@RequestBody Log Log,
     // HttpServletRequest request) {
     // try {
     // // Tạo _id
@@ -61,18 +61,18 @@ public class LoggingController {
     // socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
     // ipAddress = socket.getLocalAddress().getHostAddress();
     // }
-    // Logging _Logging = repo.save(new Logging(_id, Logging.getTenHanhDong(),
-    // Instant.now().plus(Duration.ofHours(7)), Logging.getMoTa(), ipAddress));
-    // return new ResponseEntity<>(_Logging, HttpStatus.CREATED);
+    // Log _Log = repo.save(new Log(_id, Log.getTenHanhDong(),
+    // Instant.now().plus(Duration.ofHours(7)), Log.getMoTa(), ipAddress));
+    // return new ResponseEntity<>(_Log, HttpStatus.CREATED);
     // } catch (Exception e) {
-    // return new ResponseEntity<>(Logging, HttpStatus.INTERNAL_SERVER_ERROR);
+    // return new ResponseEntity<>(Log, HttpStatus.INTERNAL_SERVER_ERROR);
     // }
     // }
 
-    @PostMapping("/addLoggingMuaVe")
-    public ResponseEntity<Logging> AddLoggingMuaVe(@RequestBody AddLoggingMuaVeDto dto, HttpServletRequest request) {
+    @PostMapping("/addLogMuaVe")
+    public ResponseEntity<Log> AddLogMuaVe(@RequestBody AddLogMuaVeDto dto, HttpServletRequest request) {
         try {
-            Logging _Logging = new Logging();
+            Log _Log = new Log();
             // Tạo _id
             ObjectId objectId = new ObjectId();
             String _id = objectId.toHexString();
@@ -89,20 +89,20 @@ public class LoggingController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Logging = repo.save(new Logging(_id, "Mua vé",
+            _Log = repo.save(new Log(_id, "Mua vé",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
-            return new ResponseEntity<>(_Logging, HttpStatus.CREATED);
+            return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
-            Logging _Logging = new Logging();
-            return new ResponseEntity<>(_Logging, HttpStatus.INTERNAL_SERVER_ERROR);
+            Log _Log = new Log();
+            return new ResponseEntity<>(_Log, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/addLoggingDoiVeThanhToanThem")
-    public ResponseEntity<Logging> AddLoggingDoiVeThanhToanThem(@RequestBody AddLoggingDoiVeThanhToanThemDto dto,
+    @PostMapping("/addLogDoiVeThanhToanThem")
+    public ResponseEntity<Log> AddLogDoiVeThanhToanThem(@RequestBody AddLogDoiVeThanhToanThemDto dto,
             HttpServletRequest request) {
         try {
-            Logging _Logging = new Logging();
+            Log _Log = new Log();
             // Tạo _id
             ObjectId objectId = new ObjectId();
             String _id = objectId.toHexString();
@@ -116,20 +116,20 @@ public class LoggingController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Logging = repo.save(new Logging(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
-            return new ResponseEntity<>(_Logging, HttpStatus.CREATED);
+            return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
-            Logging _Logging = new Logging();
-            return new ResponseEntity<>(_Logging, HttpStatus.INTERNAL_SERVER_ERROR);
+            Log _Log = new Log();
+            return new ResponseEntity<>(_Log, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/addLoggingDoiVeHoanTien")
-    public ResponseEntity<Logging> AddLoggingDoiVeHoanTien(@RequestBody AddLoggingDoiVeHoanTienDto dto,
+    @PostMapping("/addLogDoiVeHoanTien")
+    public ResponseEntity<Log> AddLogDoiVeHoanTien(@RequestBody AddLogDoiVeHoanTienDto dto,
             HttpServletRequest request) {
         try {
-            Logging _Logging = new Logging();
+            Log _Log = new Log();
             // Tạo _id
             ObjectId objectId = new ObjectId();
             String _id = objectId.toHexString();
@@ -143,20 +143,20 @@ public class LoggingController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Logging = repo.save(new Logging(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
-            return new ResponseEntity<>(_Logging, HttpStatus.CREATED);
+            return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
-            Logging _Logging = new Logging();
-            return new ResponseEntity<>(_Logging, HttpStatus.INTERNAL_SERVER_ERROR);
+            Log _Log = new Log();
+            return new ResponseEntity<>(_Log, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/addLoggingHuyVe")
-    public ResponseEntity<Logging> AddLoggingHuyVe(@RequestBody AddLoggingHuyVeDto dto,
+    @PostMapping("/addLogHuyVe")
+    public ResponseEntity<Log> AddLogHuyVe(@RequestBody AddLogHuyVeDto dto,
             HttpServletRequest request) {
         try {
-            Logging _Logging = new Logging();
+            Log _Log = new Log();
             // Tạo _id
             ObjectId objectId = new ObjectId();
             String _id = objectId.toHexString();
@@ -170,12 +170,12 @@ public class LoggingController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Logging = repo.save(new Logging(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
-            return new ResponseEntity<>(_Logging, HttpStatus.CREATED);
+            return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
-            Logging _Logging = new Logging();
-            return new ResponseEntity<>(_Logging, HttpStatus.INTERNAL_SERVER_ERROR);
+            Log _Log = new Log();
+            return new ResponseEntity<>(_Log, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -2,8 +2,8 @@ package com.example.demo.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.example.demo.model.Logging;
+import com.example.demo.model.Log;
 
-public interface LoggingRepository extends MongoRepository<Logging, String> {
+public interface LogRepository extends MongoRepository<Log, String> {
     // CRUD
 }

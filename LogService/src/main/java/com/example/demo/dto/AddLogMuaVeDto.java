@@ -3,7 +3,7 @@ package com.example.demo.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class AddLoggingMuaVeDto {
+public class AddLogMuaVeDto {
     private Integer IdKhachHang;
     private List<Integer> DanhSachVe;
     private BigDecimal TongTien;

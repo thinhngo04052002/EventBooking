@@ -22,7 +22,7 @@ import com.example.purchase_service.api.model.hoadon;
 import com.example.purchase_service.api.service.hoadonService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/hoadon")
 public class hoadonController {
     private hoadonService hoadonService;
 
@@ -36,7 +36,7 @@ public class hoadonController {
         return hoadonService.getAllhoadon();
     }
 
-    @GetMapping("/hoadon/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> gethoadon(@PathVariable int id) {
         hoadon hoadon = hoadonService.gethoadonById(id);
         if (hoadon == null) {
@@ -75,7 +75,7 @@ public class hoadonController {
         }
     }
 
-    @PutMapping("/hoadon/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updatehoadon(@PathVariable("id") int id, @RequestBody addHoadonDto dto) {
         try {
             hoadon updatedhoadon = hoadonService.updatehoadon(id, dto);
@@ -88,7 +88,7 @@ public class hoadonController {
         }
     }
 
-    @PutMapping("/hoadon/HuyHoaDon")
+    @PutMapping("/HuyHoaDon")
     public ResponseEntity<?> HuyHoaDon(@RequestBody HuyHoaDonDto dto) {
         try {
             hoadon updatedhoadon = hoadonService.HuyHoaDon(dto);
@@ -101,7 +101,7 @@ public class hoadonController {
         }
     }
 
-    @DeleteMapping("/hoadon/{id_hoadon}")
+    @DeleteMapping("/{id_hoadon}")
     public ResponseEntity<?> deletehoadon(@PathVariable("id_hoadon") int id_hoadon) {
         boolean deleted = hoadonService.deletehoadon(id_hoadon);
         if (deleted) {
