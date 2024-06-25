@@ -81,7 +81,8 @@ public class LogController {
             List<Integer> DanhSachVe = dto.getDanhSachVe();
             for (int i = 0; i < DanhSachVe.size() - 1; i++)
                 moTa = moTa + DanhSachVe.get(i).toString() + ",";
-            moTa = moTa + DanhSachVe.get(DanhSachVe.size() - 1) + "] với tổng tiền là " + dto.getTongTien();
+            moTa = moTa + DanhSachVe.get(DanhSachVe.size() - 1) + "] của sự kiện " + dto.getIdSuKien() + " của đối tác "
+                    + dto.getIdDoiTac() + " với tổng tiền là " + dto.getTongTien();
             // Lấy địa chỉ IP của thiết bị
             String ipAddress = "";
             try (final DatagramSocket socket = new DatagramSocket()) {
@@ -108,7 +109,9 @@ public class LogController {
             String _id = objectId.toHexString();
             // Tạo mô tả
             String moTa = "Khách hàng có id " + dto.getIdKhachHang() + " đã đổi vé [" + dto.getIdVeCu() + "] sang vé ["
-                    + dto.getIdVeMoi() + "] với tổng tiền thanh toán thêm là " + dto.getSoTienThanhToanThem();
+                    + dto.getIdVeMoi() + "] của sự kiện " + dto.getIdSuKien() + " của đối tác " + dto.getIdDoiTac()
+                    + " với tổng tiền thanh toán thêm là "
+                    + dto.getSoTienThanhToanThem();
             // Lấy địa chỉ IP của thiết bị
             String ipAddress = "";
             try (final DatagramSocket socket = new DatagramSocket()) {
@@ -135,7 +138,8 @@ public class LogController {
             String _id = objectId.toHexString();
             // Tạo mô tả
             String moTa = "Khách hàng có id " + dto.getIdKhachHang() + " đã đổi vé [" + dto.getIdVeCu() + "] sang vé ["
-                    + dto.getIdVeMoi() + "], tổng tiền hoàn lại là " + dto.getSoTienHoan();
+                    + dto.getIdVeMoi() + "] của sự kiện " + dto.getIdSuKien() + " của đối tác " + dto.getIdDoiTac()
+                    + " với tổng tiền hoàn lại là " + dto.getSoTienHoan();
             // Lấy địa chỉ IP của thiết bị
             String ipAddress = "";
             try (final DatagramSocket socket = new DatagramSocket()) {
@@ -143,7 +147,7 @@ public class LogController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Đổi vé hoàn tiền",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
             return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -162,7 +166,8 @@ public class LogController {
             String _id = objectId.toHexString();
             // Tạo mô tả
             String moTa = "Khách hàng có id " + dto.getIdKhachHang() + " đã hủy vé [" + dto.getIdVe()
-                    + "], tổng tiền hoàn lại là " + dto.getSoTienHoan();
+                    + "] của sự kiện " + dto.getIdSuKien() + " của đối tác " + dto.getIdDoiTac()
+                    + ", tổng tiền hoàn lại là " + dto.getSoTienHoan();
             // Lấy địa chỉ IP của thiết bị
             String ipAddress = "";
             try (final DatagramSocket socket = new DatagramSocket()) {
@@ -170,7 +175,7 @@ public class LogController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Hủy vé",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
             return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {

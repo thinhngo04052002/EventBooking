@@ -6,6 +6,8 @@ import java.util.List;
 public class AddLogMuaVeDto {
     private Integer IdKhachHang;
     private List<Integer> DanhSachVe;
+    private Integer IdSuKien;
+    private Integer IdDoiTac;
     private BigDecimal TongTien;
 
     public BigDecimal getTongTien() {
@@ -31,4 +33,21 @@ public class AddLogMuaVeDto {
     public void setDanhSachVe(List<Integer> danhSachVe) {
         DanhSachVe = danhSachVe;
     }
+
+    public Integer getIdSuKien() {
+        return IdSuKien;
+    }
+
+    public void setIdSuKien(Integer idSuKien) {
+        IdSuKien = idSuKien;
+    }
+
+    public Integer getIdDoiTac() {
+        return IdDoiTac;
+    }
+
+    public void setIdDoiTac(Integer idDoiTac) {
+        IdDoiTac = idDoiTac;
+    }
+
 }

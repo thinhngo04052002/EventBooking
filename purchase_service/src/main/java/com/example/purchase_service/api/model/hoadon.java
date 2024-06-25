@@ -24,6 +24,12 @@ public class hoadon {
     @Column(name = "IDVe")
     private Integer IDVe;
 
+    @Column(name = "IDSuKien")
+    private Integer IDSuKien;
+
+    @Column(name = "IDDoiTac")
+    private Integer IDDoiTac;
+
     @Column(name = "IDKhuyenMai")
     private Integer IDKhuyenMai;
 
@@ -117,6 +123,22 @@ public class hoadon {
 
     public void setDaHuy(int daHuy) {
         this.DaHuy = daHuy;
+    }
+
+    public Integer getIDSuKien() {
+        return IDSuKien;
+    }
+
+    public void setIDSuKien(Integer iDSuKien) {
+        IDSuKien = iDSuKien;
+    }
+
+    public Integer getIDDoiTac() {
+        return IDDoiTac;
+    }
+
+    public void setIDDoiTac(Integer iDDoiTac) {
+        IDDoiTac = iDDoiTac;
     }
 
 }
