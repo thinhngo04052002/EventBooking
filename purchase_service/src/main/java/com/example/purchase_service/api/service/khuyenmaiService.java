@@ -30,6 +30,7 @@ public class khuyenmaiService {
         // Tạo một đối tượng khuyenmai mới
         khuyenmai khuyenmai = new khuyenmai();
         khuyenmai.setIdsukien(dto.getIdsukien());
+        khuyenmai.setIddoitac(dto.getIddoitac());
         khuyenmai.setChietkhau(dto.getChietkhau());
         khuyenmai.setMakhuyenmai(dto.getMakhuyenmai());
         // Lưu sản phẩm mới vào cơ sở dữ liệu
@@ -40,6 +41,7 @@ public class khuyenmaiService {
         khuyenmai updateKhuyenmai = repo.findById(id);
         if (updateKhuyenmai != null) {
             updateKhuyenmai.setIdsukien(dto.getIdsukien());
+            updateKhuyenmai.setIddoitac(dto.getIddoitac());
             updateKhuyenmai.setChietkhau(dto.getChietkhau());
             updateKhuyenmai.setMakhuyenmai(dto.getMakhuyenmai());
             return repo.save(updateKhuyenmai);

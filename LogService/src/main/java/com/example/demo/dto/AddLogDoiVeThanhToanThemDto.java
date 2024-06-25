@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class AddLogDoiVeThanhToanThemDto {
     private Integer IdVeCu;
     private Integer IdVeMoi;
+    private Integer IdSuKien;
+    private Integer IdDoiTac;
     private BigDecimal SoTienThanhToanThem;
     private Integer IdKhachHang;
 
@@ -38,5 +40,21 @@ public class AddLogDoiVeThanhToanThemDto {
 
     public void setIdKhachHang(Integer idKhachHang) {
         IdKhachHang = idKhachHang;
+    }
+
+    public Integer getIdSuKien() {
+        return IdSuKien;
+    }
+
+    public void setIdSuKien(Integer idSuKien) {
+        IdSuKien = idSuKien;
+    }
+
+    public Integer getIdDoiTac() {
+        return IdDoiTac;
+    }
+
+    public void setIdDoiTac(Integer idDoiTac) {
+        IdDoiTac = idDoiTac;
     }
 }
