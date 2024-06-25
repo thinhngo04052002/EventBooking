@@ -147,7 +147,7 @@ public class LogController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Đổi vé hoàn tiền",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
             return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -175,7 +175,7 @@ public class LogController {
                 ipAddress = socket.getLocalAddress().getHostAddress();
             }
             // Lưu dữ liệu vào database
-            _Log = repo.save(new Log(_id, "Đổi vé thanh toán thêm",
+            _Log = repo.save(new Log(_id, "Hủy vé",
                     Instant.now().plus(Duration.ofHours(7)), moTa, ipAddress));
             return new ResponseEntity<>(_Log, HttpStatus.CREATED);
         } catch (Exception e) {
