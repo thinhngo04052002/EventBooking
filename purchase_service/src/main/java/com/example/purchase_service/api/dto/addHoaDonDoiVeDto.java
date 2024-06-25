@@ -6,6 +6,8 @@ public class addHoaDonDoiVeDto {
     private int IDNguoiDung;
     private int IDVeMoi;
     private int IDVeCu;
+    private int IDSuKien;
+    private int IDDoiTac;
     private Date ThoiDiemThanhToan;
     private String HinhThucThanhToan;
 
@@ -47,6 +49,22 @@ public class addHoaDonDoiVeDto {
 
     public void setIDVeCu(int iDVeCu) {
         IDVeCu = iDVeCu;
+    }
+
+    public int getIDSuKien() {
+        return IDSuKien;
+    }
+
+    public void setIDSuKien(int iDSuKien) {
+        IDSuKien = iDSuKien;
+    }
+
+    public int getIDDoiTac() {
+        return IDDoiTac;
+    }
+
+    public void setIDDoiTac(int iDDoiTac) {
+        IDDoiTac = iDDoiTac;
     }
 
 }

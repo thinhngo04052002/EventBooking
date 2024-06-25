@@ -42,6 +42,8 @@ public class hoadonService {
         hoadon hoadon = new hoadon();
         hoadon.setIDTaiKhoan(dto.getIDTaiKhoan());
         hoadon.setIDVe(dto.getIDVe());
+        hoadon.setIDSuKien(dto.getIDSuKien());
+        hoadon.setIDDoiTac(dto.getIDDoiTac());
         hoadon.setIDKhuyenMai(dto.getIDKhuyenMai());
         hoadon.setThoiDiemThanhToan(dto.getThoiDiemThanhToan());
         hoadon.setHinhThucThanhToan(dto.getHinhThucThanhToan());
@@ -74,6 +76,8 @@ public class hoadonService {
             hoadon hoadon = new hoadon();
             hoadon.setIDTaiKhoan(dto.getIDTaiKhoan());
             hoadon.setIDVe(dto.getIDVe());
+            hoadon.setIDSuKien(dto.getIDSuKien());
+            hoadon.setIDDoiTac(dto.getIDDoiTac());
             hoadon.setIDKhuyenMai(dto.getIDKhuyenMai());
             hoadon.setThoiDiemThanhToan(dto.getThoiDiemThanhToan());
             hoadon.setHinhThucThanhToan(dto.getHinhThucThanhToan());
@@ -88,16 +92,20 @@ public class hoadonService {
     public hoadon CreateHoaDonDoiVe(addHoaDonDoiVeDto dto) {
         // Lấy IDTaiKhoan từ IDNguoiDung, service user
         int IDTaiKhoan = dto.getIDNguoiDung();
-        // Lấy giá vé cũ và vé mới từ service purchase
+        // Lấy giá vé mà khách hàng thực sự trả khi mua từ service purchase, vé đã mua
+        BigDecimal giaBan = new BigDecimal("350000");
+        // Lấy giá niêm yết vé cũ và vé mới từ service purchase
         BigDecimal giaVeCu = new BigDecimal("400000");
         BigDecimal giaVeMoi = new BigDecimal("300000");
         // Lấy khoảng chênh lệch tiền vé = số tiền phải trả thêm, đổi vé trừ thêm 20%
-        // giá vé cũ
-        BigDecimal ThanhTien = giaVeMoi.subtract(giaVeCu.multiply(new BigDecimal("1.2")));
+        // giá niêm yết vé cũ
+        BigDecimal ThanhTien = giaVeMoi.subtract(giaBan.subtract(giaVeCu.multiply(new BigDecimal("0.8"))));
         // Tạo một đối tượng hoadon mới
         hoadon hoadon = new hoadon();
         hoadon.setIDTaiKhoan(IDTaiKhoan);
         hoadon.setIDVe(dto.getIDVeMoi());
+        hoadon.setIDSuKien(dto.getIDSuKien());
+        hoadon.setIDDoiTac(dto.getIDDoiTac());
         hoadon.setThoiDiemThanhToan(dto.getThoiDiemThanhToan());
         hoadon.setHinhThucThanhToan(dto.getHinhThucThanhToan());
         hoadon.setThanhTien(ThanhTien);
@@ -125,7 +133,8 @@ public class hoadonService {
     public hoadon HuyHoaDon(HuyHoaDonDto dto) {
         Date ThoiDiemThanhToan = new Date();
         // Kiểm tra người dùng đủ điều kiện đổi hoặc hủy vé không
-        boolean check = checkRemainingTime(dto.getIDNguoiDung(), dto.getIDVe(), ThoiDiemThanhToan);
+        boolean check = checkRemainingTime(dto.getIDNguoiDung(), dto.getIDVe(), dto.getIDSuKien(), dto.getIDDoiTac(),
+                ThoiDiemThanhToan);
         if (check == true) {
             // Lấy IDTaiKhoan từ IDNguoiDung, service user
             int IDTaiKhoan = dto.getIDNguoiDung();
@@ -150,7 +159,7 @@ public class hoadonService {
         }
     }
 
-    public boolean checkRemainingTime(int IDNguoiDung, int IDVe, Date ThoiDiemDoiHuyVe) {
+    public boolean checkRemainingTime(int IDNguoiDung, int IDVe, int IDSuKien, int IDDoiTac, Date ThoiDiemDoiHuyVe) {
         // Lấy ra thời điểm bắt đầu của sự kiện từ VeDaMua của service Product
         // Hardcode demo thời điểm
         LocalDate ThoiDiemBatDau = LocalDate.of(2024, 6, 22);

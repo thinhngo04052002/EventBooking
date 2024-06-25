@@ -7,6 +7,10 @@ public class addHoaDonMuaVeDto {
 
     private int IDVe;
 
+    private int IDSuKien;
+
+    private int IDDoiTac;
+
     private int IDKhuyenMai;
 
     private Date ThoiDiemThanhToan;
@@ -52,4 +56,21 @@ public class addHoaDonMuaVeDto {
     public void setHinhThucThanhToan(String hinhThucThanhToan) {
         HinhThucThanhToan = hinhThucThanhToan;
     }
+
+    public int getIDSuKien() {
+        return IDSuKien;
+    }
+
+    public void setIDSuKien(int iDSuKien) {
+        IDSuKien = iDSuKien;
+    }
+
+    public int getIDDoiTac() {
+        return IDDoiTac;
+    }
+
+    public void setIDDoiTac(int iDDoiTac) {
+        IDDoiTac = iDDoiTac;
+    }
+
 }
