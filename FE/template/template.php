@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>20120591_BTUDPT2</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -16,24 +17,24 @@
         <!-- lấy tên user -->
         <?php $username = 'JohnDoe'; ?>
         <!-- nếu chưa đăng nhập thì trả về header này -->
-        <?php require("./view/header_chuaDangNhap.php"); ?>
+        <!-- <?php require("./view/header_chuaDangNhap.php"); ?> -->
 
         <!-- nếu là admin sự kiện hoặc hệ thống thì trả về header này -->
         <?php require("./view/header_admin.php"); ?>
         <!-- nếu là khách hàng thì trả về header này -->
-        <?php require("./view/header_khachHang.php"); ?>
+        <!-- <?php require("./view/header_khachHang.php"); ?> -->
     </div>
     <div id="container">
 
         <nav id="navbar">
             <!-- nếu chưa đăng nhập thì trả về navbar này -->
-            <?php require("./view/navigationBar_khachHang.php"); ?>
+            <!-- <?php require("./view/navigationBar_khachHang.php"); ?> -->
             <!-- nếu là admin sự kiện thì trả về navbar này -->
-            <?php require("./view/navigationBar_adminSuKien.php"); ?>
+            <!-- <?php require("./view/navigationBar_adminSuKien.php"); ?> -->
             <!-- nếu là admin hệ thống thì trả về navbar này -->
             <?php require("./view/navigationBar_adminHeThong.php"); ?>
             <!-- nếu là khách hàng thì trả về navbar này -->
-            <?php require("./view/navigationBar_khachHang.php"); ?>
+            <!-- <?php require("./view/navigationBar_khachHang.php"); ?> -->
         </nav>
         <!-- <div id="line"></div> -->
         <div id="content">
@@ -81,3 +82,8 @@
 </script>
 
 </html>
+<script src="https://app.tudongchat.com/js/chatbox.js"></script>
+<script>
+    const tudong_chatbox = new TuDongChat('ary0an5bsj1yD9Qk_WyvA')
+    tudong_chatbox.initial()
+</script>
