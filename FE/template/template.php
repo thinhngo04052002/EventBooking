@@ -1,5 +1,6 @@
 <?php $VIEW ?>
-<?php $token ?>
+<!-- <?php $token ?> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
