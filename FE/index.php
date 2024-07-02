@@ -12,38 +12,11 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "taosukien";
 
 switch ($action) {
 
+        //khách hàng
 
+        //admin sự kiện
 
-
-        //product service
-
-
-        //crm service
-    case "crm":
-        $controller = new CrmController();
-        $endpoint = "getAllSuKien";
-        // $controller->callProductService($endpoint);
-        break;
-
-
-
-        //user service
-    case "dangnhap":
-        $controller = new UserController();
-        $endpoint = "getAllSuKien";
-        // $controller->callProductService($endpoint);
-        break;
-
-
-
-        //purchase service
-    case "muave":
-        $controller = new PurchaseController();
-        $endpoint = "getAllSuKien";
-        // $controller->callProductService($endpoint);
-        break;
-
-
+        //admin hệ thống
 
 
         //demo
