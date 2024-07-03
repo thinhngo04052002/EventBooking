@@ -5,7 +5,6 @@ class UserController
     {
 
         $url = 'http://localhost:8001/user?uri=' . $uri;
-        echo " hàm chuyển url   $url";
         $ch = curl_init();
 
         // Thêm token CSRF vào header request
@@ -19,35 +18,53 @@ class UserController
 
         // Nếu là phương thức POST
         if ($method == 'POST') {
-            echo " method   $method";
+           
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         }
 
         $response = curl_exec($ch);
-        print_r($response);
         if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
+          
         }
         curl_close($ch);
 
         return json_decode($response, true);
     }
-  
+
 
     public function dangNhap($portGateway)
     {
         $portGateway;
+
         // Điều hướng đến view và template
         $VIEW = "./view/dangNhap.php";
         require("./template/template.php");
     }
-    public function dangKy($portGateway)
+    public function dangKy($uri)
     {
-        $portGateway;
+        if (isset($_POST['login'])) {
+            $data = [
+                'username' => $_POST['username'],
+                'password' => $_POST['password'],
+                'email' => $_POST['email'],
+                'vaitro' => $_POST['vaitro'],
+                'tinhtrang' => 'Hoạt động'
+            ];
+            $answer= $this->getUserService($uri,'POST',$data);
+            $VIEW = "./view/dangKy.php";
+            require("./template/template.php");
+
+
+        } else {
+            $data = "";        
+            $VIEW = "./view/dangKy.php";
+            require("./template/template.php");
+        }
+
+
         // Điều hướng đến view và template
-        $VIEW = "./view/dangKy.php";
-        require("./template/template.php");
+        
     }
 
     public function thongTinDoanhNghiep($portGateway)

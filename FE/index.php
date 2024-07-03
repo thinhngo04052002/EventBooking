@@ -18,8 +18,9 @@ switch ($action) {
         $controller->dangNhap($portGateway);
         break;
     case "dangKy":
+        $uri='taikhoan/register';
         $controller = new UserController();
-        $controller->dangKy($portGateway);
+        $controller->dangKy($uri);
         break;
         //khách hàng
     case "danhGia":
