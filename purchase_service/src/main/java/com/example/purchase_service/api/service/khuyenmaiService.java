@@ -18,12 +18,12 @@ public class khuyenmaiService {
         return repo.findAll();
     }
 
-    public khuyenmai getKhuyenMaiById(int id) {
-        return repo.findById(id);
+    public khuyenmai getKhuyenMaiByMakhuyenmai(String makhuyenmai) {
+        return repo.findByMakhuyenmai(makhuyenmai);
     }
 
-    public List<khuyenmai> getKhuyenMaiByIdSuKien(int IDSuKien) {
-        return repo.findByIdsukien(IDSuKien);
+    public List<khuyenmai> getKhuyenMaiByIdSuKienIdDoiTac(int IDSuKien, int IDDoiTac) {
+        return repo.findByIdsukienAndIddoitac(IDSuKien, IDDoiTac);
     }
 
     public khuyenmai createKhuyenmai(addKhuyenmaiDto dto) {
