@@ -4,6 +4,15 @@ $answer;
 
 <div class="registration-form-container">
     <h1>Đăng nhập</h1>
+    <?php
+        if (isset($answer)) {
+           
+            echo '<p class="message error">' . $answer . '</p>';
+
+           
+            
+        }
+        ?>
     <form action="index.php?action=dangNhap" method="post" class="registration-form">
         <div class="registration-form-group">
             <label for="username" class="registration-label">Tên đăng nhập</label>
@@ -21,13 +30,5 @@ $answer;
         <p><a href="index.php?action=dangNhap" class="registration-link">Đăng ký</a></p>
         </div>
     </form>
-    <?php
-    if (isset($answer)) {
-        if ($answer == 1) {
-            echo '<p class="registration-success-message">Đăng kí thành công</p>';
-        } else if ($answer == 0) {
-            echo '<p class="registration-error-message">Đăng kí không thành công</p>';
-        }
-    }
-    ?>
+    
 </div>

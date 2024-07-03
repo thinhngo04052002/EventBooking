@@ -15,18 +15,17 @@ class UserController
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        echo $uri;
+
 
         // Nếu là phương thức POST
         if ($method == 'POST') {
-           
+
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-
         }
 
         $response = curl_exec($ch);
-        print_r($response);
+        // print_r($response);
         if (curl_errno($ch)) {
             printf($response);
         }
@@ -40,23 +39,31 @@ class UserController
     public function dangNhap($uri)
     {
 
-       
- if (isset($_POST['login'])) {
+
+        if (isset($_POST['login'])) {
             $data = [
                 'username' => $_POST['username'],
                 'password' => $_POST['password'],
             ];
-            $answer= $this->getUserService($uri,'POST',$data);
-            
-            $VIEW = "./view/dangNhap.php";
-            require("./template/template.php");
-
-
+            $answer = $this->getUserService($uri, 'POST', $data);
+            if (isset($answer) && isset($answer['access_token'])) {
+                session_start();
+                $_SESSION['IsLogined'] = true;
+                $_SESSION['access_token'] = $answer['access_token'];
+                $_SESSION['token_type'] = $answer['token_type'];
+                $_SESSION['role'] = $answer['role'];
+                $_SESSION['id'] = $answer['id'];
+                header('Location:index.php');
+                exit();
+            } else {
+                $answer = "Sai thông tin đăng nhập / Tài khoản bị khoá ";
+                $VIEW = "./view/dangNhap.php";
+            }
         } else {
-            $data = "";        
+            $data = "";
             $VIEW = "./view/dangNhap.php";
-            require("./template/template.php");
         }
+        require("./template/template.php");
     }
     public function dangKy($uri)
     {
@@ -68,20 +75,18 @@ class UserController
                 'vaitro' => $_POST['vaitro'],
                 'tinhtrang' => 'Hoạt động'
             ];
-            $answer= $this->getUserService($uri,'POST',$data);
+            $answer = $this->getUserService($uri, 'POST', $data);
             $VIEW = "./view/dangKy.php";
             require("./template/template.php");
-
-
         } else {
-            $data = "";        
+            $data = "";
             $VIEW = "./view/dangKy.php";
             require("./template/template.php");
         }
 
 
         // Điều hướng đến view và template
-        
+
     }
 
     public function thongTinDoanhNghiep($portGateway)

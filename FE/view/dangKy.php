@@ -17,7 +17,8 @@
                 echo '<p class="message error">' . $errorMessage . '</p>';
           
             } else {
-                echo '<p class="message success">Đăng kí  thành công</p>';
+                header('Location: /index.php');
+                exit();
             }
         }
         ?>

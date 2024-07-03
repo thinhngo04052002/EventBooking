@@ -59,6 +59,8 @@ class TaiKhoan(TaiKhoanBase):
 class Token(BaseModel):
     access_token:str
     token_type:str
+    role:str
+    id: int
 
 class TaiKhoanList(BaseModel):
     id: int
@@ -273,11 +275,14 @@ async def DangKyTaiKhoan(user:TaiKhoan_CreateBase,db:db_dependency ):
 async def login_for_access_token(login_form:TaiKhoan_login, db:db_dependency):
     user=authenticate_user(db,login_form.username,login_form.password)
 
-    if not user:
+    if not user :
         raise HTTPException(status_code=404,details="Sai tài khoản/ mật khẩu")
+    if user.tinhtrang=='Bị khoá':
+        raise HTTPException(status_code=500,details="Tài khoản bị khoá")
+
     access_token_expires=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token=create_access_token(data={"sub":user.id},expires_delta=access_token_expires)
-    return{"access_token":access_token, "token_type":"bearer"} 
+    return{"access_token":access_token, "token_type":"bearer","role":user.vaitro,"id":user.id} 
 
 
 
