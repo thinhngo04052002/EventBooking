@@ -11,6 +11,8 @@ import com.example.purchase_service.api.model.khuyenmai;
 public interface khuyenmaiRepository extends JpaRepository<khuyenmai, Integer> {
     List<khuyenmai> findByIdsukienAndIddoitac(int idsukien, int iddoitac);
 
+    List<khuyenmai> findByIdsukienAndIddoitac(int idsukien, int iddoitac);
+
     khuyenmai findById(int id);
 
     khuyenmai findByMakhuyenmai(String makhuyenmai);

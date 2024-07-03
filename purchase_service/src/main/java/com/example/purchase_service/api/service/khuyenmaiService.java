@@ -18,8 +18,8 @@ public class khuyenmaiService {
         return repo.findAll();
     }
 
-    public khuyenmai getKhuyenMaiById(int id) {
-        return repo.findById(id);
+    public khuyenmai getKhuyenMaiByMakhuyenmai(String makhuyenmai) {
+        return repo.findByMakhuyenmai(makhuyenmai);
     }
 
     public khuyenmai getKhuyenMaiByMakhuyenmai(String makhuyenmai) {
