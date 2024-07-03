@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once("./controller/userService.php");
 require_once("./controller/crmService.php");
 require_once("./controller/logService.php");
@@ -61,10 +63,10 @@ switch ($action) {
         $uri = "sukien/postThemSuKien";
         $controller->taoSuKienClick($uri);
         break;
-    case "dangKyDoiTac":
-        $controller = new UserController();
-        $controller->dangKyDoiTac($portGateway);
-        break;
+    // case "dangKyDoiTac":
+    //     $controller = new UserController();
+    //     $controller->dangKyDoiTac($portGateway);
+    //     break;
     case "thongTinDoanhNghiep":
         $controller = new UserController();
         $controller->thongTinDoanhNghiep($portGateway);

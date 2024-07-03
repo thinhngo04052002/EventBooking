@@ -38,7 +38,7 @@
             <!-- <?php require("./view/navigationBar_khachHang.php"); ?> -->
         </nav>
         <!-- <div id="line"></div> -->
-        <div id="content">
+        <div id="content" >
             <?php require($VIEW); ?>
         </div>
     </div>

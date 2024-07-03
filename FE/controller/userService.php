@@ -33,13 +33,7 @@ class UserController
 
         return json_decode($response, true);
     }
-    public function dangKyDoiTac($portGateway)
-    {
-        $portGateway;
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/dangKyTaiKhoanDoiTac.php";
-        require("./template/template.php");
-    }
+  
 
     public function dangNhap($portGateway)
     {

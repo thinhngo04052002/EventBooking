@@ -1,6 +1,47 @@
-<form action="index.php" method="POST" id="dangKy">
-    <input type="text" name="keyWord" id="inputSearch" onsubmit="return checkKeyword(event)">
-    <input id="btnSearch" type="submit" value="Tìm kiếm">
-    <input type="hidden" name="pageNum" value="1">
-    <input type="hidden" name="action" value="search" />
-</form>
+<?php
+$answer;
+?>
+
+<div class="registration-form-container">
+    <h1>Đăng ký tài khoản</h1>
+    <form action="index.php?action=dangKy" method="post" class="registration-form">
+        <div class="registration-form-group">
+            <label for="username" class="registration-label">Tên Người Dùng</label>
+            <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" class="registration-input" required>
+        </div>
+        <div class="registration-form-group">
+            <label for="password" class="registration-label">Mật khẩu</label>
+            <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" class="registration-input" required>
+        </div>
+        <div class="registration-form-group">
+            <label for="password" class="registration-label">Nhập lại mật khẩu</label>
+            <input type="password" id="password" name="re-enter password" placeholder="Nhập mật khẩu" class="registration-input" required>
+        </div>
+        <div class="registration-form-group">
+            <label for="email" class="registration-label">Email</label>
+            <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" class="registration-input" required>
+        </div>
+        <div class="registration-form-group">
+            <label for="vaitro" class="registration-label">Bạn cần</label>
+            <select id="vaitro" name="vaitro" class="registration-select" required>
+                <option value="KH">Mua vé</option>
+                <option value="ADDVSK">Tổ chức sự kiện</option>
+            </select>
+        </div>
+        <div class="registration-btn-group">
+            <button type="submit" class="registration-btn">Đăng ký tài khoản</button>
+        </div>
+        <div class="registration-btn-group">
+        <p><a href="index.php?action=dangNhap" class="registration-link">Đã có tài khoản? Đăng nhập ngay!</a></p>
+        </div>
+    </form>
+    <?php
+    if (isset($answer)) {
+        if ($answer == 1) {
+            echo '<p class="registration-success-message">Đăng kí thành công</p>';
+        } else if ($answer == 0) {
+            echo '<p class="registration-error-message">Đăng kí không thành công</p>';
+        }
+    }
+    ?>
+</div>
