@@ -28,6 +28,9 @@ public class khuyenmaiService {
 
     public List<khuyenmai> getKhuyenMaiByIdSuKienIdDoiTac(int IDSuKien, int IDDoiTac) {
         return repo.findByIdsukienAndIddoitac(IDSuKien, IDDoiTac);
+
+    public List<khuyenmai> getKhuyenMaiByIdSuKienIdDoiTac(int IDSuKien, int IDDoiTac) {
+        return repo.findByIdsukienAndIddoitac(IDSuKien, IDDoiTac);
     }
 
     public khuyenmai createKhuyenmai(addKhuyenmaiDto dto) {
