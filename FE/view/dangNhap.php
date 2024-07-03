@@ -6,7 +6,7 @@ $answer;
     <h1>Đăng nhập</h1>
     <form action="index.php?action=dangNhap" method="post" class="registration-form">
         <div class="registration-form-group">
-            <label for="username" class="registration-label">Tên Người Dùng</label>
+            <label for="username" class="registration-label">Tên đăng nhập</label>
             <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" class="registration-input" required>
         </div>
         <div class="registration-form-group">
@@ -15,10 +15,10 @@ $answer;
         </div>
         
         <div class="registration-btn-group">
-            <button type="submit" class="registration-btn">Đăng nhập </button>
+            <button type="submit" class="registration-btn" name='login'>Đăng nhập </button>
         </div>
         <div class="registration-btn-group">
-        <p><a href="index.php?action=dangKy" class="registration-link">Đăng ký</a></p>
+        <p><a href="index.php?action=dangNhap" class="registration-link">Đăng ký</a></p>
         </div>
     </form>
     <?php

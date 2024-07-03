@@ -45,6 +45,12 @@ class TaiKhoanBase(BaseModel):
 
 class TaiKhoan_CreateBase(TaiKhoanBase):
     password:str
+class TaiKhoan_login(BaseModel):
+    username: str
+    password: str
+    class Config:
+        orm_mode = True
+
 
 class TaiKhoan(TaiKhoanBase):
     id:int 
@@ -140,7 +146,7 @@ class NganHangBase(BaseModel):
 
 def create_access_token(data:dict,expires_delta:timedelta):
     to_encode=data.copy()
-    expire=datetime.utcnow()+expires_delta
+    expire = datetime.utcnow() + timedelta(hours=4)  # Thời hạn là 4 tiếng
     to_encode.update({"exp":expire})
     encoded_jwt=jwt.encode(to_encode,SECRET_KEY,algorithm=ALGORITHM)
     return encoded_jwt
@@ -149,6 +155,11 @@ def get_user_by_username(db:Session,username:str):
     print(username)
     
     return db.query(models.TaiKhoan).filter(models.TaiKhoan.username==username).first()
+def get_user_id_by_username(db: Session, username: str) -> int:
+    user = db.query(models.TaiKhoan).filter(models.TaiKhoan.username == username).first()
+    if user:
+        return user.id
+    return None
 
     
 #Function to verify password
@@ -259,12 +270,13 @@ async def DangKyTaiKhoan(user:TaiKhoan_CreateBase,db:db_dependency ):
     return create_user(db=db,user=user)
     
 @app.post("/taikhoan/login",response_model=Token)
-async def login_for_access_token(form_data:OAuth2PasswordRequestForm = Depends(), db:Session=Depends(get_db)):
-    user=authenticate_user(db,form_data.username,form_data.password)
+async def login_for_access_token(login_form:TaiKhoan_login, db:db_dependency):
+    user=authenticate_user(db,login_form.username,login_form.password)
+
     if not user:
         raise HTTPException(status_code=404,details="Sai tài khoản/ mật khẩu")
     access_token_expires=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token=create_access_token(data={"sub":form_data.username},expires_delta=access_token_expires)
+    access_token=create_access_token(data={"sub":user.id},expires_delta=access_token_expires)
     return{"access_token":access_token, "token_type":"bearer"} 
 
 

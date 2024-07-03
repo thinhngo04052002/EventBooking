@@ -15,31 +15,48 @@ class UserController
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        echo $uri;
 
         // Nếu là phương thức POST
         if ($method == 'POST') {
            
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
         }
 
         $response = curl_exec($ch);
+        print_r($response);
         if (curl_errno($ch)) {
-          
+            printf($response);
         }
         curl_close($ch);
+
 
         return json_decode($response, true);
     }
 
 
-    public function dangNhap($portGateway)
+    public function dangNhap($uri)
     {
-        $portGateway;
 
-        // Điều hướng đến view và template
-        $VIEW = "./view/dangNhap.php";
-        require("./template/template.php");
+       
+ if (isset($_POST['login'])) {
+            $data = [
+                'username' => $_POST['username'],
+                'password' => $_POST['password'],
+            ];
+            $answer= $this->getUserService($uri,'POST',$data);
+            
+            $VIEW = "./view/dangNhap.php";
+            require("./template/template.php");
+
+
+        } else {
+            $data = "";        
+            $VIEW = "./view/dangNhap.php";
+            require("./template/template.php");
+        }
     }
     public function dangKy($uri)
     {

@@ -14,8 +14,9 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghie
 
 switch ($action) {
     case "dangNhap":
+        $uri='taikhoan/login';
         $controller = new UserController();
-        $controller->dangNhap($portGateway);
+        $controller->dangNhap($uri);
         break;
     case "dangKy":
         $uri='taikhoan/register';
