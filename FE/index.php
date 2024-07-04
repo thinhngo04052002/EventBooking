@@ -1,25 +1,34 @@
 <?php
+
 session_start();
 
-require_once("./controller/userService.php");
-require_once("./controller/crmService.php");
-require_once("./controller/logService.php");
-require_once("./controller/productService.php");
-require_once("./controller/purchaseService.php");
+require_once ("./controller/userService.php");
+require_once ("./controller/crmService.php");
+require_once ("./controller/logService.php");
+require_once ("./controller/productService.php");
+require_once ("./controller/purchaseService.php");
 
 $portGateway = 8001;
 
 $action = "thongTinDoanhNghiep";
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
+// $action = "thongTinDoanhNghiep";
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
 
 switch ($action) {
     case "dangNhap":
+        $uri='taikhoan/login';
         $controller = new UserController();
-        $controller->dangNhap($portGateway);
+        $controller->dangNhap($uri);
+        break;
+    case "logout":
+        $controller = new UserController();
+        $controller->logOut();
         break;
     case "dangKy":
+        $uri='taikhoan/register';
         $controller = new UserController();
-        $controller->dangKy($portGateway);
+        $controller->dangKy($uri);
         break;
         //khách hàng
     case "danhGia":
@@ -79,14 +88,13 @@ switch ($action) {
         //admin hệ thống
 
 
-        //demo
-        //get
+    //demo
+    //get
     case "home":
         $controller = new ProductController();
-        $uri = "sukien/getAllSuKien";
-        $controller->getAllSuKien($uri);
+        $controller->getAllSuKienSuatDien();
         break;
-        //post qua body
+    //post qua body
     case "testTaoVe":
         $controller = new ProductController();
         $controller->testTaoVe($portGateway);
@@ -97,7 +105,7 @@ switch ($action) {
         $uri = "ve/postVe";
         $controller->testTaoVeClick($uri);
         break;
-        //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+    //post qua tham số thì cứ chỉnh url cho khớp giống swagger
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";

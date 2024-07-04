@@ -11,7 +11,7 @@ public class addHoaDonMuaVeDto {
 
     private int IDDoiTac;
 
-    private int IDKhuyenMai;
+    private String MaKhuyenMai;
 
     private Date ThoiDiemThanhToan;
 
@@ -33,12 +33,12 @@ public class addHoaDonMuaVeDto {
         IDVe = iDVe;
     }
 
-    public int getIDKhuyenMai() {
-        return IDKhuyenMai;
+    public String getMaKhuyenMai() {
+        return MaKhuyenMai;
     }
 
-    public void setIDKhuyenMai(int iDKhuyenMai) {
-        IDKhuyenMai = iDKhuyenMai;
+    public void setMaKhuyenMai(String maKhuyenMai) {
+        MaKhuyenMai = maKhuyenMai;
     }
 
     public Date getThoiDiemThanhToan() {

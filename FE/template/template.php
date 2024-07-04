@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>20120591_BTUDPT2</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
@@ -17,30 +16,59 @@
 
 <body>
     <div id="header">
-        <!-- lấy tên user -->
-        <?php $username = 'JohnDoe'; ?>
-        <!-- nếu chưa đăng nhập thì trả về header này -->
-        <?php require("./view/header_chuaDangNhap.php"); ?>
-
-        <!-- nếu là admin sự kiện hoặc hệ thống thì trả về header này -->
-        <!-- <?php require("./view/header_admin.php"); ?> -->
-        <!-- nếu là khách hàng thì trả về header này -->
-        <!-- <?php require("./view/header_khachHang.php"); ?> -->
+    <?php
+    if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
+        // Nếu chưa đăng nhập
+        require("./view/header_chuaDangNhap.php");
+    } else {
+        // Nếu đã đăng nhập, kiểm tra vai trò
+        switch ($_SESSION['role']) {
+            case 'ADDVSK':
+                require("./view/header_adminSuKien.php");
+                break;
+            case 'ADNT':
+                require("./view/header_adminHeThong.php");
+                break;
+            case 'KH':
+                require("./view/header_khachHang.php");
+                break;
+            default:
+                // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+                require("./view/header_chuaDangNhap.php");
+                break;
+        }
+    }
+    ?>
     </div>
     <div id="container">
 
         <nav id="navbar">
-            <!-- nếu chưa đăng nhập thì trả về navbar này -->
-            <?php require("./view/navigationBar_khachHang.php"); ?>
-            <!-- nếu là admin sự kiện thì trả về navbar này -->
-            <!-- <?php require("./view/navigationBar_adminSuKien.php"); ?> -->
-            <!-- nếu là admin hệ thống thì trả về navbar này -->
-            <!-- <?php require("./view/navigationBar_adminHeThong.php"); ?> -->
-            <!-- nếu là khách hàng thì trả về navbar này -->
-            <!-- <?php require("./view/navigationBar_khachHang.php"); ?> -->
+        <?php
+    if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
+        // Nếu chưa đăng nhập
+        require("./view/navigationBar_chuaDangNhap.php");
+    } else {
+        // Nếu đã đăng nhập, kiểm tra vai trò
+        switch ($_SESSION['role']) {
+            case 'ADDVSK':
+                require("./view/navigationBar_adminSuKien.php");
+                break;
+            case 'ADNT':
+                require("./view/navigationBar_adminHeThong.php");
+                break;
+            case 'KH':
+                require("./view/navigationBar_khachHang.php");
+                break;
+            default:
+                // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+                require("./view/navigationBar_chuaDangNhap.php");
+                break;
+        }
+    }
+    ?>
         </nav>
         <!-- <div id="line"></div> -->
-        <div id="content" >
+        <div id="content">
             <?php require($VIEW); ?>
         </div>
     </div>
