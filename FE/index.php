@@ -31,6 +31,11 @@ switch ($action) {
         $controller->dangKy($uri);
         break;
         //khách hàng
+    case "userProfile":
+        $uri='nguoidung/info/userid=';
+        $controller = new UserController();
+        $controller->thongtinKhachHang($uri);
+        break;
     case "danhGia":
         $controller = new CrmController();
         $controller->danhGia($portGateway);
@@ -77,8 +82,9 @@ switch ($action) {
     //     $controller->dangKyDoiTac($portGateway);
     //     break;
     case "thongTinDoanhNghiep":
+        $uri='doitac/info/id=';
         $controller = new UserController();
-        $controller->thongTinDoanhNghiep($portGateway);
+        $controller->thongTinDoanhNghiep($uri);
         break;
     case "thongTinDoanhNghiepClick":
         $controller = new UserController();

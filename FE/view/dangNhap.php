@@ -28,7 +28,7 @@ $answer;
                 <button type="submit" class="registration-btn" name=' login'>Đăng nhập </button>
             </div>
             <div class="registration-btn-group">
-                <p><a href="index.php?action=dangNhap" class="registration-link">Đăng ký</a></p>
+                <p><a href="index.php?action=dangKy" class="registration-link">Đăng ký</a></p>
             </div>
         </form>
 

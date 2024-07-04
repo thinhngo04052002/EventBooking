@@ -53,7 +53,7 @@ class UserController
                 $_SESSION['token_type'] = $answer['token_type'];
                 $_SESSION['role'] = $answer['role'];
                 $_SESSION['id'] = $answer['id'];
-                $_SESSION['username']=$answer['username'];
+                $_SESSION['username'] = $answer['username'];
                 header('Location:index.php?action=dangKy');
                 exit();
             } else {
@@ -93,15 +93,27 @@ class UserController
     public function logout()
     {
         unset($_SESSION["isLogined"]);
-		header("Location:index.php?action=dangNhap");		
+        header("Location:index.php?action=dangNhap");
+    }
+    public function thongtinKhachHang($uri)
+    {
+        $uri = $uri . $_SESSION['id'];
+        $data = [];
+        $VIEW = './view/khachHang/thongTinKhachHang.php';
+        $answer = $this->getUserService($uri, 'GET', $data);
+        require("./template/template.php");
     }
 
 
-    public function thongTinDoanhNghiep($portGateway)
+    public function thongTinDoanhNghiep($uri)
     {
-        $portGateway;
+        $uri = $uri . $_SESSION['id'];
+        $data = [];
+
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/thongTinDoanhNghiep.php";
+        $answer = $this->getUserService($uri, 'GET', $data);
+
         require("./template/template.php");
     }
 

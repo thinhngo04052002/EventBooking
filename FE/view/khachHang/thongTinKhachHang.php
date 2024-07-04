@@ -92,17 +92,19 @@
         <div class="avatar-space">
             <div class="info-image">
 
-                <img src="<?php echo $answer['logo'];?>" alt="avt-doanhnghiep"> 
+                <img src="css/images/avatar-user.png" alt="Avatar của <?php echo $answer['hoten']; ?>">
 
             </div>
 
         </div>
         <div class="info-space">
-            <h1><?php echo $answer['tendoitac']; ?></h1>
+            <h1><?php echo $answer['hoten']; ?></h1>
             <div class="info">
 
-                <p><span class="label">Người đại diện</span> <?php echo $answer['nguoidaidien']; ?></p>
+            <p><span style='font-weight: 100;' class="label"><strong>Hạng thành viên:<span style=' color:red'>  VIP</span> </strong></span></p>
                 <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
+                <p><span class="label">Giới tính:</span> <?php echo $answer['gioitinh']; ?></p>
+                <p><span class="label">Ngày sinh:</span> <?php echo $answer['ngaysinh']; ?></p>
                 <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
                 <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa thông tin</a>
                 

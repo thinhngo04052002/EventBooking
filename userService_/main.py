@@ -396,9 +396,9 @@ async def ThietLapNganHang(nganhang:NganHangBase,db:db_dependency):
 
 
 
-@app.get("/doitac/info/id={doitac_id}",status_code=status.HTTP_200_OK)
-async def ThongtinNguoiDungTheoID(doitac_id:int,db:db_dependency):
-    info=db.query(models.DoiTac).filter(models.DoiTac.id==doitac_id).first()
+@app.get("/doitac/info/id={user_id}",status_code=status.HTTP_200_OK)
+async def ThongtinNguoiDungTheoID(user_id:int,db:db_dependency):
+    info=db.query(models.DoiTac).filter(models.DoiTac.id_taikhoan==user_id).first()
     if  info is None:
         raise HTTPException(status_code=404,detail="Không tìm thấy thông tin")
     return info
