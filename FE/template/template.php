@@ -14,79 +14,56 @@
 
 <body>
     <div id="header">
-<<<<<<< HEAD
-        <!-- lấy tên user -->
-        <?php $username = 'JohnDoe'; ?>
-        <!-- nếu chưa đăng nhập thì trả về header này -->
-        <!-- <?php require("./view/header_chuaDangNhap.php"); ?> -->
-
-        <!-- nếu là admin sự kiện hoặc hệ thống thì trả về header này -->
-        <?php require("./view/header_admin.php"); ?>
-        <!-- nếu là khách hàng thì trả về header này -->
-        <!-- <?php require("./view/header_khachHang.php"); ?> -->
-=======
-    <?php
-    if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
-        // Nếu chưa đăng nhập
-        require("./view/header_chuaDangNhap.php");
-    } else {
-        // Nếu đã đăng nhập, kiểm tra vai trò
-        switch ($_SESSION['role']) {
-            case 'ADDVSK':
-                require("./view/header_adminSuKien.php");
-                break;
-            case 'ADNT':
-                require("./view/header_adminHeThong.php");
-                break;
-            case 'KH':
-                require("./view/header_khachHang.php");
-                break;
-            default:
-                // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
-                require("./view/header_chuaDangNhap.php");
-                break;
+        <?php
+        if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
+            // Nếu chưa đăng nhập
+            require("./view/header_chuaDangNhap.php");
+        } else {
+            // Nếu đã đăng nhập, kiểm tra vai trò
+            switch ($_SESSION['role']) {
+                case 'ADDVSK':
+                    require("./view/header_adminSuKien.php");
+                    break;
+                case 'ADNT':
+                    require("./view/header_adminHeThong.php");
+                    break;
+                case 'KH':
+                    require("./view/header_khachHang.php");
+                    break;
+                default:
+                    // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+                    require("./view/header_chuaDangNhap.php");
+                    break;
+            }
         }
-    }
-    ?>
->>>>>>> 5ca030c5862863891d08fca66451a89635c7cce8
+        ?>
     </div>
     <div id="container">
 
         <nav id="navbar">
-<<<<<<< HEAD
-            <!-- nếu chưa đăng nhập thì trả về navbar này -->
-            <!-- <?php require("./view/navigationBar_khachHang.php"); ?> -->
-            <!-- nếu là admin sự kiện thì trả về navbar này -->
-            <?php require("./view/navigationBar_adminSuKien.php"); ?>
-            <!-- nếu là admin hệ thống thì trả về navbar này -->
-            <!-- <?php require("./view/navigationBar_adminHeThong.php"); ?> -->
-            <!-- nếu là khách hàng thì trả về navbar này -->
-            <!-- <?php require("./view/navigationBar_khachHang.php"); ?> -->
-=======
-        <?php
-    if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
-        // Nếu chưa đăng nhập
-        require("./view/navigationBar_chuaDangNhap.php");
-    } else {
-        // Nếu đã đăng nhập, kiểm tra vai trò
-        switch ($_SESSION['role']) {
-            case 'ADDVSK':
-                require("./view/navigationBar_adminSuKien.php");
-                break;
-            case 'ADNT':
-                require("./view/navigationBar_adminHeThong.php");
-                break;
-            case 'KH':
-                require("./view/navigationBar_khachHang.php");
-                break;
-            default:
-                // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+            <?php
+            if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
+                // Nếu chưa đăng nhập
                 require("./view/navigationBar_chuaDangNhap.php");
-                break;
-        }
-    }
-    ?>
->>>>>>> 5ca030c5862863891d08fca66451a89635c7cce8
+            } else {
+                // Nếu đã đăng nhập, kiểm tra vai trò
+                switch ($_SESSION['role']) {
+                    case 'ADDVSK':
+                        require("./view/navigationBar_adminSuKien.php");
+                        break;
+                    case 'ADNT':
+                        require("./view/navigationBar_adminHeThong.php");
+                        break;
+                    case 'KH':
+                        require("./view/navigationBar_khachHang.php");
+                        break;
+                    default:
+                        // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+                        require("./view/navigationBar_chuaDangNhap.php");
+                        break;
+                }
+            }
+            ?>
         </nav>
         <!-- <div id="line"></div> -->
         <div id="content">
