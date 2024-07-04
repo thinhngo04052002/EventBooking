@@ -5,12 +5,12 @@ const express = require('express');
 const app = express(); // Định nghĩa biến app ở đây
 // cấu hình các port service
 const port = 8001;
-const portPurchase =8002
-const portLog =8003
-const portCRM =8004
-const portProduct =8005
-const portUser =8006
-const portStatistic =8007
+const portPurchase = 8002
+const portLog = 8003
+const portCRM = 8004
+const portProduct = 8005
+const portUser = 8006
+const portStatistic = 8007
 // Định nghĩa cổng mà server sẽ lắng nghe, ở đây là cổng 8001.
 
 // Sử dụng middleware của Express để tự động phân tích các yêu cầu JSON và làm cho chúng có sẵn trong req.body.
@@ -36,10 +36,10 @@ function makeAxiosRequest(body) {
     //     }
     // }   
     const data = body.body;
- // Lấy dữ liệu body từ đối tượng body được truyền vào hàm.
+    // Lấy dữ liệu body từ đối tượng body được truyền vào hàm.
 
     const url = `http://127.0.0.1:${body.port}/${body.uri}`;
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     return axios({
         method: 'POST',
         url: url,
@@ -51,12 +51,12 @@ function makeAxiosRequest(body) {
 
 app.post('/api', (req, res) => {
     const body = req.body;
-// Lấy dữ liệu từ body của yêu cầu POST.
+    // Lấy dữ liệu từ body của yêu cầu POST.
 
     makeAxiosRequest(body)
         .then(response => {
             res.status(200).json(response.data);
-             // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
         })
         .catch(error => {
             res.status(500).json({ error: error.message });
@@ -64,12 +64,12 @@ app.post('/api', (req, res) => {
         });
 });
 
-app.get('/api', (req, res) => {
-    const { uri, port } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+app.get('/api/product', (req, res) => {
+    const { uri } = req.query;
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
-        url: `http://127.0.0.1:${port}/${uri}`,
+        url: `http://127.0.0.1:${portProduct}/api/product/${uri}`,
     })
         .then(response => {
             res.status(200).json(response.data);
@@ -92,49 +92,49 @@ app.post('/product', (req, res) => {
     }
     // Đảm bảo rằng uri được xử lý đúng
     // const url = `http://127.0.0.1:${portProduct}/product/${uri}`;
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'POST',
         url: `http://127.0.0.1:${portProduct}/product/${uri}`,
         // headers: headers,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.put('/product', (req, res) => {
     const body = req.body;
     const { uri } = req.query;
-    
+
     // Đảm bảo rằng uri được xử lý đúng
     // const url = `http://127.0.0.1:${portProduct}/product/${uri}`;
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'PUT',
         url: `http://127.0.0.1:${portProduct}/product/${uri}`,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.get('/product', (req, res) => {
     const { uri } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
-        url: `http://127.0.0.1:${portProduct}/product/${uri}`,
+        url: `http://127.0.0.1:${portProduct}/api/product/${uri}`,
     })
         .then(response => {
             res.status(200).json(response.data);
@@ -153,25 +153,25 @@ app.post('/crm', (req, res) => {
     const headers = {
         "Content-Type": "application/json"
     }
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'POST',
         url: `http://127.0.0.1:${portCRM}/${uri}`,
         // headers: headers,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.get('/crm', (req, res) => {
     const { uri } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
         url: `http://127.0.0.1:${portCRM}/${uri}`,
@@ -192,25 +192,25 @@ app.post('/purchase', (req, res) => {
     const headers = {
         "Content-Type": "application/json"
     }
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'POST',
         url: `http://127.0.0.1:${portPurchase}/${uri}`,
         // headers: headers,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.get('/purchase', (req, res) => {
     const { uri } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
         url: `http://127.0.0.1:${portPurchase}/${uri}`,
@@ -231,25 +231,25 @@ app.post('/log', (req, res) => {
     const headers = {
         "Content-Type": "application/json"
     }
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'POST',
         url: `http://127.0.0.1:${portLog}/${uri}`,
         // headers: headers,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.get('/log', (req, res) => {
     const { uri } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
         url: `http://127.0.0.1:${portLog}/${uri}`,
@@ -270,25 +270,25 @@ app.post('/user', (req, res) => {
     const headers = {
         "Content-Type": "application/json"
     }
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'POST',
         url: `http://127.0.0.1:${portUser}/${uri}`,
         // headers: headers,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.get('/user', (req, res) => {
     const { uri } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
         url: `http://127.0.0.1:${portUser}/${uri}`,
@@ -310,25 +310,25 @@ app.post('/statistic', (req, res) => {
     const headers = {
         "Content-Type": "application/json"
     }
- // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
     axios({
         method: 'POST',
         url: `http://127.0.0.1:${portStatistic}/${uri}`,
         // headers: headers,
         data: body
     })
-    .then(response => {
-        res.status(200).json(response.data);
-         // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
-    })
-    .catch(error => {
-        res.status(500).json({ error: error.message });
-        // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
-    });
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
 });
 app.get('/statistic', (req, res) => {
     const { uri } = req.query;
-// Lấy thông tin uri và port từ query parameters của yêu cầu GET.
+    // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
         url: `http://127.0.0.1:${portStatistic}/${uri}`,
