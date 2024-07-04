@@ -1,0 +1,10 @@
+Các bước cài đặt project api gateway (nodejs):
+npm init
+npm install express
+npm install --save-dev nodemon
+
+thêm vào package.json dòng:
+ "scripts": {
+    "start:dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
