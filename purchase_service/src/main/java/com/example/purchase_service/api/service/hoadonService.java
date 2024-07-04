@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,14 @@ import com.example.purchase_service.api.dto.HuyHoaDonDto;
 import com.example.purchase_service.api.dto.addHoaDonDoiVeDto;
 import com.example.purchase_service.api.dto.addHoaDonMuaVeDto;
 import com.example.purchase_service.api.dto.addHoadonDto;
+import com.example.purchase_service.api.dto.goiAPIThanhToanDto;
+import com.example.purchase_service.api.dto.listVeCanMuaDto;
+import com.example.purchase_service.api.dto.veDto;
 import com.example.purchase_service.api.model.hoadon;
 import com.example.purchase_service.api.model.khuyenmai;
 import com.example.purchase_service.api.repository.hoadonRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class hoadonService {
@@ -62,7 +69,7 @@ public class hoadonService {
             throw new RuntimeException("Vé đã được mua bởi người dùng khác.");
         } else {
             // Lấy giá trị chiết khấu từ khuyến mãi
-            khuyenmai khuyenMai = khuyenMaiService.getKhuyenMaiById(dto.getIDKhuyenMai());
+            khuyenmai khuyenMai = khuyenMaiService.getKhuyenMaiByMakhuyenmai(dto.getMaKhuyenMai());
             if (khuyenMai == null) {
                 throw new RuntimeException("Không tồn tại khuyến mãi.");
             }
@@ -78,7 +85,7 @@ public class hoadonService {
             hoadon.setIDVe(dto.getIDVe());
             hoadon.setIDSuKien(dto.getIDSuKien());
             hoadon.setIDDoiTac(dto.getIDDoiTac());
-            hoadon.setIDKhuyenMai(dto.getIDKhuyenMai());
+            hoadon.setIDKhuyenMai(khuyenMai.getId());
             hoadon.setThoiDiemThanhToan(dto.getThoiDiemThanhToan());
             hoadon.setHinhThucThanhToan(dto.getHinhThucThanhToan());
             hoadon.setThanhTien(thanhTien);
@@ -174,6 +181,79 @@ public class hoadonService {
             return false;
         }
         return true;
+    }
+
+    public void CapNhatTrangThaiVe(List<veDto> listVe, String TrangThaiVe) {
+        for (veDto ve : listVe) {
+            // Gọi API putUpdateTinhTrangVe
+        }
+        return;
+    }
+
+    public List<veDto> CheckSoLuongVePhuHop(listVeCanMuaDto dto) {
+        List<veDto> listVeXuLy = new ArrayList<veDto>();
+        // Duyệt qua tất cả các loại vé
+        for (Map.Entry<Integer, Integer> entry : dto.getLoaiVe_soLuong().entrySet()) {
+            int IDLoaiVe = entry.getKey();
+            int SoLuong = entry.getValue();
+            // Với từng loại vé, check đủ số lượng vé không
+            // for (int i=0;i<SoLuong;i++){
+            // Gọi api getMotVeChuaBan
+            // veDto ve = getMotVeChuaBan(IDLoaiVe,IdSuatDien,IdDoiTac,idSuKien);
+            // if (ve.idloaive == 0)
+            // CapNhatTrangThaiVe(listVeXuLy,"Chưa bán");
+            // return null;
+            // else{
+            // Thêm vào
+            // listVeXuLy.append(ve);
+            // }
+            // return listVeXuLy;
+        }
+        // return list ve xu ly;
+        return listVeXuLy;
+    }
+
+    public boolean CheckVeCanMua(listVeCanMuaDto dto) {
+        // Check login
+        // If (IsLogin()==false) tbao và chuyển hướng màn đăng nhập;
+        // Check db xem đủ vé thõa điều kiện khách cần không
+        List<veDto> listve = CheckSoLuongVePhuHop(dto);
+        if (listve == null) {
+            // tbao và chuyển hướng màn chọn vé
+        }
+        return true;
+    }
+
+    // Hàm này sẽ được gọi khi Khách hàng bấm nút thanh toán
+    public void GoiAPIThanhToan(goiAPIThanhToanDto dto) {
+        // Lấy giá trị chiết khấu từ khuyến mãi
+        khuyenmai khuyenMai = khuyenMaiService.getKhuyenMaiByMakhuyenmai(dto.getMaKhuyenMai());
+        if (khuyenMai == null) {
+            throw new RuntimeException("Không tồn tại khuyến mãi.");
+        }
+        int chietkhau = khuyenMai.getChietkhau();
+        // Thời điểm hết hạn thanh toán
+        long expiresAtTimestamp = System.currentTimeMillis() / 1000 + 15 * 60; // Timestamp UNIX sau 15 phút
+        // Chuyển đổi dto sang JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String jsonString = objectMapper.writeValueAsString(dto);
+            System.out.println(jsonString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        // //Code decode trong php:
+        // //$expiresAt = (new DateTime())->setTimestamp($expiresAtTimestamp);
+        // Nối chuỗi kiểu json
+        // truyền message lên RabbitMQ
+    }
+
+    // Mong muốn sau khi thanh toán thành công, service thanh toán sẽ gửi ds vé đã
+    // thanh toán về
+    public void XuLyThanhToanThanhCong(List<veDto> listve) {
+        // for item in listve
+        // Gọi API Cập nhật trạng thái vé thành đã bán
+        // Gọi API AddVeDaMua
     }
 
 }

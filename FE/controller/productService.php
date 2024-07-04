@@ -34,8 +34,28 @@ class ProductController
         return json_decode($response, true);
     }
 
+    public function getProductService2($uri)
+    {
+        $ch = curl_init();
+        $url = 'http://localhost:8001/product?uri=' . $uri;
+        // Thiết lập các tùy chọn cho yêu cầu cURL
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    // tao su kien
+        // Thực thi yêu cầu cURL và lấy kết quả
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            echo 'Lỗi khi thực hiện yêu cầu cURL: ' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return $response;
+    }
+
     public function taoSuKien1()
     {
         // Điều hướng đến view và template
@@ -135,7 +155,7 @@ class ProductController
 
         // Điều hướng đến view và template
         $VIEW = "./view/trangchu.php";
-        require("./template/template.php");
+        require ("./template/template.php");
     }
 
     public function testTaoVe($portGateway)
@@ -143,7 +163,7 @@ class ProductController
         $portGateway;
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/testTaoVe.php";
-        require("./template/template.php");
+        require ("./template/template.php");
     }
 
     public function testTaoVeClick($uri)
@@ -164,6 +184,41 @@ class ProductController
 
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/testTaoVe.php";
-        require("./template/template.php");
+        require ("./template/template.php");
+    }
+    public function getAllSuKienSuatDien()
+    {
+        // Gọi đến API Gateway để lấy dữ liệu
+        $sukien = $this->getProductService("sukien/getAllSuKien");
+        $suatDien = [];
+        foreach ($sukien as &$sk) {
+            $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=" . $sk['idsuKien'] . "&IDDoiTac=" . $sk['iddoiTac'];
+            $suatdien = $this->getProductService2($uri);
+
+            $minStartTime = PHP_INT_MAX;
+            $maxEndTime = 0;
+            if (!$suatdien == null) {
+                foreach ($suatdien['suatDienItemDTO'] as $item) {
+                    // Chuyển đổi định dạng thời gian
+                    $startTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianBatDau']);
+                    $startTime = $startTime->getTimestamp();
+                    $endTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianKetThuc']);
+                    $endTime = $endTime->getTimestamp();
+
+                    if ($startTime < $minStartTime) {
+                        $minStartTime = $startTime;
+                    }
+                    if ($endTime > $maxEndTime) {
+                        $maxEndTime = $endTime;
+                    }
+                }
+                // Gán các giá trị vào mảng $sukien
+                $sk['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
+                $sk['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
+            }
+        }
+        // Điều hướng đến view và template
+        $VIEW = "./view/trangchu.php";
+        require ("./template/template.php");
     }
 }

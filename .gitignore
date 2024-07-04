@@ -1,0 +1,17 @@
+.vscode
+api-gateway/.vscode
+api-gateway/node_modules
+FE/.vscode
+CRM_Service/__pycache__
+CRM_Service/config
+CRM_Service/venv
+CRM_Service/*/__pycache__
+revenueStatisticService/__pycache__
+userService_/__pycache__
+ProductService/.metadata
+CRM_Service/models/models.py
+CRM_Service/routes/routes.py
+CRM_Service/schemas/schema.py
+CRM_Service/index.py
+userService_/__pycache__/database.cpython-310.pyc
+userService_/__pycache__/models.cpython-310.pyc
