@@ -1,5 +1,7 @@
 <?php
-session_start(); // Bắt đầu session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 $answer;
 ?>
 <style>

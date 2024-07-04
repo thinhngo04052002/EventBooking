@@ -4,7 +4,7 @@ def DanhGiaEntity(item) -> dict:
         "ID": int(item["ID"]),
         "IDSukien": int(item["IDSukien"]),
         "IDTaiKhoan": int(item["IDTaiKhoan"]),
-        "SoSao": int(item["SoSao"]),
+        "SoSao": str(item["SoSao"]),
         "phanhoi": str(item["phanhoi"]),
         "IDDoiTac": int(item["IDDoiTac"]),
     }
@@ -33,7 +33,7 @@ def SoSaoEntity(item2) -> dict:
         "ID": int(item2["ID"]),
         "IDSukien": int(item2["IDSukien"]),
         "IDTaiKhoan": int(item2["IDTaiKhoan"]),
-        "SoSao": int(item2["SoSao"]),
+        "SoSao": str(item2["SoSao"]),
         "IDDoiTac": int(item2["IDDoiTac"]),
     }
 

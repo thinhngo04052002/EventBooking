@@ -3,7 +3,6 @@ from fastapi import HTTPException
 from models.models import Message_YC, DanhGia, YC, PhanHoi, sosao
 from schemas.schema import DanhGiaEntity, DanhGiasEntity, SoSaoEntity, SoSaosEntity
 from config.db import conn
-from bson import ObjectId
 from typing import List
 
 

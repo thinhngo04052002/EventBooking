@@ -15,7 +15,7 @@ class DanhGia(BaseModel):
     ID: int
     IDSukien: int
     IDTaiKhoan: int
-    SoSao: int
+    SoSao: str
     phanhoi: str
     IDDoiTac: int
 
