@@ -11,6 +11,16 @@ a{
 h1{
   text-align: left;
 }
+.success-message {
+  color: green;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.error-message {
+  color: rgb(214, 20, 20);
+  font-size: 18px;
+  margin-top: 20px;
+}
 /* menu */
 /* Style The Dropdown Button */
 .dropbtn {
@@ -75,7 +85,11 @@ h1{
   .header .dropdown {
     flex: 1;
   }
-  
+  .header .nameShop,
+  .header .search,
+  .header .btn-header {
+    flex: 1;
+  }
   .header .search {
     text-align: center;
     width: 30%;
@@ -138,8 +152,7 @@ h1{
 }
 
 .upload-box {
-  width: 1280px;
-  height: 720px;
+  
   border: 2px dashed #ccc;
   border-radius: 10px;
   display: flex;
@@ -179,11 +192,12 @@ h1{
   width: 95%;
   padding: 20px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #9c9b9b;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
   
 }
 
@@ -220,4 +234,70 @@ h1{
 #btnSuKien:hover {
   background-color: #45a049;
   cursor: pointer;
+}
+/* header chưa đăng nhập */
+.btn-header{
+  position: relative;
+  display: inline-block;
+  border-radius: 4px;
+}
+.btn-header-item  a{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+.btn-header-item:hover  {
+  cursor: pointer;
+  background-color: #3e8e41;
+}
+
+/* đăng kĩ đối tác */
+.container-dangKyDoiTac {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+.container-dangKyDoiTac h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.container-dangKyDoiTac h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight:normal ;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #45a049;
+}
+/* thông tin doanh nghiệp */
+.container-thongTinDoanhNghiep {
+  max-width: 800px;
+  margin: 50px auto;
+  text-align: center;
+}
+.container-thongTinDoanhNghiep h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
