@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require_once ("./controller/userService.php");
 require_once ("./controller/crmService.php");
 require_once ("./controller/logService.php");
@@ -7,19 +10,27 @@ require_once ("./controller/purchaseService.php");
 
 $portGateway = 8001;
 
+$action = "thongTinDoanhNghiep";
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
 // $action = "thongTinDoanhNghiep";
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
 
 switch ($action) {
     case "dangNhap":
+        $uri='taikhoan/login';
         $controller = new UserController();
-        $controller->dangNhap($portGateway);
+        $controller->dangNhap($uri);
+        break;
+    case "logout":
+        $controller = new UserController();
+        $controller->logOut();
         break;
     case "dangKy":
+        $uri='taikhoan/register';
         $controller = new UserController();
-        $controller->dangKy($portGateway);
+        $controller->dangKy($uri);
         break;
-    //khách hàng
+        //khách hàng
     case "danhGia":
         $controller = new CrmController();
         $controller->danhGia($portGateway);
@@ -30,7 +41,8 @@ switch ($action) {
         $controller->filterSuKienCuaKH($portGateway);
         break;
 
-    //admin sự kiện
+
+        //admin sự kiện
     case "taoSuKien1":
         $controller = new ProductController();
         $controller->taoSuKien1();
@@ -60,10 +72,10 @@ switch ($action) {
         $uri = "sukien/postThemSuKien";
         $controller->taoSuKienClick($uri);
         break;
-    case "dangKyDoiTac":
-        $controller = new UserController();
-        $controller->dangKyDoiTac($portGateway);
-        break;
+    // case "dangKyDoiTac":
+    //     $controller = new UserController();
+    //     $controller->dangKyDoiTac($portGateway);
+    //     break;
     case "thongTinDoanhNghiep":
         $controller = new UserController();
         $controller->thongTinDoanhNghiep($portGateway);
@@ -73,7 +85,7 @@ switch ($action) {
         $uri = "doitac/create";
         $controller->thongTinDoanhNghiepClick($uri);
         break;
-    //admin hệ thống
+        //admin hệ thống
 
 
     //demo
