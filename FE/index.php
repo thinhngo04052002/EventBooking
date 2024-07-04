@@ -94,6 +94,12 @@ switch ($action) {
         $controller->testTaoVeClick($uri);
         break;
     //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+    case "chiTietSuKien":
+        $controller = new ProductController();
+        $idsuKien = $_REQUEST['idsuKien'];
+        $iddoiTac = $_REQUEST['iddoiTac'];
+        $controller->chiTietSuKien($portGateway, $idsuKien, $iddoiTac);
+        break;
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";

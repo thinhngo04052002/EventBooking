@@ -155,7 +155,6 @@ class ProductController
     {
         // Gọi đến API Gateway để lấy dữ liệu
         $sukien = $this->getProductService("sukien/getAllSuKien");
-        $suatDien = [];
         foreach ($sukien as &$sk) {
             $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=" . $sk['idsuKien'] . "&IDDoiTac=" . $sk['iddoiTac'];
             $suatdien = $this->getProductService2($uri);
@@ -184,6 +183,38 @@ class ProductController
         }
         // Điều hướng đến view và template
         $VIEW = "./view/trangchu.php";
+        require ("./template/template.php");
+    }
+
+    public function chiTietSuKien($portGateway, $idsuKien, $iddoiTac)
+    {
+        // Gọi đến API Gateway để lấy dữ liệu
+        $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+        $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+        $suatdien = $this->getProductService2($uri);
+        $minStartTime = PHP_INT_MAX;
+        $maxEndTime = 0;
+        if (!$suatdien == null) {
+            foreach ($suatdien['suatDienItemDTO'] as $item) {
+                // Chuyển đổi định dạng thời gian
+                $startTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianBatDau']);
+                $startTime = $startTime->getTimestamp();
+                $endTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianKetThuc']);
+                $endTime = $endTime->getTimestamp();
+
+                if ($startTime < $minStartTime) {
+                    $minStartTime = $startTime;
+                }
+                if ($endTime > $maxEndTime) {
+                    $maxEndTime = $endTime;
+                }
+            }
+            // Gán các giá trị vào $sukien
+            $sukien['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
+            $sukien['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
+        }
+        // Điều hướng đến view và template
+        $VIEW = "./view/chiTietSuKien.php";
         require ("./template/template.php");
     }
 }

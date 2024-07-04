@@ -1,0 +1,51 @@
+.primary-container {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.primary-container h1 {
+    text-align: center;
+}
+
+.event-info-container {
+    display: flex;
+    gap: 20px;
+}
+
+.event-info {
+    flex: 1;
+}
+
+.event-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.event-info th,
+.event-info td {
+    padding: 10px;
+    text-align: left;
+}
+
+.event-info th {
+    font-weight: bold;
+}
+
+.event-description {
+    flex: 1;
+}
+
+.cta {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
