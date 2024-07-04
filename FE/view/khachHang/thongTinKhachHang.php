@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin người dùng</title>
+    <title>Thông tin doanh nghiệp</title>
     <style>
         .info-container {
             display: flex;
@@ -91,8 +91,15 @@
     <div class="info-container">
         <div class="avatar-space">
             <div class="info-image">
+            <?php if ($_SESSION['role'] == 'ADNT') : ?>
+
+                <img src="css/images/admin-avt.png" alt="Avatar của <?php echo $answer['hoten']; ?>">
+                <?php endif;?>
+            <?php if ($_SESSION['role'] == 'KH') : ?>
 
                 <img src="css/images/avatar-user.png" alt="Avatar của <?php echo $answer['hoten']; ?>">
+                <?php endif;?>
+
 
             </div>
 
@@ -100,14 +107,25 @@
         <div class="info-space">
             <h1><?php echo $answer['hoten']; ?></h1>
             <div class="info">
+                <?php if ($_SESSION['role'] == 'KH') : ?>
+                    <p><span style='font-weight: 100;' class="label"><strong>Hạng thành viên:<span style=' color:red'> VIP</span> </strong></span></p>
+                    <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
+                    <p><span class="label">Giới tính:</span> <?php echo $answer['gioitinh']; ?></p>
+                    <p><span class="label">Ngày sinh:</span> <?php echo $answer['ngaysinh']; ?></p>
+                    <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
+                    <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa thông tin</a>
 
-            <p><span style='font-weight: 100;' class="label"><strong>Hạng thành viên:<span style=' color:red'>  VIP</span> </strong></span></p>
-                <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
-                <p><span class="label">Giới tính:</span> <?php echo $answer['gioitinh']; ?></p>
-                <p><span class="label">Ngày sinh:</span> <?php echo $answer['ngaysinh']; ?></p>
-                <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
-                <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa thông tin</a>
-                
+                <?php endif; ?>
+                <?php if ($_SESSION['role'] == 'ADNT') : ?>
+
+                    <p><strong>Vai trò:    <span style=' color:red'>ADMIN HỆ THỐNG</span></span> </strong></p>
+                    <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
+                    <p><span class="label">Giới tính:</span> <?php echo $answer['gioitinh']; ?></p>
+                    <p><span class="label">Ngày sinh:</span> <?php echo $answer['ngaysinh']; ?></p>
+                    <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
+                    <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa thông tin</a>
+
+                <?php endif; ?>
 
             </div>
 

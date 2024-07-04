@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin người dùng</title>
+    <title>Thông tin cá nhân</title>
     <style>
         .info-container {
             display: flex;
@@ -24,7 +24,7 @@
             margin: 10px;
             width: 90%;
             max-width: 600px;
-            height: 400px;
+            height: auto;
             text-align: left;
             animation: fadeIn 1s ease-in-out;
             box-shadow: 0 2px 8px rgba(129, 188, 2, 0.696);
@@ -46,10 +46,16 @@
 
         }
 
-        .info-space h1 {
+        .info-space h1{
             color: #333;
             margin-bottom: 20px;
             font-size: 24px;
+            text-transform: uppercase;
+        }
+        .info-space h3{
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
             text-transform: uppercase;
         }
 
@@ -104,8 +110,14 @@
                 <p><span class="label">Người đại diện</span> <?php echo $answer['nguoidaidien']; ?></p>
                 <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
                 <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
-                <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa thông tin</a>
-                
+                <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa </a>
+<h3 > Thông tin ngân hàng</h3>
+                <p><span class="label">Tên ngân hàng:</span> <?php echo $bank['tenNganhang']; ?></p>
+                <p><span class="label">Số tài khoản:</span> <?php echo $bank['sotaikhoan']; ?></p>
+                <p><span class="label">Chi nhánh:</span> <?php echo $bank['chinhanh']; ?></p>
+                <p><span class="label">Chủ tài khoản:</span> <?php echo $bank['chuTaikhoan']; ?></p>
+                <a href="index.php?action=edit_profile_banking" class="btn btn-outline-primary">Chỉnh sửa </a>
+
 
             </div>
 

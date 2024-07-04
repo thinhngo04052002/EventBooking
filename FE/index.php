@@ -92,7 +92,11 @@ switch ($action) {
         $controller->thongTinDoanhNghiepClick($uri);
         break;
         //admin hệ thống
-
+    case "listUser":
+        $uri='taikhoan/listALL';
+        $controller = new UserController();
+        $controller->listUser($uri);
+        break;
 
     //demo
     //get

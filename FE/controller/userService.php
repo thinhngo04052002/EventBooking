@@ -5,6 +5,7 @@ class UserController
     {
 
         $url = 'http://localhost:8001/user?uri=' . $uri;
+        printf($url);
         $ch = curl_init();
 
         // Thêm token CSRF vào header request
@@ -25,7 +26,6 @@ class UserController
         }
 
         $response = curl_exec($ch);
-        // print_r($response);
         if (curl_errno($ch)) {
             printf($response);
         }
@@ -103,6 +103,16 @@ class UserController
         $answer = $this->getUserService($uri, 'GET', $data);
         require("./template/template.php");
     }
+    public function listUser($uri)
+    {
+    
+        $VIEW = './view/adminHeThong/quanLiHeThong.php';
+        $a=[];
+        
+        
+        $data = $this->getUserService($uri, 'GET', $a);
+        require("./template/template.php");
+    }
 
 
     public function thongTinDoanhNghiep($uri)
@@ -110,9 +120,15 @@ class UserController
         $uri = $uri . $_SESSION['id'];
         $data = [];
 
+
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/thongTinDoanhNghiep.php";
         $answer = $this->getUserService($uri, 'GET', $data);
+        $_SESSION['idDoitac']=$answer['id'];
+        
+        $uri_b="doitac/nganhang/doitacid=" .    $_SESSION['idDoitac'];
+        $bank=$this->getUserService($uri_b, 'GET', $data);
+     
 
         require("./template/template.php");
     }

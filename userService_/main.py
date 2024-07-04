@@ -62,6 +62,7 @@ class Token(BaseModel):
     role:str
     id: int
     username:str
+    
 
 class TaiKhoanList(BaseModel):
     id: int
@@ -352,6 +353,12 @@ async def ThongtinNguoiDungTheoID(user_id:int,db:db_dependency):
     info=db.query(models.NguoiDung).filter(models.NguoiDung.id_taikhoan==user_id).first()
     if  info is None:
         raise HTTPException(status_code=404,detail="Không tìm thấy tài khoản")
+    return info
+@app.get("/doitac/nganhang/doitacid={doitac_id}",status_code=status.HTTP_200_OK)
+async def NganHangDoiTac(doitac_id:int,db:db_dependency):
+    info=db.query(models.NganHang).filter(models.NganHang.id_doitac==doitac_id).first()
+    if  info is None:
+        raise HTTPException(status_code=404,detail="Không tìm thấy thông tin")
     return info
 
 @app.post("/taikhoan/changepassword", status_code=status.HTTP_200_OK)

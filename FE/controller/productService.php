@@ -41,7 +41,7 @@ class ProductController
         // Thiết lập các tùy chọn cho yêu cầu cURL
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         // Thực thi yêu cầu cURL và lấy kết quả
