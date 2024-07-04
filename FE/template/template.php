@@ -22,10 +22,10 @@
         // Nếu đã đăng nhập, kiểm tra vai trò
         switch ($_SESSION['role']) {
             case 'ADDVSK':
-                require("./view/header_adminSuKien.php");
+                require("./view/header_admin.php");
                 break;
             case 'ADNT':
-                require("./view/header_adminHeThong.php");
+                require("./view/header_admin.php");
                 break;
             case 'KH':
                 require("./view/header_khachHang.php");
