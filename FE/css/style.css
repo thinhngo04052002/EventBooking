@@ -1,55 +1,91 @@
-body
-{
-    margin: 0 0 0 0;
-    background-color: #efefef;
-    text-align: center;
-    font-size: 16px;
+body {
+  margin: 0 0 0 0;
+  background-color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+
 }
-a{
-    text-decoration: none;
+
+#content {
+  
+
+  width: 100%;
+  margin:10px;
+
 }
-h1{
+.image-container {
+  text-align: center;
+  padding: 20px;
+}
+.login-container {
+ display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
   text-align: left;
 }
+
+.success-message {
+  color: green;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: rgb(214, 20, 20);
+  font-size: 18px;
+  margin-top: 20px;
+}
+
 /* menu */
 /* Style The Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    border-radius: 4px;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
   right: 0px;
   bottom: -130px;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -60,74 +96,96 @@ h1{
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
 /* header */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    width: 100%;
-    background-color: #31A14A;
-  }
-  
-  .header .nameShop,
-  .header .search,
-  .header .dropdown {
-    flex: 1;
-  }
-  
-  .header .search {
-    text-align: center;
-    width: 30%;
-    height: 20px;
-  }
-  .searchInput{
-    width: 100%;
-    height: 20px;
-    font-size: 18px;
-    color: rgb(155, 151, 151);
-  }
-  .header .dropdown {
-    text-align: right;
-    margin-right: 50px;
-  }
-  .header .nameShop{
-    color: #ffffff;
-    font-size: 18px;
-    text-align: left;
-    margin-left: 50px;
-  }
-  .infoPerson{
-    color: #ffffff;
-    font-size: 18px;
-  }
-  .header  .nameShop a{
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 18px;
-    /* color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  background-color: #31A14A;
+}
+
+.header .nameShop,
+.header .search,
+.header .dropdown {
+  flex: 1;
+}
+
+.header .nameShop,
+.header .search,
+.header .btn-header {
+  flex: 1;
+}
+
+.header .search {
+  text-align: center;
+  width: 30%;
+  height: 20px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 20px;
+  font-size: 18px;
+  color: rgb(155, 151, 151);
+}
+
+.header .dropdown {
+  text-align: right;
+  margin-right: 50px;
+}
+
+.header .nameShop {
+  color: #ffffff;
+  font-size: 18px;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.infoPerson {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.header .nameShop a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  /* color: #ffffff;
     font-size: 18px;
     text-align: left;
     margin-left: 50px; */
-  }
-  /* thanh navbar */
-  #navbar {
-    display: flex;
-    justify-content: space-around; /* Để các mục phân bổ đều trên hàng */
-    background-color: #333; /* Màu nền cho navbar */
-    padding: 10px; /* Khoảng cách bên trong navbar */
+}
+
+/* thanh navbar */
+#navbar {
+  display: flex;
+  justify-content: space-around;
+  /* Để các mục phân bổ đều trên hàng */
+  background-color: #333;
+  /* Màu nền cho navbar */
+  padding: 10px;
+  /* Khoảng cách bên trong navbar */
 }
 
 .navbarItem {
-    color: white; /* Màu chữ */
-    text-decoration: none; /* Bỏ gạch chân */
-    padding: 10px 20px; /* Khoảng cách bên trong mục */
-    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+  color: white;
+  /* Màu chữ */
+  text-decoration: none;
+  /* Bỏ gạch chân */
+  padding: 10px 20px;
+  /* Khoảng cách bên trong mục */
+  transition: background-color 0.3s;
+  /* Hiệu ứng chuyển màu nền */
 }
 
 .navbarItem:hover {
-    background-color: #575757; /* Màu nền khi di chuột qua */
+  background-color: #575757;
+  /* Màu nền khi di chuột qua */
 }
+
 /* image sự kiện */
 .upload-container {
   display: flex;
@@ -138,8 +196,7 @@ h1{
 }
 
 .upload-box {
-  width: 1280px;
-  height: 720px;
+
   border: 2px dashed #ccc;
   border-radius: 10px;
   display: flex;
@@ -162,6 +219,7 @@ h1{
   font-size: 18px;
   color: #333;
 }
+
 .uploaded-image {
   width: 100%;
   height: 100%;
@@ -174,42 +232,99 @@ h1{
   font-size: 16px;
   margin-top: 20px;
 }
+
 /* tạo sự kiện */
 .form-container {
   width: 95%;
   padding: 20px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #9c9b9b;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: auto;
-  margin-top: 20px;
-  
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 
-.form-container label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  text-align: left;
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-.form-container input,
-.form-container select,
-.form-container textarea {
-  width: 90%;
-  padding: 10px;
+.form-container h1 {
+  text-align: center;
   margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex: 1;
+  margin-right: 10px;
+  color: #555;
+  text-align: right;
+}
+
+.form-group input,
+.form-group select {
+  flex: 2;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
-.form-container textarea {
-  height: 100px;
-  resize: vertical;
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-#btnSuKien{
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+#btnSuKien {
   width: 150px;
   height: 40px;
   background-color: #33A64C;
@@ -217,7 +332,202 @@ h1{
   font-size: 16px;
   float: right;
 }
+
 #btnSuKien:hover {
   background-color: #45a049;
   cursor: pointer;
+}
+
+/* header chưa đăng nhập */
+.btn-header {
+  position: relative;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.btn-header-item a {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.btn-header-item:hover {
+  cursor: pointer;
+  background-color: #3e8e41;
+}
+
+/* đăng kĩ đối tác */
+.container-dangKyDoiTac {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.container-dangKyDoiTac h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.container-dangKyDoiTac h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* thông tin doanh nghiệp */
+.container-thongTinDoanhNghiep {
+  max-width: 800px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.container-thongTinDoanhNghiep h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.registration-form-container {
+  width: 100%;
+  max-width: 600px;
+  padding:20px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom:10px;
+  margin-left:30px;
+  margin-right:30px;
+}
+
+.registration-form-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.registration-form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-family: Arial;
+}
+
+.registration-label {
+  flex: 1;
+  margin-right: 10px;
+  color: #555;
+  text-align: left;
+}
+
+.registration-input,
+.registration-select {
+  flex: 2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.registration-btn {
+  width: 50%;
+  padding: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.registration-btn-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.registration-btn:hover {
+  background-color: #0056b3;
+}
+
+.registration-success-message,
+.registration-error-message {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.registration-success-message {
+  color: green;
+}
+
+.registration-error-message {
+  color: red;
+}
+
+.registration-link {
+  text-align: center;
+  display: block;
+  margin-top: 5px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.registration-link:hover {
+  text-decoration: underline;
+}
+
+.registration-success-message {
+  color: green;
+}
+.registration-error-message {
+  color: red;
+}
+.error-messages {
+  color: red;
+  margin-top: 15px;
+}
+.message {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }

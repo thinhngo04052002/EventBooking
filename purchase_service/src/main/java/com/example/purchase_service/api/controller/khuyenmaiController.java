@@ -42,9 +42,9 @@ public class khuyenmaiController {
         return ResponseEntity.ok(khuyenmai);
     }
 
-    @GetMapping("/GetByIDSukienIDDoiTac")
-    public List<khuyenmai> GetByIDSukienIDDoiTac(int IDSuKien, int IDDoiTac) {
-        return khuyenmaiService.getKhuyenMaiByIdSuKienIdDoiTac(IDSuKien, IDDoiTac);
+    @GetMapping("/GetByIDSukien")
+    public List<khuyenmai> GetByIDSukien(int IDSuKien) {
+        return khuyenmaiService.getKhuyenMaiByIdSuKien(IDSuKien);
     }
 
     @PostMapping("/khuyenmai")

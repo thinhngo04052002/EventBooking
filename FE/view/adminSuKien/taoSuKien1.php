@@ -3,10 +3,11 @@ error_reporting(E_ALL & ~E_NOTICE);
 session_start();
 ?>
 <form class="form-container" action="upload.php" method="post" enctype="multipart/form-data">
+
     <h1>Sự kiện</h1>
     <div class="upload-container">
         <input type="file" id="eventImageInput" style="display:none;" accept="image/*" />
-        <div class="upload-box" id="uploadBox">
+        <div class="upload-box" style="width: 1280px; height: 720px;" id="uploadBox">
             <img src="css/images/image_icon.png" alt="Icon" class="upload-icon" id="uploadIcon">
             <p id="uploadText">Thêm ảnh nền sự kiện</p>
             <p>(1280x720)</p>
