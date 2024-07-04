@@ -28,6 +28,12 @@ switch ($action) {
         $controller = new UserController();
         $controller->dangKy($uri);
         break;
+    case "userProfile":
+        $uri='nguoidung/info/userid=';
+        $controller=new UserController();
+        $controller -> infoKhachHang($uri);
+
+
         //khách hàng
     case "danhGia":
         $controller = new CrmController();
@@ -105,6 +111,7 @@ switch ($action) {
         $controller->testTaoVeClick($uri);
         break;
         //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+    
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";

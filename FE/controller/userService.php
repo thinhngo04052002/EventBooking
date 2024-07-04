@@ -94,6 +94,15 @@ class UserController
         unset($_SESSION["isLogined"]);
 		header("Location:index.php?action=dangNhap");		
     }
+    public function infoKhachHang($uri)
+    {
+        $uri=$uri . $_SESSION['id'];
+        $data=[];
+        $answer = $this->getUserService($uri, 'GET', $data);
+        $VIEW = "./view/khachHang/thongTinKhachHang.php";
+        require("./template/template.php");
+
+    }
 
 
     public function thongTinDoanhNghiep($portGateway)
