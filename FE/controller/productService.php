@@ -42,8 +42,39 @@ class ProductController
         $VIEW = "./view/adminSuKien/taoSuKien1.php";
         require("./template/template.php");
     }
+
+    public function taoSuKien1Click()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION["TenSuKien"] = $_POST["TenSuKien"];
+        $_SESSION["TheLoai"] = $_POST["TheLoai"];
+        $_SESSION["QuocGia"] = $_POST["QuocGia"];
+        $_SESSION["ThanhPho"] = $_POST["ThanhPho"];
+        $_SESSION["DiaChi"] = $_POST["soNhaTenDuong"] . ', ' . $_POST["PhuongXa"] . ', ' . $_POST["QuanHuyen"] . ', ' . $_POST["ThanhPho"] . ', ' . $_POST["QuocGia"];
+        $_SESSION["NoiToChuc"] = $_POST["NoiToChuc"];
+        $_SESSION["ThongTinSuKien"] = $_POST["ThongTinSuKien"];
+        // Điều hướng đến view và template
+        $VIEW = "./view/adminSuKien/taoSuKien2.php";
+        require("./template/template.php");
+    }
     public function taoSuKien2()
     {
+        // Điều hướng đến view và template
+        $VIEW = "./view/adminSuKien/taoSuKien2.php";
+        require("./template/template.php");
+    }
+    public function taoSuKien2Click()
+    {
+
+        echo "tensukien " . $_SESSION["TenSuKien"];
+        echo "TheLoai " . $_SESSION["TheLoai"];
+        echo "QuocGia " . $_SESSION["QuocGia"];
+        echo "ThanhPho " . $_SESSION["ThanhPho"];
+        echo "DiaChi " . $_SESSION["DiaChi"];
+        echo "NoiToChuc " . $_SESSION["NoiToChuc"];
+        echo "ThongTinSuKien " . $_SESSION["ThongTinSuKien"];
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/taoSuKien2.php";
         require("./template/template.php");
@@ -90,6 +121,13 @@ class ProductController
         $VIEW = "./view/adminSuKien/testTaoVe.php";
         require("./template/template.php");
     }
+    public function quanLySuKien()
+    {
+        // Điều hướng đến view và template
+        $VIEW = "./view/adminSuKien/quanLySuKien.php";
+        require("./template/template.php");
+    }
+
     public function getAllSuKien($uri)
     {
         // Gọi đến API Gateway để lấy dữ liệu
@@ -99,6 +137,7 @@ class ProductController
         $VIEW = "./view/trangchu.php";
         require("./template/template.php");
     }
+
     public function testTaoVe($portGateway)
     {
         $portGateway;

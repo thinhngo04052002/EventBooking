@@ -7,4 +7,4 @@ app= FastAPI()
 app.include_router(note)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8004, reload= True)  # Thay đổi cổng ở đây
+    uvicorn.run(app, port=8004)   # Thay đổi cổng ở đây

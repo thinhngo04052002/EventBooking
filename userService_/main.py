@@ -4,7 +4,7 @@ from  typing import Annotated, List, Optional
 import models
 from database import engine,SessionLocal
 from sqlalchemy.orm import Session
-from jose import jwt, JWTError 
+from jose import jwt, JWTError
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer,OAuth2PasswordRequestForm
 from datetime import timedelta,datetime
@@ -440,4 +440,4 @@ async def update_doitac_endpoint(user_id: int, update_data: NguoiDungUpdate, db:
     return update_nguoidung
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8006)  # Change the port here to 8006
+    uvicorn.run(app, port=8006)  # Change the port here to 8006

@@ -4,31 +4,13 @@ require_once("./controller/crmService.php");
 require_once("./controller/logService.php");
 require_once("./controller/productService.php");
 require_once("./controller/purchaseService.php");
-
+session_start();
 $portGateway = 8001;
 
-$action = "thongTinDoanhNghiep";
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
+$action = "home";
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "home";
 
 switch ($action) {
-    case "dangNhap":
-        $controller = new UserController();
-        $controller->dangNhap($portGateway);
-        break;
-    case "dangKy":
-        $controller = new UserController();
-        $controller->dangKy($portGateway);
-        break;
-        //khách hàng
-    case "danhGia":
-        $controller = new CrmController();
-        $controller->danhGia($portGateway);
-        break;
-
-    case "filterSuKienCuaKH":
-        $controller = new CrmController();
-        $controller->filterSuKienCuaKH($portGateway);
-        break;
 
 
         //admin sự kiện
@@ -36,9 +18,24 @@ switch ($action) {
         $controller = new ProductController();
         $controller->taoSuKien1();
         break;
+    case "taoSuKien1Click":
+        $_SESSION["TenSuKien"] = $_POST["TenSuKien"];
+        $_SESSION["TheLoai"] = $_POST["TheLoai"];
+        $_SESSION["QuocGia"] = $_POST["QuocGia"];
+        $_SESSION["ThanhPho"] = $_POST["ThanhPho"];
+        $_SESSION["DiaChi"] = $_POST["soNhaTenDuong"] . ', ' . $_POST["PhuongXa"] . ', ' . $_POST["QuanHuyen"] . ', ' . $_POST["ThanhPho"] . ', ' . $_POST["QuocGia"];
+        $_SESSION["NoiToChuc"] = $_POST["NoiToChuc"];
+        $_SESSION["ThongTinSuKien"] = $_POST["ThongTinSuKien"];
+        $controller = new ProductController();
+        $controller->taoSuKien1Click();
+        break;
     case "taoSuKien2":
         $controller = new ProductController();
         $controller->taoSuKien2();
+        break;
+    case "taoSuKien2Click":
+        $controller = new ProductController();
+        $controller->taoSuKien2Click();
         break;
     case "taoSuKien3":
         $controller = new ProductController();
@@ -61,19 +58,20 @@ switch ($action) {
         $uri = "sukien/postThemSuKien";
         $controller->taoSuKienClick($uri);
         break;
-    case "dangKyDoiTac":
-        $controller = new UserController();
-        $controller->dangKyDoiTac($portGateway);
+        //quản lý sự kiện
+    case "quanLySuKien":
+        $controller = new ProductController();
+        $controller->quanLySuKien();
         break;
-    case "thongTinDoanhNghiep":
-        $controller = new UserController();
-        $controller->thongTinDoanhNghiep($portGateway);
-        break;
-    case "thongTinDoanhNghiepClick":
-        $controller = new UserController();
-        $uri = "doitac/create";
-        $controller->thongTinDoanhNghiepClick($uri);
-        break;
+        // case "thongTinDoanhNghiep":
+        //     $controller = new UserController();
+        //     $controller->thongTinDoanhNghiep($portGateway);
+        //     break;
+        // case "thongTinDoanhNghiepClick":
+        //     $controller = new UserController();
+        //     $uri = "doitac/create";
+        //     $controller->thongTinDoanhNghiepClick($uri);
+        //     break;
         //admin hệ thống
 
 
