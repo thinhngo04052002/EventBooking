@@ -18,6 +18,7 @@ import com.example.purchase_service.api.dto.HuyHoaDonDto;
 import com.example.purchase_service.api.dto.addHoaDonDoiVeDto;
 import com.example.purchase_service.api.dto.addHoaDonMuaVeDto;
 import com.example.purchase_service.api.dto.addHoadonDto;
+import com.example.purchase_service.api.dto.goiAPIThanhToanDto;
 import com.example.purchase_service.api.model.hoadon;
 import com.example.purchase_service.api.service.hoadonService;
 
@@ -50,6 +51,16 @@ public class hoadonController {
         try {
             hoadon newhoadon = hoadonService.createhoadon(dto);
             return ResponseEntity.status(HttpStatus.CREATED).body(newhoadon);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Không thể tạo hóa đơn: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/goiAPIThanhToan")
+    public ResponseEntity<?> GoiAPIThanhToan(@RequestBody goiAPIThanhToanDto dto) {
+        try {
+            hoadonService.GoiAPIThanhToan(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Không thể tạo hóa đơn: " + e.getMessage());
         }

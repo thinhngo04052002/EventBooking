@@ -3,8 +3,11 @@
   <div class="search">
     <input placeholder="search" class="searchInput" type="text" value="" name="type">
   </div>
-  <div>Đăng ký đối tác</div>
-  <div>Đăng ký</div>
-  <div>Đăng nhập</div>
+  <div class="btn-header">
+    <button class="btn-header-item dropbtn"><a href="index.php?action=dangKyDoiTac">Đăng ký đối tác</a></button>
+    <button class="btn-header-item dropbtn"><a href="index.php?action=dangKy">Đăng ký</a></button>
+    <button class="btn-header-item dropbtn"><a href="index.php?action=dangNhap">Đăng nhập</a></button>
+  </div>
+
 </div>
 </div>
