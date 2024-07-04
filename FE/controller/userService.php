@@ -89,6 +89,7 @@ class UserController
         // Điều hướng đến view và template
 
     }
+
     public function logout()
     {
         unset($_SESSION["isLogined"]);
