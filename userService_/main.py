@@ -61,6 +61,7 @@ class Token(BaseModel):
     token_type:str
     role:str
     id: int
+    username:str
 
 class TaiKhoanList(BaseModel):
     id: int
@@ -282,7 +283,7 @@ async def login_for_access_token(login_form:TaiKhoan_login, db:db_dependency):
 
     access_token_expires=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token=create_access_token(data={"sub":user.id},expires_delta=access_token_expires)
-    return{"access_token":access_token, "token_type":"bearer","role":user.vaitro,"id":user.id} 
+    return{"access_token":access_token, "token_type":"bearer","role":user.vaitro,"id":user.id,"username":user.username} 
 
 
 

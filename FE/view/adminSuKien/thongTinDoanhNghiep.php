@@ -1,5 +1,5 @@
 <?php
-session_start(); // Bắt đầu session
+// Bắt đầu session
 $answer;
 ?>
 <style>

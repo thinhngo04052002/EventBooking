@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 require_once("./controller/userService.php");
 require_once("./controller/crmService.php");
@@ -17,6 +18,10 @@ switch ($action) {
         $uri='taikhoan/login';
         $controller = new UserController();
         $controller->dangNhap($uri);
+        break;
+    case "logout":
+        $controller = new UserController();
+        $controller->logOut();
         break;
     case "dangKy":
         $uri='taikhoan/register';

@@ -48,12 +48,13 @@ class UserController
             $answer = $this->getUserService($uri, 'POST', $data);
             if (isset($answer) && isset($answer['access_token'])) {
                 session_start();
-                $_SESSION['IsLogined'] = true;
+                $_SESSION['isLogined'] = true;
                 $_SESSION['access_token'] = $answer['access_token'];
                 $_SESSION['token_type'] = $answer['token_type'];
                 $_SESSION['role'] = $answer['role'];
                 $_SESSION['id'] = $answer['id'];
-                header('Location:index.php');
+                $_SESSION['username']=$answer['username'];
+                header('Location:index.php?action=dangKy');
                 exit();
             } else {
                 $answer = "Sai thông tin đăng nhập / Tài khoản bị khoá ";
@@ -88,6 +89,12 @@ class UserController
         // Điều hướng đến view và template
 
     }
+    public function logout()
+    {
+        unset($_SESSION["isLogined"]);
+		header("Location:index.php?action=dangNhap");		
+    }
+
 
     public function thongTinDoanhNghiep($portGateway)
     {
