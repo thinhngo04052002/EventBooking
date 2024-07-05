@@ -39,7 +39,7 @@ class DoiTac(Base):
     email=Column(String(50))
     nguoidaidien= Column(String(100), nullable=False)
     masothue=Column(String(100),nullable=False)
-    logo=Column(String(100),nullable=True)
+    logo=Column(String(),nullable=True)
     __table_args__ = (
         UniqueConstraint('id_taikhoan', name='unique_id_tai_khoan_doitac'),
     )

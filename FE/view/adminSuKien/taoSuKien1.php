@@ -1,6 +1,5 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-session_start();
 ?>
 <form class="form-container" action="upload.php" method="post" enctype="multipart/form-data">
 

@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style_2.css" type="text/css">
 </head>
 
 <body>
@@ -22,10 +23,10 @@
         // Nếu đã đăng nhập, kiểm tra vai trò
         switch ($_SESSION['role']) {
             case 'ADDVSK':
-                require("./view/header_adminSuKien.php");
+                require("./view/header_admin.php");
                 break;
             case 'ADNT':
-                require("./view/header_adminHeThong.php");
+                require("./view/header_admin.php");
                 break;
             case 'KH':
                 require("./view/header_khachHang.php");
