@@ -20,8 +20,10 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghie
 // $action = "thongTinDoanhNghiep";
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
 
+
 switch ($action) {
     case "dangNhap":
+        $uri = 'taikhoan/login';
         $uri = 'taikhoan/login';
         $controller = new UserController();
         $controller->dangNhap($uri);
@@ -31,6 +33,7 @@ switch ($action) {
         $controller->logOut();
         break;
     case "dangKy":
+        $uri = 'taikhoan/register';
         $uri = 'taikhoan/register';
         $controller = new UserController();
         $controller->dangKy($uri);
@@ -194,7 +197,7 @@ switch ($action) {
         $uri = "doitac/create";
         $controller->thongTinDoanhNghiepClick($uri);
         break;
-        //admin hệ thống
+    //admin hệ thống
 
 
         //demo
@@ -214,7 +217,42 @@ switch ($action) {
         $uri = "ve/postVe";
         $controller->testTaoVeClick($uri);
         break;
-        //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+    //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+    case "chiTietSuKien":
+        $controller = new ProductController();
+        $idsuKien = $_REQUEST['idsuKien'];
+        $iddoiTac = $_REQUEST['iddoiTac'];
+        $controller->chiTietSuKien($portGateway, $idsuKien, $iddoiTac);
+        break;
+    case "chonSuatDienLoaiVe":
+        $controller = new ProductController();
+        $idsuKien = $_REQUEST['idsuKien'];
+        $iddoiTac = $_REQUEST['iddoiTac'];
+        $controller->chonSuatDienLoaiVe($portGateway, $idsuKien, $iddoiTac);
+        break;
+    case "chuanBiThanhToan":
+        $controller = new PurchaseController();
+        $idsuKien = $_REQUEST['idsuKien'];
+        $iddoiTac = $_REQUEST['iddoiTac'];
+        $controller->chuanBiThanhToan($portGateway, $idsuKien, $iddoiTac);
+        break;
+    case "chiTietVe":
+        $controller = new ProductController();
+        $idVe = $_REQUEST['idVe'];
+        $idsuKien = $_REQUEST['idsuKien'];
+        $iddoiTac = $_REQUEST['iddoiTac'];
+        $controller->chiTietVe($portGateway, $idVe, $idsuKien, $iddoiTac);
+        break;
+    case "goiAPIThanhToan":
+        $controller = new PurchaseController();
+        $orderId = $_REQUEST['orderId'];
+        $orderinfo = $_REQUEST['orderinfo'];
+        $thanhTien = $_REQUEST['thanhTien'];
+        $makhuyenmai = $_REQUEST['makhuyenmai'];
+        $idtaikhoan = $_REQUEST['idtaikhoan'];
+        $danhSachVe = $_REQUEST['danhSachVe'];
+        $controller->goiAPIThanhToan($portGateway, $orderId, $orderinfo, $thanhTien, $makhuyenmai, $idtaikhoan, $danhSachVe);
+        break;
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";

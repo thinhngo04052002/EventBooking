@@ -97,4 +97,17 @@ public class khuyenmaiController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy mã khuyến mãi với ID: " + id);
         }
     }
+
+    @GetMapping("/getkhuyenmaibyMakhuyenmaiIdsukienIddoitac")
+    public ResponseEntity<?> getkhuyenmaibyMakhuyenmaiIdsukienIddoitac(
+            int idsukien,
+            int iddoitac,
+            String maKhuyenMai) {
+        khuyenmai khuyenmai = khuyenmaiService.getKhuyenMaiByMakhuyenmaiIdsukienIddoitac(idsukien, iddoitac,
+                maKhuyenMai);
+        if (khuyenmai == null) {
+            return ResponseEntity.badRequest().body("Không tồn tại khuyenmai.");
+        }
+        return ResponseEntity.ok(khuyenmai);
+    }
 }

@@ -17,4 +17,6 @@ public interface khuyenmaiRepository extends JpaRepository<khuyenmai, Integer> {
 
     khuyenmai findByMakhuyenmai(String makhuyenmai);
 
+    khuyenmai findByMakhuyenmaiAndIdsukienAndIddoitac(String makhuyenmai, int idsukien, int iddoitac);
+
 }

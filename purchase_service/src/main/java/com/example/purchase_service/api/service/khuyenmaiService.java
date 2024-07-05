@@ -26,6 +26,10 @@ public class khuyenmaiService {
         return repo.findByMakhuyenmai(makhuyenmai);
     }
 
+    public khuyenmai getKhuyenMaiByMakhuyenmaiIdsukienIddoitac(int idsukien, int iddoitac, String makhuyenmai) {
+        return repo.findByMakhuyenmaiAndIdsukienAndIddoitac(makhuyenmai, idsukien, iddoitac);
+    }
+
     public List<khuyenmai> getKhuyenMaiByIdSuKienIdDoiTac(int IDSuKien, int IDDoiTac) {
         return repo.findByIdsukienAndIddoitac(IDSuKien, IDDoiTac);
     }

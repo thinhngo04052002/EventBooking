@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>20120591_BTUDPT2</title> -->
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
@@ -17,7 +18,7 @@
 
 <body>
     <div id="header">
-    <?php
+        <?php
     if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
         // Nếu chưa đăng nhập
         require("./view/header_chuaDangNhap.php");
@@ -70,52 +71,52 @@
         </nav>
         <!-- <div id="line"></div> -->
         <div id="content">
-            <?php require($VIEW); ?>
+            <?php require ($VIEW); ?>
         </div>
     </div>
     <div id="footer"><img style="width: 100%;    height: auto;" src="./css/images/footer.png" alt="footer"></div>
 </body>
 <!-- css cho menu sidebar -->
 <script>
-    var view = "<?php echo $VIEW ?>";
-    // Get the container element
-    var navbar = document.getElementById("navbar");
+var view = "<?php echo $VIEW ?>";
+// Get the container element
+var navbar = document.getElementById("navbar");
 
-    // Get all buttons with class="btn" innav the container
-    var navbarItems = navbar.getElementsByClassName("navbarItem");
-    var fleg = 0;
-    // Loop through the buttons and add the active class to the current/clicked button
-    for (var i = 0; i < navbarItems.length; i++) {
-        var navbarItem = navbarItems[i];
-        console.log(navbarItems[i]);
-        if (view.includes("home")) {
-            fleg = 0;
+// Get all buttons with class="btn" innav the container
+var navbarItems = navbar.getElementsByClassName("navbarItem");
+var fleg = 0;
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < navbarItems.length; i++) {
+    var navbarItem = navbarItems[i];
+    console.log(navbarItems[i]);
+    if (view.includes("home")) {
+        fleg = 0;
 
-            navbarItem.classList.add("active");
-        } else if (view.includes("addTask")) {
-            fleg = 1;
+        navbarItem.classList.add("active");
+    } else if (view.includes("addTask")) {
+        fleg = 1;
 
-            navbarItem.classList.add("active");
-        } else if (view.includes("listCategory")) {
-            fleg = 3;
+        navbarItem.classList.add("active");
+    } else if (view.includes("listCategory")) {
+        fleg = 3;
 
-            navbarItem.classList.add("active");
-        } else {
-            fleg = 2;
-            navbarItem.classList.add("active");
-        }
-        for (var j = 0; j < navbarItems.length; j++) {
-            if (j != fleg) {
-                navbarItems[j].classList.remove("active");
-            }
-        }
-
+        navbarItem.classList.add("active");
+    } else {
+        fleg = 2;
+        navbarItem.classList.add("active");
     }
+    for (var j = 0; j < navbarItems.length; j++) {
+        if (j != fleg) {
+            navbarItems[j].classList.remove("active");
+        }
+    }
+
+}
 </script>
 
 </html>
 <script src="https://app.tudongchat.com/js/chatbox.js"></script>
 <script>
-    const tudong_chatbox = new TuDongChat('ary0an5bsj1yD9Qk_WyvA')
-    tudong_chatbox.initial()
+const tudong_chatbox = new TuDongChat('ary0an5bsj1yD9Qk_WyvA')
+tudong_chatbox.initial()
 </script>

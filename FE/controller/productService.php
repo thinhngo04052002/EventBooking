@@ -38,7 +38,16 @@ class ProductController
     {
         $url = 'http://localhost:8001/api/product?uri=' . urlencode($uri);
         // echo " hàm chuyển url   $url";
+        $url = 'http://localhost:8001/api/product?uri=' . urlencode($uri);
+        // echo " hàm chuyển url   $url";
         $ch = curl_init();
+
+        // Thêm token CSRF vào header request
+        $headers = [
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         // Thêm token CSRF vào header request
         $headers = [
@@ -48,14 +57,18 @@ class ProductController
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($ch);
         // print_r($response);
+        // print_r($response);
         if (curl_errno($ch)) {
+            echo 'Error:' . curl_error($ch);
             echo 'Error:' . curl_error($ch);
         }
         curl_close($ch);
 
+        return json_decode($response, true);
         return json_decode($response, true);
     }
     public function getUserService($uri, $method = 'GET', $data = [])
@@ -232,7 +245,6 @@ class ProductController
     {
         // Gọi đến API Gateway để lấy dữ liệu
         $sukien = $this->getProductService("sukien/getAllSuKien");
-        $suatDien = [];
         foreach ($sukien as &$sk) {
             $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=" . $sk['idsuKien'] . "&IDDoiTac=" . $sk['iddoiTac'];
             $suatdien = $this->getProductService2($uri);
@@ -262,5 +274,123 @@ class ProductController
         // Điều hướng đến view và template
         $VIEW = "./view/trangchu.php";
         require("./template/template.php");
+    }
+
+    public function chiTietSuKien($portGateway, $idsuKien, $iddoiTac)
+    {
+        // Gọi đến API Gateway để lấy dữ liệu
+        $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+        $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+        $suatdien = $this->getProductService2($uri);
+        $minStartTime = PHP_INT_MAX;
+        $maxEndTime = 0;
+        if (!$suatdien == null) {
+            foreach ($suatdien['suatDienItemDTO'] as $item) {
+                // Chuyển đổi định dạng thời gian
+                $startTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianBatDau']);
+                $startTime = $startTime->getTimestamp();
+                $endTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianKetThuc']);
+                $endTime = $endTime->getTimestamp();
+
+                if ($startTime < $minStartTime) {
+                    $minStartTime = $startTime;
+                }
+                if ($endTime > $maxEndTime) {
+                    $maxEndTime = $endTime;
+                }
+            }
+            // Gán các giá trị vào $sukien
+            $sukien['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
+            $sukien['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
+        }
+        // Điều hướng đến view và template
+        $VIEW = "./view/chiTietSuKien.php";
+        require ("./template/template.php");
+    }
+    public function chonSuatDienLoaiVe($portGateway, $idsuKien, $iddoiTac)
+    {
+        // Gọi đến API Gateway để lấy dữ liệu
+        $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+        $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+        $suatdien = $this->getProductService2($uri);
+        // Điều hướng đến view và template
+        $VIEW = "./view/khachHang/chonSuatDienLoaiVe.php";
+        require ("./template/template.php");
+    }
+
+    public function chiTietVe($portGateway, $idVe, $idsuKien, $iddoiTac)
+    {
+        $_SESSION['id_nguoidung'] = 1;
+        $idnguoidung = $_SESSION['id_nguoidung'];
+        $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idnguoidung;
+        // Gọi đến API Gateway để lấy dữ liệu
+        $data = $this->getProductService($uri);
+        $thongTinVe = [
+            'idVe' => $idVe,
+            'idsuKien' => $idsuKien,
+            'iddoiTac' => $iddoiTac
+        ];
+        // Điều hướng đến view và template
+        $VIEW = "./view/khachHang/chiTietVe.php";
+        require ("./template/template.php");
+    }
+
+    public function chiTietSuKien($portGateway, $idsuKien, $iddoiTac)
+    {
+        // Gọi đến API Gateway để lấy dữ liệu
+        $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+        $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+        $suatdien = $this->getProductService2($uri);
+        $minStartTime = PHP_INT_MAX;
+        $maxEndTime = 0;
+        if (!$suatdien == null) {
+            foreach ($suatdien['suatDienItemDTO'] as $item) {
+                // Chuyển đổi định dạng thời gian
+                $startTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianBatDau']);
+                $startTime = $startTime->getTimestamp();
+                $endTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianKetThuc']);
+                $endTime = $endTime->getTimestamp();
+
+                if ($startTime < $minStartTime) {
+                    $minStartTime = $startTime;
+                }
+                if ($endTime > $maxEndTime) {
+                    $maxEndTime = $endTime;
+                }
+            }
+            // Gán các giá trị vào $sukien
+            $sukien['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
+            $sukien['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
+        }
+        // Điều hướng đến view và template
+        $VIEW = "./view/chiTietSuKien.php";
+        require ("./template/template.php");
+    }
+    public function chonSuatDienLoaiVe($portGateway, $idsuKien, $iddoiTac)
+    {
+        // Gọi đến API Gateway để lấy dữ liệu
+        $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+        $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+        $suatdien = $this->getProductService2($uri);
+        // Điều hướng đến view và template
+        $VIEW = "./view/khachHang/chonSuatDienLoaiVe.php";
+        require ("./template/template.php");
+    }
+
+    public function chiTietVe($portGateway, $idVe, $idsuKien, $iddoiTac)
+    {
+        $_SESSION['id_nguoidung'] = 1;
+        $idnguoidung = $_SESSION['id_nguoidung'];
+        $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idnguoidung;
+        // Gọi đến API Gateway để lấy dữ liệu
+        $data = $this->getProductService($uri);
+        $thongTinVe = [
+            'idVe' => $idVe,
+            'idsuKien' => $idsuKien,
+            'iddoiTac' => $iddoiTac
+        ];
+        // Điều hướng đến view và template
+        $VIEW = "./view/khachHang/chiTietVe.php";
+        require ("./template/template.php");
     }
 }
