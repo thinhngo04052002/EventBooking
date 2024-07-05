@@ -15,3 +15,4 @@ CRM_Service/schemas/schema.py
 CRM_Service/index.py
 userService_/__pycache__/database.cpython-310.pyc
 userService_/__pycache__/models.cpython-310.pyc
+PaymentService/vendor/*

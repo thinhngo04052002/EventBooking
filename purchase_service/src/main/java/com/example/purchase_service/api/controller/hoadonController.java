@@ -62,7 +62,7 @@ public class hoadonController {
             hoadonService.GoiAPIThanhToan(dto);
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Không thể tạo hóa đơn: " + e.getMessage());
+            return ResponseEntity.badRequest().body("Không thể gửi thông tin: " + e.getMessage());
         }
     }
 
