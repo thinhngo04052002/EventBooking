@@ -2,11 +2,11 @@
 
 session_start();
 
-require_once ("./controller/userService.php");
-require_once ("./controller/crmService.php");
-require_once ("./controller/logService.php");
-require_once ("./controller/productService.php");
-require_once ("./controller/purchaseService.php");
+require_once("./controller/userService.php");
+require_once("./controller/crmService.php");
+require_once("./controller/logService.php");
+require_once("./controller/productService.php");
+require_once("./controller/purchaseService.php");
 
 $portGateway = 8001;
 
@@ -17,7 +17,7 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghie
 
 switch ($action) {
     case "dangNhap":
-        $uri='taikhoan/login';
+        $uri = 'taikhoan/login';
         $controller = new UserController();
         $controller->dangNhap($uri);
         break;
@@ -26,7 +26,7 @@ switch ($action) {
         $controller->logOut();
         break;
     case "dangKy":
-        $uri='taikhoan/register';
+        $uri = 'taikhoan/register';
         $controller = new UserController();
         $controller->dangKy($uri);
         break;
@@ -43,39 +43,20 @@ switch ($action) {
 
 
         //admin sự kiện
-    case "taoSuKien1":
+    case "taoSuKien":
         $controller = new ProductController();
-        $controller->taoSuKien1();
+        $controller->taoSuKien();
         break;
-    case "taoSuKien2":
-        $controller = new ProductController();
-        $controller->taoSuKien2();
-        break;
-    case "taoSuKien3":
-        $controller = new ProductController();
-        $controller->taoSuKien3();
-        break;
-    case "taoSuKien4":
-        $controller = new ProductController();
-        $controller->taoSuKien4();
-        break;
-    case "taoSuKien5":
-        $controller = new ProductController();
-        $controller->taoSuKien5();
-        break;
-    case "taoSuKien6":
-        $controller = new ProductController();
-        $controller->taoSuKien6();
-        break;
+
     case "taoSuKienClick":
         $controller = new ProductController();
         $uri = "sukien/postThemSuKien";
         $controller->taoSuKienClick($uri);
         break;
-    // case "dangKyDoiTac":
-    //     $controller = new UserController();
-    //     $controller->dangKyDoiTac($portGateway);
-    //     break;
+        // case "dangKyDoiTac":
+        //     $controller = new UserController();
+        //     $controller->dangKyDoiTac($portGateway);
+        //     break;
     case "thongTinDoanhNghiep":
         $controller = new UserController();
         $controller->thongTinDoanhNghiep($portGateway);
@@ -88,13 +69,13 @@ switch ($action) {
         //admin hệ thống
 
 
-    //demo
-    //get
+        //demo
+        //get
     case "home":
         $controller = new ProductController();
         $controller->getAllSuKienSuatDien();
         break;
-    //post qua body
+        //post qua body
     case "testTaoVe":
         $controller = new ProductController();
         $controller->testTaoVe($portGateway);
@@ -105,7 +86,7 @@ switch ($action) {
         $uri = "ve/postVe";
         $controller->testTaoVeClick($uri);
         break;
-    //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+        //post qua tham số thì cứ chỉnh url cho khớp giống swagger
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";
