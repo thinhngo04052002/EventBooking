@@ -5,9 +5,8 @@ class UserController
     {
 
         $url = 'http://localhost:8001/user?uri=' . $uri;
-        printf($url);
         $ch = curl_init();
-
+printf($url);
         // Thêm token CSRF vào header request
         $headers = [
             'Content-Type: application/json'
@@ -54,8 +53,18 @@ class UserController
                 $_SESSION['role'] = $answer['role'];
                 $_SESSION['id'] = $answer['id'];
                 $_SESSION['username'] = $answer['username'];
-                header('Location:index.php?action=dangKy');
+                if ($_SESSION['role']=='KH'){
+                header('Location:index.php?action=userProfile');
+                }
+                if ($_SESSION['role']=='ADDVSK'){
+                header('Location:index.php?action=thongTinDoanhNghiep');
+                }
+
+
                 exit();
+               
+                    
+               
             } else {
                 $answer = "Sai thông tin đăng nhập / Tài khoản bị khoá ";
                 $VIEW = "./view/dangNhap.php";
@@ -101,6 +110,7 @@ class UserController
         $data = [];
         $VIEW = './view/khachHang/thongTinKhachHang.php';
         $answer = $this->getUserService($uri, 'GET', $data);
+        $_SESSION['id_nguoidung']=$answer['id'];
         require("./template/template.php");
     }
     public function listUser($uri)
@@ -113,7 +123,86 @@ class UserController
         $data = $this->getUserService($uri, 'GET', $a);
         require("./template/template.php");
     }
+    public function createProfile($uri)
+    {
+        if (isset($_POST['createProfile'])) {
+            $data = [
+                'hoten' => $_POST['hoten'],
+                'sdt' => $_POST['sdt'],
+                'diachi' => $_POST['diachi'],
+                'gioitinh' => $_POST['gioitinh'],
+                'ngaysinh' => $_POST['ngaysinh'],
+                'id_taikhoan' => $_SESSION['id']
+            ];
+            $answer = $this->getUserService($uri, 'POST', $data);
+            $VIEW = "./view/khachHang/taoHoSo.php";
+            require("./template/template.php");
+        } else {
+            $data = "";
+            $VIEW = "./view/khachHang/taoHoSo.php";
+            require("./template/template.php");
+        }
 
+
+        // Điều hướng đến view và template
+
+    }
+    public function createDoiTac($uri)
+    {
+        if (isset($_POST['createDoiTac'])) {
+            $data = [
+                'id_taikhoan' => $_SESSION['id'],
+                'tendoitac' => $_POST['tendoitac'],
+                'sdt' => $_POST['sdt'],
+                'diachi' => $_POST['diachi'],
+                'email' => $_POST['email'],
+                'nguoidaidien' => $_POST['nguoidaidien'],
+                'masothue' => $_POST['masothue'],
+                'logo' => $_POST['logo'],
+            ];
+            $answer = $this->getUserService($uri, 'POST', $data);
+            if($answer==null){
+                $answer=1;
+            }
+            $VIEW = "./view/adminSuKien/taoDoiTac.php";
+            require("./template/template.php");
+        } else {
+            $data = "";
+            $VIEW = "./view/adminSuKien/taoDoiTac.php";
+            require("./template/template.php");
+        }
+
+
+        // Điều hướng đến view và template
+
+    }
+    
+    public function thietLapNganHang($uri)
+    {
+        if (isset($_POST['thietLapNganHang'])) {
+            $data = [
+                'id_doitac' =>$_SESSION['idDoitac'],
+                'tenNganhang' => $_POST['tenNganhang'],
+                'sotaikhoan' => $_POST['sotaikhoan'],
+                'chinhanh' => $_POST['chinhanh'],
+                'chuTaikhoan' => $_POST['chutaikhoan']
+            ];
+            $answer = $this->getUserService($uri, 'POST', $data);
+            $VIEW = "./view/adminSuKien/thietLapNganHang.php";
+            if($answer==null){
+                $answer=1;
+            }
+            require("./template/template.php");
+        } else {
+            $data = "";
+            $VIEW = "./view/adminSuKien/thietLapNganHang.php";
+            require("./template/template.php");
+        }
+
+
+        // Điều hướng đến view và template
+
+    }
 
     public function thongTinDoanhNghiep($uri)
     {

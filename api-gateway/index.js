@@ -286,6 +286,8 @@ app.post('/user', (req, res) => {
             // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
         });
 });
+
+
 app.get('/user', (req, res) => {
     const { uri } = req.query;
     // Lấy thông tin uri và port từ query parameters của yêu cầu GET.

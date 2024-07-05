@@ -5,6 +5,12 @@
         width: 100%;
         align-items: center;
     }
+    .profile_form_container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+    }
 
     .image-container {
         text-align: center;

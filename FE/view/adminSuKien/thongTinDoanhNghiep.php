@@ -1,10 +1,21 @@
+<?php
+if (isset($answer['error']) && $answer['error'] == "Request failed with status code 404") {
+    header('Location: index.php?action=createDoiTac');
+    exit();
+}
+?>
+<?php
+if (isset($bank['error']) && $bank['error'] == "Request failed with status code 404") {
+    header('Location: index.php?action=thietLapNganHang');
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin cá nhân</title>
+    <title>Thông tin đối tác</title>
     <style>
         .info-container {
             display: flex;
@@ -12,8 +23,6 @@
             width: 100%;
             align-items: center;
             font-family: Arial, Helvetica, sans-serif;
-
-
         }
 
         .info-space {
@@ -28,12 +37,9 @@
             text-align: left;
             animation: fadeIn 1s ease-in-out;
             box-shadow: 0 2px 8px rgba(129, 188, 2, 0.696);
-
-
         }
 
         .avatar-space {
-
             padding: 20px;
             margin: 10px;
             width: 90%;
@@ -41,9 +47,6 @@
             height: 400px;
             text-align: left;
             animation: fadeIn 1s ease-in-out;
-
-
-
         }
 
         .info-space h1{
@@ -58,7 +61,6 @@
             font-size: 20px;
             text-transform: uppercase;
         }
-
 
         .info p {
             margin-top: 30px;
@@ -92,39 +94,28 @@
         }
     </style>
 </head>
-
 <body>
     <div class="info-container">
         <div class="avatar-space">
             <div class="info-image">
-
                 <img src="<?php echo $answer['logo'];?>" alt="avt-doanhnghiep"> 
-
             </div>
-
         </div>
         <div class="info-space">
             <h1><?php echo $answer['tendoitac']; ?></h1>
             <div class="info">
-
-                <p><span class="label">Người đại diện</span> <?php echo $answer['nguoidaidien']; ?></p>
+                <p><span class="label">Người đại diện:</span> <?php echo $answer['nguoidaidien']; ?></p>
                 <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
                 <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
                 <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa </a>
-<h3 > Thông tin ngân hàng</h3>
+                <h3>Thông tin ngân hàng</h3>
                 <p><span class="label">Tên ngân hàng:</span> <?php echo $bank['tenNganhang']; ?></p>
                 <p><span class="label">Số tài khoản:</span> <?php echo $bank['sotaikhoan']; ?></p>
                 <p><span class="label">Chi nhánh:</span> <?php echo $bank['chinhanh']; ?></p>
                 <p><span class="label">Chủ tài khoản:</span> <?php echo $bank['chuTaikhoan']; ?></p>
                 <a href="index.php?action=edit_profile_banking" class="btn btn-outline-primary">Chỉnh sửa </a>
-
-
             </div>
-
         </div>
-
-
     </div>
 </body>
-
 </html>
