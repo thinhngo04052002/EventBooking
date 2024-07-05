@@ -21,7 +21,7 @@ import ProductApplication.DTO.SuatDienItemDTO;
 import ProductApplication.service.SuatDienService;
 @SpringBootApplication
 @RestController
-@RequestMapping("/api/product/suatdien")
+@RequestMapping("/product/suatdien")
 public class SuatDienController {
 	@Autowired
     private SuatDienService suatDienService;

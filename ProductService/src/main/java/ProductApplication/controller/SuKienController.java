@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ProductApplication.DTO.AddSuKienDTO;
 import ProductApplication.DTO.PostSuKienDTO;
 import ProductApplication.DTO.SuKienDTO;
 import ProductApplication.DTO.UpdateSuKienDTO;
@@ -23,7 +24,7 @@ import ProductApplication.service.SuKienService;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/api/product/sukien")
+@RequestMapping("/product/sukien")
 public class SuKienController {
 	@Autowired
     private SuKienService suKienService;
@@ -53,6 +54,41 @@ public class SuKienController {
     	
         try {
         	Integer result = suKienService.createSuKien(suKienDTO);
+        	if (result==1) {
+            	return new ResponseEntity<>(result, HttpStatus.CREATED);
+        	} else
+            return new ResponseEntity<>(result,HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @PostMapping("/themSuKien")
+    public ResponseEntity<Integer> createSuKien2(@RequestBody AddSuKienDTO suKienDTO) {
+    	if(suKienDTO.getAnhNenSuKien()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getDiaChi()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getDiaDiem()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getDuongDan()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getLoiCamOn()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getTheLoai()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getIDDoiTac()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getThongTinSuKien()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getTenSuKien()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}else if(suKienDTO.getSuatDienItemDTO()==null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}
+    	
+        try {
+        	Integer result = suKienService.createSuKien2(suKienDTO);
         	if (result==1) {
             	return new ResponseEntity<>(result, HttpStatus.CREATED);
         	} else

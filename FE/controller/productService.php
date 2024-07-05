@@ -36,64 +36,118 @@ class ProductController
 
     public function getProductService2($uri)
     {
+        $url = 'http://localhost:8001/api/product?uri=' . urlencode($uri);
+        // echo " hàm chuyển url   $url";
         $ch = curl_init();
-        $url = 'http://localhost:8001/product?uri=' . $uri;
-        // Thiết lập các tùy chọn cho yêu cầu cURL
+
+        // Thêm token CSRF vào header request
+        $headers = [
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        // Thực thi yêu cầu cURL và lấy kết quả
         $response = curl_exec($ch);
-
+        // print_r($response);
         if (curl_errno($ch)) {
-            echo 'Lỗi khi thực hiện yêu cầu cURL: ' . curl_error($ch);
+            echo 'Error:' . curl_error($ch);
         }
-
         curl_close($ch);
 
-        return $response;
+        return json_decode($response, true);
+    }
+    public function getUserService($uri, $method = 'GET', $data = [])
+    {
+
+        $url = 'http://localhost:8001/user?uri=' . $uri;
+        $ch = curl_init();
+
+        // Thêm token CSRF vào header request
+        $headers = [
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+
+        // Nếu là phương thức POST
+        if ($method == 'POST') {
+
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        }
+
+        $response = curl_exec($ch);
+        // print_r($response);
+        if (curl_errno($ch)) {
+            printf($response);
+        }
+        curl_close($ch);
+
+
+        return json_decode($response, true);
+    }
+    public function getPurchaseService($uri, $method = 'GET', $data = [])
+    {
+
+        $url = 'http://localhost:8001/purchase?uri=' . $uri;
+        // echo " hàm chuyển url   $url";
+        $ch = curl_init();
+
+        // Thêm token CSRF vào header request
+        $headers = [
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // Nếu là phương thức POST
+        if ($method == 'POST') {
+            // echo " method   $method";
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        }
+
+        $response = curl_exec($ch);
+        // print_r($response);
+        if (curl_errno($ch)) {
+            echo 'Error:' . curl_error($ch);
+        }
+        curl_close($ch);
+
+        return json_decode($response, true);
+    }
+    public function taoSuKien()
+    {
+        $iddoitac = $this->getUserService('doitac/info/idtaikhoan=' . $_SESSION['id']);
+        $uri = "khuyenmai/GetKhuyenMaiChuaSuDungByIDDoiTac/$iddoitac";
+        $dataKhuyenMai = $this->getPurchaseService($uri);
+        // Điều hướng đến view và template
+        $VIEW = "./view/adminSuKien/taoSuKien.php";
+        require("./template/template.php");
     }
 
-    public function taoSuKien1()
-    {
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien1.php";
-        require("./template/template.php");
-    }
-    public function taoSuKien2()
-    {
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien2.php";
-        require("./template/template.php");
-    }
-    public function taoSuKien3()
-    {
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien3.php";
-        require("./template/template.php");
-    }
-    public function taoSuKien4()
-    {
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien4.php";
-        require("./template/template.php");
-    }
-    public function taoSuKien5()
-    {
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien5.php";
-        require("./template/template.php");
-    }
-    public function taoSuKien6()
-    {
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien6.php";
-        require("./template/template.php");
-    }
     public function taoSuKienClick($uri)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        //lưu thông tin
+        $_SESSION["eventImageInput"] = $_FILES['eventImageInput'];
+        $_SESSION["TenSuKien"] = $_POST["TenSuKien"];
+        $_SESSION["TheLoai"] = $_POST["TheLoai"];
+        $_SESSION["QuocGia"] = $_POST["QuocGia"];
+        $_SESSION["ThanhPho"] = $_POST["ThanhPho"];
+        $_SESSION["DiaChi"] = $_POST["soNhaTenDuong"] . ', ' . $_POST["PhuongXa"] . ', ' . $_POST["QuanHuyen"] . ', ' . $_POST["ThanhPho"] . ', ' . $_POST["QuocGia"];
+        $_SESSION["NoiToChuc"] = $_POST["NoiToChuc"];
+        $_SESSION["ThongTinSuKien"] = $_POST["ThongTinSuKien"];
+
         $data = [
             'idve' => $_REQUEST["idve"],
             'idloaiVe' => $_REQUEST["idloaiVe"],
@@ -109,7 +163,19 @@ class ProductController
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/testTaoVe.php";
         require("./template/template.php");
+        // Điều hướng đến view và template
+        $VIEW = "./view/adminSuKien/taoSuKien2.php";
+        require("./template/template.php");
     }
+
+
+    public function quanLySuKien()
+    {
+        // Điều hướng đến view và template
+        $VIEW = "./view/adminSuKien/quanLySuKien.php";
+        require("./template/template.php");
+    }
+
     public function getAllSuKien($uri)
     {
         // Gọi đến API Gateway để lấy dữ liệu
@@ -117,7 +183,7 @@ class ProductController
 
         // Điều hướng đến view và template
         $VIEW = "./view/trangchu.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
 
     public function getSuKien($uri) {
@@ -139,7 +205,7 @@ class ProductController
         $portGateway;
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/testTaoVe.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
 
     public function testTaoVeClick($uri)
@@ -160,7 +226,7 @@ class ProductController
 
         // Điều hướng đến view và template
         $VIEW = "./view/adminSuKien/testTaoVe.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
     public function getAllSuKienSuatDien()
     {
@@ -195,6 +261,6 @@ class ProductController
         }
         // Điều hướng đến view và template
         $VIEW = "./view/trangchu.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
 }

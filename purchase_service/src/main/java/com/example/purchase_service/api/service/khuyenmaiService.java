@@ -30,6 +30,10 @@ public class khuyenmaiService {
         return repo.findByIdsukienAndIddoitac(IDSuKien, IDDoiTac);
     }
 
+    public List<khuyenmai> GetKhuyenMaiChuaSuDungByIDDoiTac(Integer IDDoiTac) {
+        return repo.findByIdsukienIsNullAndIddoitac(IDDoiTac);
+    }
+
     public khuyenmai createKhuyenmai(addKhuyenmaiDto dto) {
         // Tạo một đối tượng khuyenmai mới
         khuyenmai khuyenmai = new khuyenmai();

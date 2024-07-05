@@ -7,6 +7,11 @@ require_once("./controller/crmService.php");
 require_once("./controller/logService.php");
 require_once("./controller/productService.php");
 require_once("./controller/purchaseService.php");
+require_once("./controller/userService.php");
+require_once("./controller/crmService.php");
+require_once("./controller/logService.php");
+require_once("./controller/productService.php");
+require_once("./controller/purchaseService.php");
 
 $portGateway = 8001;
 
@@ -70,6 +75,63 @@ switch ($action) {
         $uri="nguoidung/update/id=" . $_SESSION['id_nguoidung'];
         $controller = new UserController();
         $controller->editProfile($uri);
+        break;
+    case 'editDoanhNghiep':
+        $uri="doitac/update/id=". $_SESSION['idDoitac'];
+        $controller = new UserController();
+        $controller->editDoanhNghiep($uri);
+        break;
+
+
+
+    case "dsVe":
+        if (isset($_SESSION['id'])) {
+            $idNguoiDung = $_SESSION['id'];
+        $uri='vedamua/getAllVeDaMuaByIdNguoiDung/'. $idNguoiDung;
+        $controller = new ProductController();
+        $controller->getdsVe($uri);
+        
+        }
+        else {
+            // Xử lý trường hợp người dùng chưa đăng nhập
+            echo "Vui lòng đăng nhập để xem thông tin vé.";
+        }
+        break;
+        
+        case "submitDanhGia":
+            $uri='create_danhgia/';
+            $controller = new CrmController();
+            $controller->danhGiaSK($uri);
+            break;
+
+        //admin sự kiện
+    case "taoSuKien":
+        $controller = new ProductController();
+        $controller->getSuKien($uri);
+        
+        
+        break;
+
+    case "danhGia1":
+        if (isset($_GET['idsk'])) {
+            $idsk = $_GET['idsk'];
+            $uri = 'get_danhgia_by_idsk/?idsk=' . $idsk;
+            $controller = new CrmController();
+            $controller->danhGia1($uri);
+        } else {
+            // Handle the case where idsk is not set
+            echo "ID sự kiện không hợp lệ.";
+        }
+        break;
+    case 'createProfile':
+        $uri = "nguoidung/create";
+        $controller = new UserController();
+        $controller->createProfile($uri);
+        break;
+    case 'edit_profile':
+        $uri="nguoidung/update/id=" . $_SESSION['id_nguoidung'];
+        $controller = new UserController();
+        $controller->editProfile($uri);
     case 'editDoanhNghiep':
         $uri="doitac/update/id=". $_SESSION['idDoitac'];
         $controller = new UserController();
@@ -98,35 +160,20 @@ switch ($action) {
             break;
 
         //admin sự kiện
-    case "taoSuKien1":
+    case "taoSuKien":
         $controller = new ProductController();
-        $controller->taoSuKien1();
+        $controller->taoSuKien();
         break;
-    case "taoSuKien2":
-        $controller = new ProductController();
-        $controller->taoSuKien2();
-        break;
-    case "taoSuKien3":
-        $controller = new ProductController();
-        $controller->taoSuKien3();
-        break;
-    case "taoSuKien4":
-        $controller = new ProductController();
-        $controller->taoSuKien4();
-        break;
-    case "taoSuKien5":
-        $controller = new ProductController();
-        $controller->taoSuKien5();
-        break;
-    case "taoSuKien6":
-        $controller = new ProductController();
-        $controller->taoSuKien6();
-        break;
+
     case "taoSuKienClick":
         $controller = new ProductController();
         $uri = "sukien/postThemSuKien";
         $controller->taoSuKienClick($uri);
         break;
+        // case "dangKyDoiTac":
+        //     $controller = new UserController();
+        //     $controller->dangKyDoiTac($portGateway);
+        //     break;
         // case "dangKyDoiTac":
         //     $controller = new UserController();
         //     $controller->dangKyDoiTac($portGateway);
@@ -148,16 +195,7 @@ switch ($action) {
         $controller->thongTinDoanhNghiepClick($uri);
         break;
         //admin hệ thống
-    case "listUser":
-        $uri = 'taikhoan/listALL';
-        $controller = new UserController();
-        $controller->listUser($uri);
-        break;
-    case "thietLapNganHang":
-        $uri = 'doitac/nganhang/create';
-        $controller = new UserController();
-        $controller->thietLapNganHang($uri);
-        break;
+
 
         //demo
         //get

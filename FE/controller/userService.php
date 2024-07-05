@@ -38,6 +38,41 @@ printf($url);
 
         return json_decode($response, true);
     }
+    public function getUserService2($uri, $method = 'GET', $data = [])
+    {
+        $url = 'http://localhost:8001/user?uri=' . $uri;
+        $ch = curl_init();
+
+        // Thêm token CSRF vào header request
+        $headers = [
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // Nếu là phương thức POST
+        if ($method == 'POST') {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        }
+
+        $response = curl_exec($ch);
+        // echo " chưa lấy http";
+        // Lấy mã trạng thái HTTP
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        // echo "lấy http: $httpCode";
+        if (curl_errno($ch)) {
+            printf($response);
+        }
+        curl_close($ch);
+
+        return [
+            'status_code' => $httpCode,
+            'data' => json_decode($response, true)
+        ];
+    }
 
 
     public function dangNhap($uri)
@@ -288,19 +323,46 @@ printf($url);
 
     public function thongTinDoanhNghiepClick($uri)
     {
+        // echo $_FILES['eventImageInput'];
+        if (isset($_FILES['eventImageInput'])) {
+            $file = $_FILES['eventImageInput'];
+            $fileTmpName = $file['tmp_name']; // Đường dẫn tới file tạm thời
+            $fileError = $file['error']; // Mã lỗi nếu có
+
+            // Kiểm tra lỗi upload
+            if ($fileError === 0) {
+                // Đặt tên file mới
+                $newFileName = $_SESSION['id'];
+
+                // Lấy phần mở rộng của file gốc để giữ nguyên định dạng
+                $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+                // Đặt đường dẫn lưu file với tên mới và phần mở rộng
+                $fileDestination = 'uploads/' . $newFileName . '.' . $fileExtension;
+
+                // Di chuyển file từ thư mục tạm thời tới đích
+                move_uploaded_file($fileTmpName, $fileDestination);
+            } else {
+                echo "Error uploading file: $fileError";
+            }
+        } else {
+            echo "No file was uploaded.";
+        }
+
         $data = [
-            'idve' => $_REQUEST["idve"],
-            'idloaiVe' => $_REQUEST["idloaiVe"],
-            'idSuatDien' => $_REQUEST["idSuatDien"],
-            'idDoiTac' => $_REQUEST["idDoiTac"],
-            'trangThaiBan' => $_REQUEST["trangThaiBan"],
-            'soSeri' => $_REQUEST["soSeri"],
-            'trangThaiDung' => $_REQUEST["trangThaiDung"],
-            'idsuKien' => $_REQUEST["idsuKien"]
+            'id_taikhoan' => $_SESSION['id'],
+            'tendoitac' => $_POST["tendoitac"],
+            'sdt' => $_POST["sdt"],
+            'diachi' => $_POST["soNhaTenDuong"] . ', ' . $_POST["PhuongXa"] . ', ' . $_POST["QuanHuyen"] . ', ' . $_POST["ThanhPho"] . ', ' . $_POST["QuocGia"],
+            'email' => $_POST["email"],
+            'nguoidaidien' => $_POST["nguoidaidien"],
+            'masothue' => $_POST["masothue"],
+            'logo' => $fileDestination
         ];
         // echo "hàm tạo vé  ";
         // print_r($data);
-        $answer = $this->getUserService($uri, 'POST', $data);
+        $answer = $this->getUserService2($uri, 'POST', $data);
+        // echo "answer " . $answer['status_code'];
         $VIEW = "./view/adminSuKien/thongTinDoanhNghiep.php";
         require("./template/template.php");
     }

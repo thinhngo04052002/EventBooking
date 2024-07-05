@@ -408,6 +408,14 @@ async def ThongtinNguoiDungTheoID(user_id:int,db:db_dependency):
         raise HTTPException(status_code=404,detail="Không tìm thấy thông tin")
     return info
 
+@app.get("/doitac/info/idtaikhoan={id_taikhoan}",status_code=status.HTTP_200_OK)
+async def ThongtinNguoiDungTheoIDTaiKhoan(id_taikhoan:int,db:db_dependency):
+    info=db.query(models.DoiTac).filter(models.DoiTac.id_taikhoan==id_taikhoan).first()
+    if  info is None:
+        raise HTTPException(status_code=404,detail="Không tìm thấy thông tin")
+    return info
+
+
 def update_taikhoan_status(db: Session, user_id: int, status: str):
     taikhoan = db.query(models.TaiKhoan).filter(models.TaiKhoan.id == user_id).first()
     if not taikhoan:

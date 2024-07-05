@@ -44,29 +44,29 @@
     <div id="container">
 
         <nav id="navbar">
-        <?php
-    if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
-        // Nếu chưa đăng nhập
-        require("./view/navigationBar_chuaDangNhap.php");
-    } else {
-        // Nếu đã đăng nhập, kiểm tra vai trò
-        switch ($_SESSION['role']) {
-            case 'ADDVSK':
-                require("./view/navigationBar_adminSuKien.php");
-                break;
-            case 'ADNT':
-                require("./view/navigationBar_adminHeThong.php");
-                break;
-            case 'KH':
-                require("./view/navigationBar_khachHang.php");
-                break;
-            default:
-                // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+            <?php
+            if (!isset($_SESSION['isLogined']) || $_SESSION['isLogined'] == false) {
+                // Nếu chưa đăng nhập
                 require("./view/navigationBar_chuaDangNhap.php");
-                break;
-        }
-    }
-    ?>
+            } else {
+                // Nếu đã đăng nhập, kiểm tra vai trò
+                switch ($_SESSION['role']) {
+                    case 'ADDVSK':
+                        require("./view/navigationBar_adminSuKien.php");
+                        break;
+                    case 'ADNT':
+                        require("./view/navigationBar_adminHeThong.php");
+                        break;
+                    case 'KH':
+                        require("./view/navigationBar_khachHang.php");
+                        break;
+                    default:
+                        // Vai trò không xác định, trả về navbar mặc định hoặc báo lỗi
+                        require("./view/navigationBar_chuaDangNhap.php");
+                        break;
+                }
+            }
+            ?>
         </nav>
         <!-- <div id="line"></div> -->
         <div id="content">

@@ -1,0 +1,1321 @@
+{
+"BANKERVN":[
+ {
+  "#": 1,
+  "Tên Ngân hàng": "TMCP Việt Nam Thịnh Vượng",
+  "Brand Name": "VPBank",
+  "Thành lập": "12\/08\/1993",
+  "Vốn ĐL": 79339
+ },
+ {
+  "#": 2,
+  "Tên Ngân hàng": "TMCP Đầu tư và Phát triển Việt Nam",
+  "Brand Name": "BIDV",
+  "Thành lập": "26\/04\/1957",
+  "Vốn ĐL": 57004.3
+ },
+ {
+  "#": 3,
+  "Tên Ngân hàng": "TMCP Ngoại Thương Việt Nam",
+  "Brand Name": "Vietcombank",
+  "Thành lập": "01\/04\/1963",
+  "Vốn ĐL": 55980.9
+ },
+ {
+  "#": 4,
+  "Tên Ngân hàng": "TMCP Công thương Việt Nam",
+  "Brand Name": "VietinBank",
+  "Thành lập": "26\/03\/1988",
+  "Vốn ĐL": 53699.9
+ },
+ {
+  "#": 5,
+  "Tên Ngân hàng": "TMCP Quân Đội",
+  "Brand Name": "MBBANK",
+  "Thành lập": "04\/11\/1994",
+  "Vốn ĐL": 52140
+ },
+ {
+  "#": 6,
+  "Tên Ngân hàng": "TMCP Á Châu",
+  "Brand Name": "ACB",
+  "Thành lập": "04\/06\/1993",
+  "Vốn ĐL": 38841
+ },
+ {
+  "#": 7,
+  "Tên Ngân hàng": "TMCP Sài Gòn – Hà Nội",
+  "Brand Name": "SHB",
+  "Thành lập": "13\/11\/1993",
+  "Vốn ĐL": 36194
+ },
+ {
+  "#": 8,
+  "Tên Ngân hàng": "TMCP Kỹ Thương",
+  "Brand Name": "Techcombank",
+  "Thành lập": "27\/09\/1993",
+  "Vốn ĐL": 35172
+ },
+ {
+  "#": 9,
+  "Tên Ngân hàng": "NN&PT Nông thôn Việt Nam",
+  "Brand Name": "Agribank",
+  "Thành lập": "26\/03\/1988",
+  "Vốn ĐL": 34446.86
+ },
+ {
+  "#": 10,
+  "Tên Ngân hàng": "TMCP Phát triển Thành phố Hồ Chí Minh",
+  "Brand Name": "HDBank",
+  "Thành lập": "04\/01\/1990",
+  "Vốn ĐL": 29076
+ },
+ {
+  "#": 11,
+  "Tên Ngân hàng": "TMCP Bưu điện Liên Việt",
+  "Brand Name": "LienVietPostBank",
+  "Thành lập": "28\/03\/2008",
+  "Vốn ĐL": 25576
+ },
+ {
+  "#": 12,
+  "Tên Ngân hàng": "TMCP Quốc Tế ",
+  "Brand Name": "VIB",
+  "Thành lập": "18\/09\/1996",
+  "Vốn ĐL": 25368
+ },
+ {
+  "#": 13,
+  "Tên Ngân hàng": "TMCP Đông Nam Á",
+  "Brand Name": "SeABank",
+  "Thành lập": "24\/03\/1994",
+  "Vốn ĐL": 24537
+ },
+ {
+  "#": 14,
+  "Tên Ngân hàng": "Chính sách xã hội Việt Nam",
+  "Brand Name": "VBSP",
+  "Thành lập": "04\/10\/2002",
+  "Vốn ĐL": 23960.1
+ },
+ {
+  "#": 15,
+  "Tên Ngân hàng": "TMCP Tiên Phong",
+  "Brand Name": "TPBank",
+  "Thành lập": "05\/05\/2008",
+  "Vốn ĐL": 22016
+ },
+ {
+  "#": 16,
+  "Tên Ngân hàng": "TMCP Phương Đông",
+  "Brand Name": "OCB",
+  "Thành lập": "10\/06\/1996",
+  "Vốn ĐL": 20548
+ },
+ {
+  "#": 17,
+  "Tên Ngân hàng": "TMCP Hàng Hải",
+  "Brand Name": "MSB",
+  "Thành lập": "12\/07\/1991",
+  "Vốn ĐL": 20000
+ },
+ {
+  "#": 18,
+  "Tên Ngân hàng": "TMCP Sài Gòn Thương Tín",
+  "Brand Name": "Sacombank",
+  "Thành lập": "21\/12\/1991",
+  "Vốn ĐL": 18852.2
+ },
+ {
+  "#": 19,
+  "Tên Ngân hàng": "TMCP Xuất Nhập Khẩu",
+  "Brand Name": "Eximbank",
+  "Thành lập": "24\/05\/1989",
+  "Vốn ĐL": 17470
+ },
+ {
+  "#": 20,
+  "Tên Ngân hàng": "TMCP Sài Gòn",
+  "Brand Name": "SCB",
+  "Thành lập": "01\/01\/2012",
+  "Vốn ĐL": 15231.7
+ },
+ {
+  "#": 21,
+  "Tên Ngân hàng": "Phát triển Việt Nam",
+  "Brand Name": "VDB",
+  "Thành lập": "19\/05\/2006",
+  "Vốn ĐL": 15085
+ },
+ {
+  "#": 22,
+  "Tên Ngân hàng": "TMCP Nam Á",
+  "Brand Name": "Nam A Bank",
+  "Thành lập": "21\/10\/1992",
+  "Vốn ĐL": 10580
+ },
+ {
+  "#": 23,
+  "Tên Ngân hàng": "TMCP An Bình",
+  "Brand Name": "ABBANK",
+  "Thành lập": "13\/05\/1993",
+  "Vốn ĐL": 10350
+ },
+ {
+  "#": 24,
+  "Tên Ngân hàng": "TMCP Đại Chúng Việt Nam",
+  "Brand Name": "PVcomBank",
+  "Thành lập": "16\/09\/2013",
+  "Vốn ĐL": 9000
+ },
+ {
+  "#": 25,
+  "Tên Ngân hàng": "TMCP Bắc Á",
+  "Brand Name": "Bac A Bank",
+  "Thành lập": "01\/09\/1994",
+  "Vốn ĐL": 8334
+ },
+ {
+  "#": 26,
+  "Tên Ngân hàng": "TNHH MTV UOB Việt Nam",
+  "Brand Name": "UOB",
+  "Thành lập": "21\/09\/2017",
+  "Vốn ĐL": 8000
+ },
+ {
+  "#": 27,
+  "Tên Ngân hàng": "TNHH MTV Woori Việt Nam",
+  "Brand Name": "Woori",
+  "Thành lập": "31\/10\/2016",
+  "Vốn ĐL": 7700
+ },
+ {
+  "#": 28,
+  "Tên Ngân hàng": "TNHH MTV HSBC Việt Nam",
+  "Brand Name": "HSBC",
+  "Thành lập": "08\/09\/2008",
+  "Vốn ĐL": 7528
+ },
+ {
+  "#": 29,
+  "Tên Ngân hàng": "TNHH MTV Standard Chartered Việt Nam",
+  "Brand Name": "SCBVL",
+  "Thành lập": "08\/09\/2008",
+  "Vốn ĐL": 6954.9
+ },
+ {
+  "#": 30,
+  "Tên Ngân hàng": "TNHH MTV Public Bank Việt Nam",
+  "Brand Name": "PBVN",
+  "Thành lập": "24\/03\/2016",
+  "Vốn ĐL": 6000
+ },
+ {
+  "#": 31,
+  "Tên Ngân hàng": "TNHH MTV Shinhan Việt Nam",
+  "Brand Name": "SHBVN",
+  "Thành lập": "29\/12\/2008",
+  "Vốn ĐL": 5709.9
+ },
+ {
+  "#": 32,
+  "Tên Ngân hàng": "TMCP Quốc dân",
+  "Brand Name": "NCB",
+  "Thành lập": "18\/09\/1995",
+  "Vốn ĐL": 5601.55
+ },
+ {
+  "#": 33,
+  "Tên Ngân hàng": "TMCP Việt Á",
+  "Brand Name": "VietABank",
+  "Thành lập": "04\/07\/2003",
+  "Vốn ĐL": 5399.6
+ },
+ {
+  "#": 34,
+  "Tên Ngân hàng": "TMCP Bản Việt",
+  "Brand Name": "Viet Capital Bank",
+  "Thành lập": "25\/12\/1992",
+  "Vốn ĐL": 5017
+ },
+ {
+  "#": 35,
+  "Tên Ngân hàng": "TMCP Đông Á",
+  "Brand Name": "DongA Bank",
+  "Thành lập": "01\/07\/1992",
+  "Vốn ĐL": 5000
+ },
+ {
+  "#": 36,
+  "Tên Ngân hàng": "TMCP Việt Nam Thương Tín",
+  "Brand Name": "Vietbank",
+  "Thành lập": "02\/02\/2007",
+  "Vốn ĐL": 4776.8
+ },
+ {
+  "#": 37,
+  "Tên Ngân hàng": "TNHH MTV ANZ Việt Nam",
+  "Brand Name": "ANZVL",
+  "Thành lập": "09\/10\/2008",
+  "Vốn ĐL": 4511.9
+ },
+ {
+  "#": 38,
+  "Tên Ngân hàng": "TNHH MTV Đại Dương",
+  "Brand Name": "OceanBank",
+  "Thành lập": "30\/12\/1993",
+  "Vốn ĐL": 4000.1
+ },
+ {
+  "#": 39,
+  "Tên Ngân hàng": "TNHH MTV CIMB Việt Nam",
+  "Brand Name": "CIMB",
+  "Thành lập": "31\/08\/2016",
+  "Vốn ĐL": 3698.2
+ },
+ {
+  "#": 40,
+  "Tên Ngân hàng": "TMCP Kiên Long",
+  "Brand Name": "Kienlongbank",
+  "Thành lập": "27\/10\/1995",
+  "Vốn ĐL": 3653
+ },
+ {
+  "#": 41,
+  "Tên Ngân hàng": "TNHH Indovina",
+  "Brand Name": "IVB",
+  "Thành lập": "21\/01\/1990",
+  "Vốn ĐL": 3377.5
+ },
+ {
+  "#": 42,
+  "Tên Ngân hàng": "TMCP Bảo Việt",
+  "Brand Name": "BAOVIET Bank",
+  "Thành lập": "14\/1\/2009",
+  "Vốn ĐL": 3150
+ },
+ {
+  "#": 43,
+  "Tên Ngân hàng": "TMCP Sài Gòn Công Thương",
+  "Brand Name": "SAIGONBANK",
+  "Thành lập": "16\/10\/1987",
+  "Vốn ĐL": 3080
+ },
+ {
+  "#": 44,
+  "Tên Ngân hàng": "Hợp tác xã Việt Nam",
+  "Brand Name": "Co-opBank",
+  "Thành lập": "01\/07\/2013",
+  "Vốn ĐL": 3029.63
+ },
+ {
+  "#": 45,
+  "Tên Ngân hàng": "TNHH MTV Dầu khí toàn cầu",
+  "Brand Name": "GPBank",
+  "Thành lập": "13\/11\/1993",
+  "Vốn ĐL": 3018
+ },
+ {
+  "#": 46,
+  "Tên Ngân hàng": "Liên doanh Việt Nga",
+  "Brand Name": "VRB",
+  "Thành lập": "19\/11\/2006",
+  "Vốn ĐL": 3008.4
+ },
+ {
+  "#": 47,
+  "Tên Ngân hàng": "TNHH MTV Xây dựng",
+  "Brand Name": "CB",
+  "Thành lập": "01\/09\/1989",
+  "Vốn ĐL": 3000
+ },
+ {
+  "#": 48,
+  "Tên Ngân hàng": "TNHH MTV Hong Leong Việt Nam",
+  "Brand Name": "HLBVN",
+  "Thành lập": "29\/12\/2008",
+  "Vốn ĐL": 3000
+ },
+ {
+  "#": 49,
+  "Tên Ngân hàng": "TMCP Xăng dầu Petrolimex",
+  "Brand Name": "PG Bank",
+  "Thành lập": "13\/11\/1993",
+  "Vốn ĐL": 3000
+ }
+],
+"DANH SÁCH NGÂN HÀNG":[
+ {
+  "Phân loại": "TMCP Việt Nam Thịnh Vượng",
+  "TT": 1,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Việt Nam Thịnh Vượng",
+  "TÊN TIẾNG ANH": "Vietnam Commercial Joint Stock Bank for Private Enterprise",
+  "Brand Name": "VPBank",
+  "SWIFT": "VPBKVNVX",
+  "Website": "vpbank.com.vn",
+  "Ngày Thành lập": "12\/08\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 79339,
+  "Trụ sở": "89 Láng Hạ, Q.Đống Đa, Hà Nội",
+  "Giấy phép - Ngày cấp": "0042\/NHGP ngày 12\/8\/1993 ( cấp đổi số 94\/GP-NHNN ngày 28\/9\/2018)"
+ },
+ {
+  "Phân loại": "TMCP Đầu tư và Phát triển Việt Nam",
+  "TT": 2,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
+  "TÊN TIẾNG ANH": "Joint Stock Commercial Bank for Investment and Development of Vietnam",
+  "Brand Name": "BIDV",
+  "SWIFT": "BIDVVNVX",
+  "Website": "bidv.com.vn",
+  "Ngày Thành lập": "26\/04\/1957",
+  "Vốn điều lệ\n(Tỷ đồng)": 57004.3,
+  "Trụ sở": "194 Trần Quang Khải , Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "84\/GP-NHNN ngày 23\/4\/2012"
+ },
+ {
+  "Phân loại": "TMCP Ngoại Thương Việt Nam",
+  "TT": 3,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Ngoại Thương Việt Nam",
+  "TÊN TIẾNG ANH": "Joint Stock Commercial Bank for Foreign Trade of Vietnam",
+  "Brand Name": "Vietcombank",
+  "SWIFT": "BFTVVNVX",
+  "Website": "vietcombank.com.vn",
+  "Ngày Thành lập": "01\/04\/1963",
+  "Vốn điều lệ\n(Tỷ đồng)": 55980.9,
+  "Trụ sở": "198 Trần Quang Khải, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "286\/QĐ-NH5 ngày 21\/9\/1996"
+ },
+ {
+  "Phân loại": "TMCP Công thương Việt Nam",
+  "TT": 4,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Công thương Việt Nam",
+  "TÊN TIẾNG ANH": "Vietnam Joint Stock Commercial Bank of Industry and Trade",
+  "Brand Name": "VietinBank",
+  "SWIFT": "ICBVVNVX",
+  "Website": "vietinbank.vn",
+  "Ngày Thành lập": "26\/03\/1988",
+  "Vốn điều lệ\n(Tỷ đồng)": 53699.9,
+  "Trụ sở": "108 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "*142\/GP-NHNN ngày 03\/7\/2009. *1340\/QĐ-NHNN ngày 20\/8\/2021"
+ },
+ {
+  "Phân loại": "TMCP Quân Đội",
+  "TT": 5,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Quân Đội",
+  "TÊN TIẾNG ANH": "Military Commercial Joint Stock Bank",
+  "Brand Name": "MBBANK",
+  "SWIFT": "MSCBVNVX",
+  "Website": "mb.com.vn",
+  "Ngày Thành lập": "04\/11\/1994",
+  "Vốn điều lệ\n(Tỷ đồng)": 52140,
+  "Trụ sở": "18 Lê Văn Lương, phường Trung Hòa, Cầu Giấy, Hà Nội",
+  "Giấy phép - Ngày cấp": "*100\/NH-GP ngày 17\/10\/2018. *2009\/QĐ-NHNN ngày 25\/11\/2020 (QĐ thay đổi trụ sở chính). * 1913\/QĐ-NHNN ngày 9\/11\/2020 (Quyết định sửa đổi nội dung vốn điều lệ);"
+ },
+ {
+  "Phân loại": "TMCP Á Châu",
+  "TT": 6,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Á Châu",
+  "TÊN TIẾNG ANH": "Asia Commercial Joint Stock Bank",
+  "Brand Name": "ACB",
+  "SWIFT": "ASCBVNVX",
+  "Website": "acb.com.vn",
+  "Ngày Thành lập": "04\/06\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 38841,
+  "Trụ sở": "442 Nguyễn Thị Minh Khai, Q.3, TP.HCM",
+  "Giấy phép - Ngày cấp": "0032\/NHGP ngày 24\/4\/1993 ( cấp đổi số 91\/GP-NHNN ngày 19\/9\/2018). *1180\/QĐ-NHNN ngày 8\/7\/2021 về việc sửa đổi nội dung về vốn điều lệ tại Giấy phép thành lập và hoạt động"
+ },
+ {
+  "Phân loại": "TMCP Sài Gòn – Hà Nội",
+  "TT": 7,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Sài Gòn – Hà Nội",
+  "TÊN TIẾNG ANH": "Saigon-Hanoi Commercial Joint Stock Bank",
+  "Brand Name": "SHB",
+  "SWIFT": "SHBAVNVX",
+  "Website": "shb.com.vn",
+  "Ngày Thành lập": "13\/11\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 36194,
+  "Trụ sở": "77 Trần Hưng Đạo, Q.Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "*115\/GP-NHNN ngày 30\/11\/2018. *957\/QĐ-NHNN ngày 7\/6\/2021 (Quyết định sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "TMCP Kỹ Thương",
+  "TT": 8,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Kỹ Thương",
+  "TÊN TIẾNG ANH": "Vietnam Technological and Commercial Joint Stock Bank",
+  "Brand Name": "Techcombank",
+  "SWIFT": "VTCBVNVX",
+  "Website": "techcombank.com.vn",
+  "Ngày Thành lập": "27\/09\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 35172,
+  "Trụ sở": "191 Bà Triệu, quậnHai Bà Trưng, Hà Nội",
+  "Giấy phép - Ngày cấp": "*0040\/NHGP ngày 06\/8\/1993. *282\/QĐ-NHNN ngày 9\/3\/2021 (Quyết định sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "NN&PT Nông thôn Việt Nam",
+  "TT": 9,
+  "Phân loại": "TMNN",
+  "Tên đầy đủ": "Ngân hàng NN&PT Nông thôn Việt Nam",
+  "TÊN TIẾNG ANH": "Vietnam Bank for Agriculture and Rural Development",
+  "Brand Name": "Agribank",
+  "SWIFT": "VBAAVNVX",
+  "Website": "agribank.com.vn",
+  "Ngày Thành lập": "26\/03\/1988",
+  "Vốn điều lệ\n(Tỷ đồng)": 34446.86,
+  "Trụ sở": "02 Láng Hạ, Thành Công, Q.Ba Đình, Hà Nội",
+  "Giấy phép - Ngày cấp": "280\/QĐ-NH5 ngày 15\/01\/1996. *24\/GP-NHNN ngày 26\/5\/2021"
+ },
+ {
+  "Phân loại": "TMCP Phát triển Thành phố Hồ Chí Minh",
+  "TT": 10,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh",
+  "TÊN TIẾNG ANH": "Ho Chi Minh city Development Joint Stock Commercial Bank",
+  "Brand Name": "HDBank",
+  "SWIFT": "HDBCVNVX",
+  "Website": "hdbank.com.vn",
+  "Ngày Thành lập": "04\/01\/1990",
+  "Vốn điều lệ\n(Tỷ đồng)": 29076,
+  "Trụ sở": "25 bis Nguyễn Thị Minh Khai, P.Bến Nghé, Q.1, TP.HCM",
+  "Giấy phép - Ngày cấp": "00019\/NH-GP ngày 6\/6\/1992 (cấp đổi: 0026\/NH-GP ngày 12\/02\/2020)"
+ },
+ {
+  "Phân loại": "TMCP Bưu điện Liên Việt",
+  "TT": 11,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Bưu điện Liên Việt",
+  "TÊN TIẾNG ANH": "LienViet Commercial Joint Stock Bank",
+  "Brand Name": "LienVietPostBank",
+  "SWIFT": "LVBKVNVX",
+  "Website": "lienvietpostbank.com.vn",
+  "Ngày Thành lập": "28\/03\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 25576,
+  "Trụ sở": "Tầng 1,3,4,5,6 Tòa nhà Thaiholdings Tower, 210 Trần Quang Khải, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "*91\/GP-NHNN ngày 28\/3\/2008. *22\/QĐ-NHNN ngày 14\/01\/2021 (Quyết định sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "TMCP Quốc Tế ",
+  "TT": 12,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Quốc Tế ",
+  "TÊN TIẾNG ANH": "Vietnam International Commercial Joint Stock Bank",
+  "Brand Name": "VIB",
+  "SWIFT": "VNIBVNVX",
+  "Website": "vib.com.vn",
+  "Ngày Thành lập": "18\/09\/1996",
+  "Vốn điều lệ\n(Tỷ đồng)": 25368,
+  "Trụ sở": "Tòa nhà Sailing Tower, số 111A Pasteur, Q.1, TP Hồ Chí Minh",
+  "Giấy phép - Ngày cấp": "*95\/GP-NHNN ngày 28\/9\/2018. *23\/QĐ-NHNN ngày 14\/1\/2021 (Quyết định sửa đổi nội dung vốn điều lệ). *1313\/QĐ-NHNN ngày 6\/8\/2021 (Quyết định sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "TMCP Đông Nam Á",
+  "TT": 13,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Đông Nam Á",
+  "TÊN TIẾNG ANH": "Southeast Asia Commercial Joint Stock Bank",
+  "Brand Name": "SeABank",
+  "SWIFT": "SEAVVNVX",
+  "Website": "seabank.com.vn",
+  "Ngày Thành lập": "24\/03\/1994",
+  "Vốn điều lệ\n(Tỷ đồng)": 24537,
+  "Trụ sở": "Số 198 Trần Quang Khải, phường Lý Thái Tổ, quận Hoàn Kiếm, thành phố Hà Nội",
+  "Giấy phép - Ngày cấp": "*0051\/NHGP ngày 25\/3\/1994. *1489\/QĐ-NHNN ngày 17\/9\/2021 về việc sửa đổi nội dung vốn điều lệ tại Giấy phép"
+ },
+ {
+  "Phân loại": "Chính sách xã hội Việt Nam",
+  "TT": 14,
+  "Phân loại": "NHCS",
+  "Tên đầy đủ": "Ngân hàng Chính sách xã hội Việt Nam",
+  "TÊN TIẾNG ANH": "Vietnam Bank for Social Policies",
+  "Brand Name": "VBSP",
+  "Website": "vbsp.com.vn",
+  "Ngày Thành lập": "04\/10\/2002",
+  "Vốn điều lệ\n(Tỷ đồng)": 23960.1,
+  "Trụ sở": "169, Phố Linh Đường, Hoàng Liệt, Hoàng Mai, Hà Nội.",
+  "Giấy phép - Ngày cấp": "Quyết định số 131\/2002\/QĐ-TTg ngày 04\/10\/2002"
+ },
+ {
+  "Phân loại": "TMCP Tiên Phong",
+  "TT": 15,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Tiên Phong",
+  "TÊN TIẾNG ANH": "TienPhong Commercial Joint Stock Bank",
+  "Brand Name": "TPBank",
+  "SWIFT": "TPBVVNVX",
+  "Website": "tpbank.vn",
+  "Ngày Thành lập": "05\/05\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 22016,
+  "Trụ sở": "57 Lý Thường Kiệt, P.Trần Hưng Đạo, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "*123\/GP-NHNN ngày 05\/5\/2008. *152\/QĐ-NHNN ngày 5\/2\/2021 (Quyết định sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "TMCP Phương Đông",
+  "TT": 16,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Phương Đông",
+  "TÊN TIẾNG ANH": "Orient Commercial Joint Stock Bank",
+  "Brand Name": "OCB",
+  "SWIFT": "ORCOVNVX",
+  "Website": "ocb.com.vn",
+  "Ngày Thành lập": "10\/06\/1996",
+  "Vốn điều lệ\n(Tỷ đồng)": 20548,
+  "Trụ sở": "41, 45 Lê Duẩn, Quận 1, TP. Hồ Chí Minh",
+  "Giấy phép - Ngày cấp": "*0061\/ NHGP ngày 13\/4\/1996. *2120\/QĐ-NHNN ngày 09\/12\/2020 (Quyết định sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "TMCP Hàng Hải",
+  "TT": 17,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Hàng Hải",
+  "TÊN TIẾNG ANH": "The Maritime Commercial Joint Stock Bank",
+  "Brand Name": "MSB",
+  "SWIFT": "MCOBVNVX",
+  "Website": "msb.com.vn",
+  "Ngày Thành lập": "12\/07\/1991",
+  "Vốn điều lệ\n(Tỷ đồng)": 20000,
+  "Trụ sở": "54A Nguyễn Chí Thanh, P.Láng Thượng, Q.Đống Đa, Hà Nội",
+  "Giấy phép - Ngày cấp": "0001\/NHGP ngày 08\/6\/1991"
+ },
+ {
+  "Phân loại": "TMCP Sài Gòn Thương Tín",
+  "TT": 18,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Sài Gòn Thương Tín",
+  "TÊN TIẾNG ANH": "Saigon Thuong Tin Commercial Joint Stock Bank",
+  "Brand Name": "Sacombank",
+  "SWIFT": "SGTTVNVX",
+  "Website": "sacombank.com.vn",
+  "Ngày Thành lập": "21\/12\/1991",
+  "Vốn điều lệ\n(Tỷ đồng)": 18852.2,
+  "Trụ sở": "266-268 Nam Kỳ Khởi Nghĩa, Q.3, TP.HCM",
+  "Giấy phép - Ngày cấp": "*0006\/NHGP ngày 05\/12\/1991. *289\/QĐ-NHNN ngày 10\/3\/2021 (Quyết định sửa đổi nội dung địa điểm đặt trụ sở chính)"
+ },
+ {
+  "Phân loại": "TMCP Xuất Nhập Khẩu",
+  "TT": 19,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Xuất Nhập Khẩu",
+  "TÊN TIẾNG ANH": "Vietnam Export Import Commercial Joint Stock",
+  "Brand Name": "Eximbank",
+  "SWIFT": "EBVIVNVX",
+  "Website": "eximbank.com.vn",
+  "Ngày Thành lập": "24\/05\/1989",
+  "Vốn điều lệ\n(Tỷ đồng)": 17470,
+  "Trụ sở": "Tầng 8 - Vincom Center, 72 Lê Thánh Tôn và 45A Lý Tự Trọng, Bến Nghé, Q.1, TP.HCM",
+  "Giấy phép - Ngày cấp": "0011\/NHGP ngày 06\/4\/1992"
+ },
+ {
+  "Phân loại": "TMCP Sài Gòn",
+  "TT": 20,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Sài Gòn",
+  "TÊN TIẾNG ANH": "Sai Gon Commercial Joint Stock Bank",
+  "Brand Name": "SCB",
+  "SWIFT": "SACLVNVX",
+  "Website": "scb.com.vn",
+  "Ngày Thành lập": "01\/01\/2012",
+  "Vốn điều lệ\n(Tỷ đồng)": 15231.7,
+  "Trụ sở": "19,21,23,25 Nguyễn Huệ Phường Bến Nghé, Quận 1, Thành phố HCM",
+  "Giấy phép - Ngày cấp": "238\/GP-NHNN ngày 26\/12\/2011 (cấp đổi 29\/GP-NHNN ngày 4\/3\/2020)"
+ },
+ {
+  "Phân loại": "Phát triển Việt Nam",
+  "TT": 21,
+  "Phân loại": "NHCS",
+  "Tên đầy đủ": "Ngân hàng Phát triển Việt Nam",
+  "TÊN TIẾNG ANH": "Vietnam Development Bank",
+  "Brand Name": "VDB",
+  "Website": "vdb.com.vn",
+  "Ngày Thành lập": "19\/05\/2006",
+  "Vốn điều lệ\n(Tỷ đồng)": 15085,
+  "Trụ sở": "25A Cát Linh, Hà Nội",
+  "Giấy phép - Ngày cấp": "108\/2006\/QĐ-TTg ngày 19\/5\/2006"
+ },
+ {
+  "Phân loại": "TMCP Nam Á",
+  "TT": 22,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Nam Á",
+  "TÊN TIẾNG ANH": "Nam A Commercial Joint Stock Bank",
+  "Brand Name": "Nam A Bank",
+  "SWIFT": "NAMAVNVX",
+  "Website": "nam a bank.com.vn",
+  "Ngày Thành lập": "21\/10\/1992",
+  "Vốn điều lệ\n(Tỷ đồng)": 10580,
+  "Trụ sở": "201-203 Cách mạng tháng 8, P.4, Q.3, TP.HCM",
+  "Giấy phép - Ngày cấp": "0026\/NHGP ngày 22\/8\/1992"
+ },
+ {
+  "Phân loại": "TMCP An Bình",
+  "TT": 23,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP An Bình",
+  "TÊN TIẾNG ANH": "An Binh Commercial Joint Stock Bank",
+  "Brand Name": "ABBANK",
+  "SWIFT": "ABBKVNVX",
+  "Website": "abbank.vn",
+  "Ngày Thành lập": "13\/05\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 10350,
+  "Trụ sở": "Tầng 1, 2, 3 Tòa nhà Geleximco, số 36 Hoàng Cầu, Đống Đa, Hà Nội",
+  "Giấy phép - Ngày cấp": "120\/GP-NHNN ngày 12\/12\/2018"
+ },
+ {
+  "Phân loại": "TMCP Đại Chúng Việt Nam",
+  "TT": 24,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Đại Chúng Việt Nam",
+  "TÊN TIẾNG ANH": "Public Vietnam Bank",
+  "Brand Name": "PVcomBank",
+  "SWIFT": "WBVNVNVX",
+  "Website": "pvcombank.com.vn",
+  "Ngày Thành lập": "16\/09\/2013",
+  "Vốn điều lệ\n(Tỷ đồng)": 9000,
+  "Trụ sở": "22 Ngô Quyền, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "279\/GP-NHNN ngày 16\/9\/2013"
+ },
+ {
+  "Phân loại": "TMCP Bắc Á",
+  "TT": 25,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Bắc Á",
+  "TÊN TIẾNG ANH": "BAC A Commercial Joint Stock Bank",
+  "Brand Name": "Bac A Bank",
+  "SWIFT": "NASCVNVX",
+  "Website": "baca-bank.vn",
+  "Ngày Thành lập": "01\/09\/1994",
+  "Vốn điều lệ\n(Tỷ đồng)": 8334,
+  "Trụ sở": "117 Quang Trung, TP. Vinh, tỉnh Nghệ An",
+  "Giấy phép - Ngày cấp": "0052\/NHGP ngày 01\/9\/1994. 183\/QĐ-NH5 ngày 1\/9\/1994 ( cấp đổii số 47\/GP-NHNN ngày 16\/4\/2019)"
+ },
+ {
+  "Phân loại": "TNHH MTV UOB Việt Nam",
+  "TT": 26,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV UOB Việt Nam",
+  "TÊN TIẾNG ANH": "UOB Vietnam Limited ",
+  "Brand Name": "UOB",
+  "SWIFT": "UOVBVNVX",
+  "Website": "uob.com.vn",
+  "Ngày Thành lập": "21\/09\/2017",
+  "Vốn điều lệ\n(Tỷ đồng)": 8000,
+  "Trụ sở": "Tầng hầm, Tầng trệt và tầng 15, Tòa nhà Central Plaza, số 17 Lê Duẩn, P.Bến Nghé, Q.1, TP.HCM",
+  "Giấy phép - Ngày cấp": "57\/GP-NHNN ngày 21\/9\/2017"
+ },
+ {
+  "Phân loại": "TNHH MTV Woori Việt Nam",
+  "TT": 27,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Woori Việt Nam",
+  "TÊN TIẾNG ANH": "Woori Bank Vietnam Limited ",
+  "Brand Name": "Woori",
+  "SWIFT": "HVBKVNVX",
+  "Website": "woori.com.vn",
+  "Ngày Thành lập": "31\/10\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 7700,
+  "Trụ sở": "Tầng 34 tòa nhà Keangnam, Phạm Hùng, P.Mễ Trì, Q.Nam Từ Liêm, Hà Nội",
+  "Giấy phép - Ngày cấp": "71\/GP-NHNN ngày 31\/10\/2016"
+ },
+ {
+  "Phân loại": "TNHH MTV HSBC Việt Nam",
+  "TT": 28,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV HSBC Việt Nam",
+  "TÊN TIẾNG ANH": "HSBC Bank Vietnam Limited",
+  "Brand Name": "HSBC",
+  "SWIFT": "HSBCVNVX",
+  "Website": "hsbc.com.vn",
+  "Ngày Thành lập": "08\/09\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 7528,
+  "Trụ sở": "Tầng 1, 2, 3, 6 Tòa nhà Metropolitan, 235 Đồng Khởi, P. Bến Nghé, Q.1, TP.HCM",
+  "Giấy phép - Ngày cấp": "235\/GP-NHNN ngày 08\/9\/2008"
+ },
+ {
+  "Phân loại": "TNHH MTV Standard Chartered Việt Nam",
+  "TT": 29,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Standard Chartered Việt Nam",
+  "TÊN TIẾNG ANH": "Standard Chartered Bank Vietnam Limited",
+  "Brand Name": "SCBVL",
+  "SWIFT": "SCBLVNVX",
+  "Website": "scbvl.com.vn",
+  "Ngày Thành lập": "08\/09\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 6954.9,
+  "Trụ sở": "Tầng 3, Tháp 1 và Tháp 2, Phòng CP1.L01 và Phòng CP2.L02, 29 Liễu Giai, Ba Đình, Hà Nội",
+  "Giấy phép - Ngày cấp": "236\/GP-NHNN ngày 08\/9\/2008"
+ },
+ {
+  "Phân loại": "TNHH MTV Public Bank Việt Nam",
+  "TT": 30,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Public Bank Việt Nam",
+  "TÊN TIẾNG ANH": "Public Bank Vietnam Limited",
+  "Brand Name": "PBVN",
+  "SWIFT": "VIDPVNV5",
+  "Website": "pbvn.com.vn",
+  "Ngày Thành lập": "24\/03\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 6000,
+  "Trụ sở": "Tầng 1, tầng 10, tầng 11 tòa nhà Hanoi Tungshing Square, số 2 Ngô Quyền, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "38\/GP-NHNN ngày 24\/3\/2016. Quyết định sửa đổi vốn điều lệ 1482\/QĐ-NHNN ngày 04\/7\/2019"
+ },
+ {
+  "Phân loại": "TNHH MTV Shinhan Việt Nam",
+  "TT": 31,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Shinhan Việt Nam",
+  "TÊN TIẾNG ANH": "Shinhan Bank Vietnam Limited",
+  "Brand Name": "SHBVN",
+  "SWIFT": "SHBKVNVX",
+  "Website": "shbvn.com.vn",
+  "Ngày Thành lập": "29\/12\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 5709.9,
+  "Trụ sở": "Tầng trệt, tầng lửng, tầng 2,3 Tòa nhà Empress, số 138-142 đường Hai Bà Trưng, P.Đa Kao, Q.1, TP.HCM",
+  "Giấy phép - Ngày cấp": "341\/GP-NHGP ngày 29\/12\/2008. 106\/GP-NHNN ngày 17\/12\/2019"
+ },
+ {
+  "Phân loại": "TMCP Quốc dân",
+  "TT": 32,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Quốc dân",
+  "TÊN TIẾNG ANH": "National Citizen bank",
+  "Brand Name": "NCB",
+  "SWIFT": "NVBAVNVX",
+  "Website": "ncb-bank.vn",
+  "Ngày Thành lập": "18\/09\/1995",
+  "Vốn điều lệ\n(Tỷ đồng)": 5601.55,
+  "Trụ sở": "28C-28D Bà Triệu, Q.Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "0057\/NHGP ngày 18\/9\/1995. 970\/QĐ-NHNN ngày 18\/5\/2006"
+ },
+ {
+  "Phân loại": "TMCP Việt Á",
+  "TT": 33,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Việt Á",
+  "TÊN TIẾNG ANH": "Viet A Commercial Joint Stock Bank",
+  "Brand Name": "VietABank",
+  "SWIFT": "VNTTVNVX",
+  "Website": "vietabank.com.vn",
+  "Ngày Thành lập": "04\/07\/2003",
+  "Vốn điều lệ\n(Tỷ đồng)": 5399.6,
+  "Trụ sở": "Tầng 4 và 5, Tòa nhà nhà Samsora Premier, số 105 đường Chu Văn An, P.Yết Kiêu, Hà Đông, Hà Nội",
+  "Giấy phép - Ngày cấp": "*55\/GP-NHNN ngày 31\/5\/2019. *Quyết định số 1293\/QĐ-NHNN ngày 02\/8\/2021 (Quyết định sửa đổi địa điểm đặt trụ sở chính) 5"
+ },
+ {
+  "Phân loại": "TMCP Bản Việt",
+  "TT": 34,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Bản Việt",
+  "TÊN TIẾNG ANH": "Viet Capital Commercial Joint Stock Bank",
+  "Brand Name": "Viet Capital Bank",
+  "SWIFT": "VCBCVNVX",
+  "Website": "viet capital bank.com.vn",
+  "Ngày Thành lập": "25\/12\/1992",
+  "Vốn điều lệ\n(Tỷ đồng)": 5017,
+  "Trụ sở": "412 đường Nguyễn Thị Minh Khai, P.5, Q.3, TP.HCM",
+  "Giấy phép - Ngày cấp": "328\/GP-NHNN ngày 11\/12\/2018"
+ },
+ {
+  "Phân loại": "TMCP Đông Á",
+  "TT": 35,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Đông Á",
+  "TÊN TIẾNG ANH": "DONG A Commercial Joint Stock Bank",
+  "Brand Name": "DongA Bank",
+  "SWIFT": "EACBVNVX",
+  "Website": "dongabank.com.vn",
+  "Ngày Thành lập": "01\/07\/1992",
+  "Vốn điều lệ\n(Tỷ đồng)": 5000,
+  "Trụ sở": "130 Phan Đăng Lưu, Q.Phú Nhuận, TP.HCM",
+  "Giấy phép - Ngày cấp": "0009\/NHGP ngày 27\/3\/1992"
+ },
+ {
+  "Phân loại": "TMCP Việt Nam Thương Tín",
+  "TT": 36,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Việt Nam Thương Tín",
+  "TÊN TIẾNG ANH": "Vietnam Thuong Tin Commercial Joint Stock Bank",
+  "Brand Name": "Vietbank",
+  "SWIFT": "VNACVNVX",
+  "Website": "vietbank.com.vn",
+  "Ngày Thành lập": "02\/02\/2007",
+  "Vốn điều lệ\n(Tỷ đồng)": 4776.8,
+  "Trụ sở": "47 Trần Hưng Đạo, TP. Sóc Trăng, tỉnh Sóc Trăng",
+  "Giấy phép - Ngày cấp": "2399\/QĐ-NHNN ngày 15\/12\/2006. *1495\/QĐ-NHNN ngày 20\/9\/2021 (QĐ sửa đổi nội dung vốn điều lệ)"
+ },
+ {
+  "Phân loại": "TNHH MTV ANZ Việt Nam",
+  "TT": 37,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV ANZ Việt Nam",
+  "TÊN TIẾNG ANH": "ANZ Bank Vietnam Limited ",
+  "Brand Name": "ANZVL",
+  "SWIFT": "ANZBVNVX",
+  "Website": "anzvl.com.vn",
+  "Ngày Thành lập": "09\/10\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 4511.9,
+  "Trụ sở": "Tầng 10, Tháp 2, Tòa nhà Capital Place, 29 Liễu Giai, Ba Đình, Hà Nội",
+  "Giấy phép - Ngày cấp": "268\/GP-NHNN ngày 09\/10\/2008. Giấy phép cấp đổi 110,GP-NHNN ngày 09\/11\/2019"
+ },
+ {
+  "Phân loại": "TNHH MTV Đại Dương",
+  "TT": 38,
+  "Phân loại": "TMNN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Đại Dương",
+  "TÊN TIẾNG ANH": "Ocean Commercial One Member Limited Liability Bank",
+  "Brand Name": "OceanBank",
+  "SWIFT": "OJBAVNVX",
+  "Website": "oceanbank.vn",
+  "Ngày Thành lập": "30\/12\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 4000.1,
+  "Trụ sở": "199 Nguyễn Lương Bằng, TP Hải Dương, tỉnh Hải Dương",
+  "Giấy phép - Ngày cấp": "663\/QĐ-NHNN ngày 6\/5\/2015"
+ },
+ {
+  "Phân loại": "TNHH MTV CIMB Việt Nam",
+  "TT": 39,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV CIMB Việt Nam",
+  "TÊN TIẾNG ANH": "CIMB Bank Vietnam Limited ",
+  "Brand Name": "CIMB",
+  "SWIFT": "CIBBVNVN",
+  "Website": "cimb.com.vn",
+  "Ngày Thành lập": "31\/08\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 3698.2,
+  "Trụ sở": "Tầng 2 Tòa nhà Cornerstone 16 Phan Chu Trinh, P. Phan Chu Trinh, Q. Hoàn Kiếm, TP Hà Nội",
+  "Giấy phép - Ngày cấp": "61\/GP-NHNN ngày 31\/8\/2016"
+ },
+ {
+  "Phân loại": "TMCP Kiên Long",
+  "TT": 40,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Kiên Long",
+  "TÊN TIẾNG ANH": "Kien Long Commercial Joint Stock Bank",
+  "Brand Name": "Kienlongbank",
+  "SWIFT": "KLBKVNVX",
+  "Website": "kienlongbank.com",
+  "Ngày Thành lập": "27\/10\/1995",
+  "Vốn điều lệ\n(Tỷ đồng)": 3653,
+  "Trụ sở": "40-42-44 Phạm Hồng Thái, TP Rạch Giá, tỉnh Kiên Giang",
+  "Giấy phép - Ngày cấp": "0056\/NH-GP ngày 18\/9\/1995. 2434\/QĐ-NHNN ngày 25\/12\/2006"
+ },
+ {
+  "Phân loại": "TNHH Indovina",
+  "TT": 41,
+  "Phân loại": "NHLD",
+  "Tên đầy đủ": "Ngân hàng TNHH Indovina",
+  "TÊN TIẾNG ANH": "Indovina Bank Ltd.",
+  "Brand Name": "IVB",
+  "SWIFT": " IABBVNVX",
+  "Website": "ivb.com.vn",
+  "Ngày Thành lập": "21\/01\/1990",
+  "Vốn điều lệ\n(Tỷ đồng)": 3377.5,
+  "Trụ sở": "97A Nguyễn Văn Trỗi, P.12, Q.Phú Nhuận, TP.HCM",
+  "Giấy phép - Ngày cấp": "Giấy phép số 135\/GP-NHGP ngày 21\/11\/1990 và số 08\/NH-GP ngày 29\/10\/1992. * Giấy phép cấp đổi số 101\/GP-NHNN ngày 11\/11\/2019"
+ },
+ {
+  "Phân loại": "TMCP Bảo Việt ",
+  "TT": 42,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Bảo Việt ",
+  "TÊN TIẾNG ANH": "Bao Viet Joint Stock commercial Bank",
+  "Brand Name": "BAOVIET Bank",
+  "SWIFT": "BVBVVNVX",
+  "Website": "baovietbank.vn",
+  "Ngày Thành lập": "14\/1\/2009",
+  "Vốn điều lệ\n(Tỷ đồng)": 3150,
+  "Trụ sở": "Tầng 1 và Tầng 5, Tòa nhà CornerStone, 16 Phan Chu Trinh, Q.Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "0025\/ NHGP ngày 22\/8\/1992"
+ },
+ {
+  "Phân loại": "TMCP Sài Gòn Công Thương",
+  "TT": 43,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Sài Gòn Công Thương",
+  "TÊN TIẾNG ANH": "Saigon Bank for Industry & Trade",
+  "Brand Name": "SAIGONBANK",
+  "SWIFT": "SBITVNVX",
+  "Website": "saigonbank.com.vn",
+  "Ngày Thành lập": "16\/10\/1987",
+  "Vốn điều lệ\n(Tỷ đồng)": 3080,
+  "Trụ sở": "2C Phó Đức Chính, Q.1, TP.HCM",
+  "Giấy phép - Ngày cấp": "0034\/NHGP ngày 04\/5\/1993"
+ },
+ {
+  "Phân loại": "Hợp tác xã Việt Nam ",
+  "TT": 44,
+  "Phân loại": "NHHTX",
+  "Tên đầy đủ": "Ngân hàng Hợp tác xã Việt Nam ",
+  "TÊN TIẾNG ANH": "Co-operative bank of VietNam",
+  "Brand Name": "Co-opBank",
+  "Website": "co-opbank.com.vn",
+  "Ngày Thành lập": "01\/07\/2013",
+  "Vốn điều lệ\n(Tỷ đồng)": 3029.63,
+  "Trụ sở": "Tầng 4, Tòa nhà N04 đường Hoàng Đạo Thúy, Q.Cầu Giấy, Hà Nội",
+  "Giấy phép - Ngày cấp": "166\/GP-NHNN ngày 4\/6\/2013"
+ },
+ {
+  "Phân loại": "TNHH MTV Dầu khí toàn cầu ",
+  "TT": 45,
+  "Phân loại": "TMNN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Dầu khí toàn cầu ",
+  "TÊN TIẾNG ANH": "Global Petro Sole Member Limited Commercial Bank",
+  "Brand Name": "GPBank",
+  "SWIFT": "GBNKVNVX",
+  "Website": "gpbank.com.vn",
+  "Ngày Thành lập": "13\/11\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 3018,
+  "Trụ sở": "109 Trần Hưng Đạo, P.Cửa Nam, Q.Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "1304\/QĐ-NHNN ngày 7\/7\/2015"
+ },
+ {
+  "Phân loại": "Liên doanh Việt Nga",
+  "TT": 46,
+  "Phân loại": "NHLD",
+  "Tên đầy đủ": "Ngân hàng Liên doanh Việt Nga",
+  "TÊN TIẾNG ANH": "Vietnam Russia Joint Venture Bank",
+  "Brand Name": "VRB",
+  "SWIFT": "VRBAVNVX",
+  "Website": "vrb.com.vn",
+  "Ngày Thành lập": "19\/11\/2006",
+  "Vốn điều lệ\n(Tỷ đồng)": 3008.4,
+  "Trụ sở": "1 Yết Kiêu, Trần Hưng Ðạo, Hoàn Kiếm, Hà Nội",
+  "Giấy phép - Ngày cấp": "Giấy phép số 11\/GP-NHNN ngày 30\/10\/2006. Giấy phép cấp đổi số 88\/GP-NHNN ngày 18\/9\/2018"
+ },
+ {
+  "Phân loại": "TNHH MTV Xây dựng",
+  "TT": 47,
+  "Phân loại": "TMNN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Xây dựng",
+  "TÊN TIẾNG ANH": "Construction Commercial One Member Limited Liability Bank",
+  "Brand Name": "CB",
+  "SWIFT": "GTBAVNVX",
+  "Website": "cb.vn",
+  "Ngày Thành lập": "01\/09\/1989",
+  "Vốn điều lệ\n(Tỷ đồng)": 3000,
+  "Trụ sở": "145-147-149 đường Hùng Vương, P.2 thị xã Tâm An, tỉnh Long An",
+  "Giấy phép - Ngày cấp": "250\/QĐ-NHNN ngày 5\/3\/2015"
+ },
+ {
+  "Phân loại": "TNHH MTV Hong Leong Việt Nam",
+  "TT": 48,
+  "Phân loại": "100% NN",
+  "Tên đầy đủ": "Ngân hàng TNHH MTV Hong Leong Việt Nam",
+  "TÊN TIẾNG ANH": "Hong Leong Bank Vietnam Limited ",
+  "Brand Name": "HLBVN",
+  "SWIFT": "HLBBVNVX",
+  "Website": "hlbvn.com.vn",
+  "Ngày Thành lập": "29\/12\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 3000,
+  "Trụ sở": "Tầng trệt, tòa nhà Centec, 72-74 Nguyễn Thị Minh Khai, P.6, Q.3, TP.HCM",
+  "Giấy phép - Ngày cấp": "342\/GP-NHNN ngày 29\/12\/2008"
+ },
+ {
+  "Phân loại": "TMCP Xăng dầu Petrolimex",
+  "TT": 49,
+  "Phân loại": "TMCP",
+  "Tên đầy đủ": "Ngân hàng TMCP Xăng dầu Petrolimex",
+  "TÊN TIẾNG ANH": "Petrolimex Group Commercial Joint Stock Bank",
+  "Brand Name": "PG Bank",
+  "SWIFT": "PGBLVNVX",
+  "Website": "pgbank.com.vn",
+  "Ngày Thành lập": "13\/11\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 3000,
+  "Trụ sở": "Tầng 16, 23, 24 tòa nhà MIPEC, số 229 Phố Tây Sơn, P.Ngã Tư Sở, Đống Đa, Hà Nội",
+  "Giấy phép - Ngày cấp": "0045\/NHGP ngày 13\/11\/1993. 125\/QĐ-NHNN ngày 12\/01\/2007"
+ },
+ null,
+ {
+  "Tên đầy đủ": "Nguồn",
+  "TÊN TIẾNG ANH": "https:\/\/bankervn.com\/danh-sach-ngan-hang\/"
+ }
+],
+"TMCP":[
+ {
+  "#": 1,
+  "Phân loại": "TMCP Việt Nam Thịnh Vượng",
+  "Tên ngân hàng": "Ngân hàng TMCP Việt Nam Thịnh Vượng",
+  "Ngày Thành lập": "12\/08\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 79339
+ },
+ {
+  "#": 2,
+  "Phân loại": "TMCP Đầu tư và Phát triển Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
+  "Ngày Thành lập": "26\/04\/1957",
+  "Vốn điều lệ\n(Tỷ đồng)": 57004.3
+ },
+ {
+  "#": 3,
+  "Phân loại": "TMCP Ngoại Thương Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TMCP Ngoại Thương Việt Nam",
+  "Ngày Thành lập": "01\/04\/1963",
+  "Vốn điều lệ\n(Tỷ đồng)": 55980.9
+ },
+ {
+  "#": 4,
+  "Phân loại": "TMCP Công thương Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TMCP Công thương Việt Nam",
+  "Ngày Thành lập": "26\/03\/1988",
+  "Vốn điều lệ\n(Tỷ đồng)": 53699.9
+ },
+ {
+  "#": 5,
+  "Phân loại": "TMCP Quân Đội",
+  "Tên ngân hàng": "Ngân hàng TMCP Quân Đội",
+  "Ngày Thành lập": "04\/11\/1994",
+  "Vốn điều lệ\n(Tỷ đồng)": 52140
+ },
+ {
+  "#": 6,
+  "Phân loại": "TMCP Á Châu",
+  "Tên ngân hàng": "Ngân hàng TMCP Á Châu",
+  "Ngày Thành lập": "04\/06\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 38841
+ },
+ {
+  "#": 7,
+  "Phân loại": "TMCP Sài Gòn – Hà Nội",
+  "Tên ngân hàng": "Ngân hàng TMCP Sài Gòn – Hà Nội",
+  "Ngày Thành lập": "13\/11\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 36194
+ },
+ {
+  "#": 8,
+  "Phân loại": "TMCP Kỹ Thương",
+  "Tên ngân hàng": "Ngân hàng TMCP Kỹ Thương",
+  "Ngày Thành lập": "27\/09\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 35172
+ },
+ {
+  "#": 9,
+  "Phân loại": "NN&PT Nông thôn Việt Nam",
+  "Tên ngân hàng": "Ngân hàng NN&PT Nông thôn Việt Nam",
+  "Ngày Thành lập": "26\/03\/1988",
+  "Vốn điều lệ\n(Tỷ đồng)": 34446.86
+ },
+ {
+  "#": 10,
+  "Phân loại": "TMCP Phát triển Thành phố Hồ Chí Minh",
+  "Tên ngân hàng": "Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh",
+  "Ngày Thành lập": "04\/01\/1990",
+  "Vốn điều lệ\n(Tỷ đồng)": 29076
+ },
+ {
+  "#": 11,
+  "Phân loại": "TMCP Bưu điện Liên Việt",
+  "Tên ngân hàng": "Ngân hàng TMCP Bưu điện Liên Việt",
+  "Ngày Thành lập": "28\/03\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 25576
+ },
+ {
+  "#": 12,
+  "Phân loại": "TMCP Quốc Tế ",
+  "Tên ngân hàng": "Ngân hàng TMCP Quốc Tế ",
+  "Ngày Thành lập": "18\/09\/1996",
+  "Vốn điều lệ\n(Tỷ đồng)": 25368
+ },
+ {
+  "#": 13,
+  "Phân loại": "TMCP Đông Nam Á",
+  "Tên ngân hàng": "Ngân hàng TMCP Đông Nam Á",
+  "Ngày Thành lập": "24\/03\/1994",
+  "Vốn điều lệ\n(Tỷ đồng)": 24537
+ },
+ {
+  "#": 14,
+  "Phân loại": "Chính sách xã hội Việt Nam",
+  "Tên ngân hàng": "Ngân hàng Chính sách xã hội Việt Nam",
+  "Ngày Thành lập": "04\/10\/2002",
+  "Vốn điều lệ\n(Tỷ đồng)": 23960.1
+ },
+ {
+  "#": 15,
+  "Phân loại": "TMCP Tiên Phong",
+  "Tên ngân hàng": "Ngân hàng TMCP Tiên Phong",
+  "Ngày Thành lập": "05\/05\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 22016
+ },
+ {
+  "#": 16,
+  "Phân loại": "TMCP Phương Đông",
+  "Tên ngân hàng": "Ngân hàng TMCP Phương Đông",
+  "Ngày Thành lập": "10\/06\/1996",
+  "Vốn điều lệ\n(Tỷ đồng)": 20548
+ },
+ {
+  "#": 17,
+  "Phân loại": "TMCP Hàng Hải",
+  "Tên ngân hàng": "Ngân hàng TMCP Hàng Hải",
+  "Ngày Thành lập": "12\/07\/1991",
+  "Vốn điều lệ\n(Tỷ đồng)": 20000
+ },
+ {
+  "#": 18,
+  "Phân loại": "TMCP Sài Gòn Thương Tín",
+  "Tên ngân hàng": "Ngân hàng TMCP Sài Gòn Thương Tín",
+  "Ngày Thành lập": "21\/12\/1991",
+  "Vốn điều lệ\n(Tỷ đồng)": 18852.2
+ },
+ {
+  "#": 19,
+  "Phân loại": "TMCP Xuất Nhập Khẩu",
+  "Tên ngân hàng": "Ngân hàng TMCP Xuất Nhập Khẩu",
+  "Ngày Thành lập": "24\/05\/1989",
+  "Vốn điều lệ\n(Tỷ đồng)": 17470
+ },
+ {
+  "#": 20,
+  "Phân loại": "TMCP Sài Gòn",
+  "Tên ngân hàng": "Ngân hàng TMCP Sài Gòn",
+  "Ngày Thành lập": "01\/01\/2012",
+  "Vốn điều lệ\n(Tỷ đồng)": 15231.7
+ },
+ {
+  "#": 21,
+  "Phân loại": "Phát triển Việt Nam",
+  "Tên ngân hàng": "Ngân hàng Phát triển Việt Nam",
+  "Ngày Thành lập": "19\/05\/2006",
+  "Vốn điều lệ\n(Tỷ đồng)": 15085
+ },
+ {
+  "#": 22,
+  "Phân loại": "TMCP Nam Á",
+  "Tên ngân hàng": "Ngân hàng TMCP Nam Á",
+  "Ngày Thành lập": "21\/10\/1992",
+  "Vốn điều lệ\n(Tỷ đồng)": 10580
+ },
+ {
+  "#": 23,
+  "Phân loại": "TMCP An Bình",
+  "Tên ngân hàng": "Ngân hàng TMCP An Bình",
+  "Ngày Thành lập": "13\/05\/1993",
+  "Vốn điều lệ\n(Tỷ đồng)": 10350
+ },
+ {
+  "#": 24,
+  "Phân loại": "TMCP Đại Chúng Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TMCP Đại Chúng Việt Nam",
+  "Ngày Thành lập": "16\/09\/2013",
+  "Vốn điều lệ\n(Tỷ đồng)": 9000
+ },
+ {
+  "#": 25,
+  "Phân loại": "TMCP Bắc Á",
+  "Tên ngân hàng": "Ngân hàng TMCP Bắc Á",
+  "Ngày Thành lập": "01\/09\/1994",
+  "Vốn điều lệ\n(Tỷ đồng)": 8334
+ },
+ {
+  "#": 26,
+  "Phân loại": "TNHH MTV UOB Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TNHH MTV UOB Việt Nam",
+  "Ngày Thành lập": "21\/09\/2017",
+  "Vốn điều lệ\n(Tỷ đồng)": 8000
+ },
+ {
+  "#": 27,
+  "Phân loại": "TNHH MTV Woori Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TNHH MTV Woori Việt Nam",
+  "Ngày Thành lập": "31\/10\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 7700
+ },
+ {
+  "#": 28,
+  "Phân loại": "TNHH MTV HSBC Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TNHH MTV HSBC Việt Nam",
+  "Ngày Thành lập": "08\/09\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 7528
+ },
+ {
+  "#": 29,
+  "Phân loại": "TNHH MTV Standard Chartered Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TNHH MTV Standard Chartered Việt Nam",
+  "Ngày Thành lập": "08\/09\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 6954.9
+ },
+ {
+  "#": 30,
+  "Phân loại": "TNHH MTV Public Bank Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TNHH MTV Public Bank Việt Nam",
+  "Ngày Thành lập": "24\/03\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 6000
+ },
+ {
+  "#": 31,
+  "Phân loại": "TNHH MTV Shinhan Việt Nam",
+  "Tên ngân hàng": "Ngân hàng TNHH MTV Shinhan Việt Nam",
+  "Ngày Thành lập": "29\/12\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 5709.9
+ }
+],
+"NH NƯỚC NGOÀI":[
+ {
+  "#": 1,
+  "TÊN NGÂN HÀNG": "ANZ Bank ",
+  "SWIFT": "ANZBVNVX",
+  "Ngày Thành lập": "09\/10\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 4511.9
+ },
+ {
+  "#": 2,
+  "TÊN NGÂN HÀNG": "CIMB Bank",
+  "SWIFT": "CIBBVNVN",
+  "Ngày Thành lập": "31\/08\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 3698.2
+ },
+ {
+  "#": 3,
+  "TÊN NGÂN HÀNG": "Hong Leong Bank ",
+  "SWIFT": "HLBBVNVX",
+  "Ngày Thành lập": "29\/12\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 3000
+ },
+ {
+  "#": 4,
+  "TÊN NGÂN HÀNG": "HSBC Bank ",
+  "SWIFT": "HSBCVNVX",
+  "Ngày Thành lập": "08\/09\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 7528
+ },
+ {
+  "#": 5,
+  "TÊN NGÂN HÀNG": "Public Bank",
+  "SWIFT": "VIDPVNV5",
+  "Ngày Thành lập": "24\/03\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 6000
+ },
+ {
+  "#": 6,
+  "TÊN NGÂN HÀNG": "Shinhan Bank ",
+  "SWIFT": "SHBKVNVX",
+  "Ngày Thành lập": "29\/12\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 5709.9
+ },
+ {
+  "#": 7,
+  "TÊN NGÂN HÀNG": "Standard Chartered Bank ",
+  "SWIFT": "SCBLVNVX",
+  "Ngày Thành lập": "08\/09\/2008",
+  "Vốn điều lệ\n(Tỷ đồng)": 6954.9
+ },
+ {
+  "#": 8,
+  "TÊN NGÂN HÀNG": "UOB",
+  "SWIFT": "UOVBVNVX",
+  "Ngày Thành lập": "21\/09\/2017",
+  "Vốn điều lệ\n(Tỷ đồng)": 8000
+ },
+ {
+  "#": 9,
+  "TÊN NGÂN HÀNG": "Woori Bank ",
+  "SWIFT": "HVBKVNVX",
+  "Ngày Thành lập": "31\/10\/2016",
+  "Vốn điều lệ\n(Tỷ đồng)": 7700
+ }
+]
+}

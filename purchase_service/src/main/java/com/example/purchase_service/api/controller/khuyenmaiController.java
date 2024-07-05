@@ -47,6 +47,11 @@ public class khuyenmaiController {
         return khuyenmaiService.getKhuyenMaiByIdSuKienIdDoiTac(IDSuKien, IDDoiTac);
     }
 
+    @GetMapping("/GetKhuyenMaiChuaSuDungByIDDoiTac/{IDDoiTac}")
+    public List<khuyenmai> GetKhuyenMaiChuaSuDungByIDDoiTac(@PathVariable("IDDoiTac") Integer IDDoiTac) {
+        return khuyenmaiService.GetKhuyenMaiChuaSuDungByIDDoiTac(IDDoiTac);
+    }
+
     @PostMapping("/khuyenmai")
     public ResponseEntity<?> createKhuyenmai(@RequestBody addKhuyenmaiDto dto) {
         try {

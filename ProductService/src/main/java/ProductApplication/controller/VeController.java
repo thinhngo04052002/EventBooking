@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import ProductApplication.DTO.VeDTO;
 import ProductApplication.service.VeService;
-
-import jakarta.servlet.http.HttpServletRequest;
 @SpringBootApplication
 @RestController
-@RequestMapping("/api/product/ve")
+@RequestMapping("/product/ve")
 public class VeController {
     @Autowired
     private VeService veService;
@@ -53,7 +51,7 @@ public class VeController {
 //            }
 //    }
     
-    @GetMapping("/getVeByIdVe-IDSuKien")
+    @GetMapping("/getVeByIdVe-IDSuKien-IDDoiTac")
     public ResponseEntity<VeDTO> getVeByIdVeAndIDSuKien(
     	@RequestParam Integer iDVe,
         @RequestParam Integer iDSuKien,
@@ -257,7 +255,7 @@ public class VeController {
     
     
     @PostMapping("/postVe")
-    public ResponseEntity<Integer> createVe(@RequestBody VeDTO veDTO,HttpServletRequest request){
+    public ResponseEntity<Integer> createVe(@RequestBody VeDTO veDTO){
     	System.out.println("Trước bad request"+veDTO);
     	if(veDTO.getIdve()==null) {
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

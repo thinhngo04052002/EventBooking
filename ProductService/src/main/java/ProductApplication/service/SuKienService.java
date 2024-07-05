@@ -8,16 +8,20 @@ import org.springframework.stereotype.Service;
 
 import ProductApplication.DTO.SuKienDTO;
 import ProductApplication.DTO.UpdateSuKienDTO;
+import ProductApplication.DTO.AddSuKienDTO;
 import ProductApplication.DTO.DiaDiemDTO;
 import ProductApplication.DTO.PostSuKienDTO;
 import ProductApplication.model.DiaDiem;
 import ProductApplication.model.SuKien;
 import ProductApplication.repository.SuKienRepository;
+import ProductApplication.repository.SuatDienRepository;
 
 @Service
 public class SuKienService {
 	@Autowired
     private SuKienRepository suKienRepository;
+	@Autowired
+    private SuatDienRepository suatDienRepository;
 
     public Integer createSuKien(PostSuKienDTO suKienDTO) {
     	SuKien sukien = new SuKien();
@@ -46,6 +50,40 @@ public class SuKienService {
         sukien.setThanhToan("Chưa thanh toán");
         try {
         	suKienRepository.save(sukien);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    
+    public Integer createSuKien2(AddSuKienDTO suKienDTO) {
+    	SuKien sukien = new SuKien();
+    	if(suKienDTO.getAnhSoDoGhe()!=null) {
+    		sukien.setAnhSoDoGhe(suKienDTO.getAnhSoDoGhe());
+    	}
+    	sukien.setThongTinSuKien(suKienDTO.getThongTinSuKien());
+    	sukien.setAnhNenSuKien(suKienDTO.getAnhNenSuKien());
+    	sukien.setDiaChi(suKienDTO.getDiaChi());
+    	DiaDiem diaDiem = convertDiaDiemToEntity(suKienDTO.getDiaDiem());
+      	sukien.setDiaDiem(diaDiem);
+      	sukien.setDuongDan(suKienDTO.getDuongDan());
+      	sukien.setLoiCamOn(suKienDTO.getLoiCamOn());
+      	sukien.setTheLoai(suKienDTO.getTheLoai());
+      	
+      	List<SuKien> sukiencuadoitac= suKienRepository.findByIdDoiTac(suKienDTO.getIDDoiTac());
+      	int maxIDSuKien = 0;
+      	for (SuKien sk : sukiencuadoitac) {
+      	    if (sk.getIdSuKien() > maxIDSuKien) {
+      	        maxIDSuKien = sk.getIdSuKien();
+      	    }
+      	}
+        sukien.setIdSuKien(maxIDSuKien+1);
+        sukien.setIdDoiTac(suKienDTO.getIDDoiTac());
+        sukien.setTenSuKien(suKienDTO.getTenSuKien());
+        sukien.setThanhToan("Chưa thanh toán");
+        try {
+        	suKienRepository.save(sukien);
+        	
             return 1;
         } catch (Exception e) {
             return 0;

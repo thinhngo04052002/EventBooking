@@ -1,5 +1,6 @@
 package ProductApplication.DTO;
 
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import ProductApplication.DTO.DiaDiemDTO;
 @SpringBootApplication
@@ -15,7 +16,7 @@ public class PostSuKienDTO {
     private DiaDiemDTO DiaDiem;
     private String DuongDan;
     private String LoiCamOn;
-
+    
 	public PostSuKienDTO() {
 		super();
 		// TODO Auto-generated constructor stub
