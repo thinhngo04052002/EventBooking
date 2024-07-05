@@ -6,7 +6,6 @@ class UserController
 
         $url = 'http://localhost:8001/user?uri=' . $uri;
         $ch = curl_init();
-printf($url);
         // Thêm token CSRF vào header request
         $headers = [
             'Content-Type: application/json'
@@ -29,7 +28,6 @@ printf($url);
         }
 
         $response = curl_exec($ch);
-        printf($response);
         if (curl_errno($ch)) {
             printf($response);
         }
@@ -64,7 +62,7 @@ printf($url);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         // echo "lấy http: $httpCode";
         if (curl_errno($ch)) {
-            printf($response);
+          
         }
         curl_close($ch);
 
