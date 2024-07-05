@@ -82,9 +82,12 @@
 
 
 <?php
-if (isset($answer['error']) && $answer['error'] == "Request failed with status code 404") {
-    header('Location: index.php?action=createProfile');
-    exit();
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 'KH') {
+    if (isset($answer['error']) && $answer['error'] == "Request failed with status code 404") {
+        header('Location: index.php?action=createProfile');
+        exit();
+    }
 }
 ?>
 <div class="info-container">

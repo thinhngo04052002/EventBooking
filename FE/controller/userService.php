@@ -64,6 +64,9 @@ printf($url);
                 if ($_SESSION['role']=='ADDVSK'){
                 header('Location:index.php?action=thongTinDoanhNghiep');
                 }
+                if ($_SESSION['role']=='ADNT'){
+                    header('Location:index.php?action=userProfile');
+                    }
 
 
                 exit();
