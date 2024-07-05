@@ -50,6 +50,14 @@ switch ($action) {
         $controller = new UserController();
         $controller->createProfile($uri);
         break;
+    case 'edit_profile':
+        $uri="nguoidung/update/id=" . $_SESSION['id_nguoidung'];
+        $controller = new UserController();
+        $controller->editProfile($uri);
+    case 'editDoanhNghiep':
+        $uri="doitac/update/id=". $_SESSION['idDoitac'];
+        $controller = new UserController();
+        $controller->editDoanhNghiep($uri);
 
 
 

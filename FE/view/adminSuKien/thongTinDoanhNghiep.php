@@ -107,13 +107,12 @@ if (isset($bank['error']) && $bank['error'] == "Request failed with status code 
                 <p><span class="label">Người đại diện:</span> <?php echo $answer['nguoidaidien']; ?></p>
                 <p><span class="label">Số điện thoại:</span> <?php echo $answer['sdt']; ?></p>
                 <p><span class="label">Địa chỉ:</span> <?php echo $answer['diachi']; ?></p>
-                <a href="index.php?action=edit_profile" class="btn btn-outline-primary">Chỉnh sửa </a>
+                <a href="index.php?action=editDoanhNghiep" class="btn btn-outline-primary">Chỉnh sửa </a>
                 <h3>Thông tin ngân hàng</h3>
                 <p><span class="label">Tên ngân hàng:</span> <?php echo $bank['tenNganhang']; ?></p>
                 <p><span class="label">Số tài khoản:</span> <?php echo $bank['sotaikhoan']; ?></p>
                 <p><span class="label">Chi nhánh:</span> <?php echo $bank['chinhanh']; ?></p>
                 <p><span class="label">Chủ tài khoản:</span> <?php echo $bank['chuTaikhoan']; ?></p>
-                <a href="index.php?action=edit_profile_banking" class="btn btn-outline-primary">Chỉnh sửa </a>
             </div>
         </div>
     </div>

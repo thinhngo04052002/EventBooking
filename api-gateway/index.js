@@ -286,6 +286,28 @@ app.post('/user', (req, res) => {
             // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
         });
 });
+app.put('/user', (req, res) => {
+    const body = req.body;
+    const { uri } = req.query;
+    const headers = {
+        "Content-Type": "application/json"
+    }
+    // Tạo URL cho yêu cầu HTTP bằng cách sử dụng port và uri được truyền vào body.
+    axios({
+        method: 'PUT',
+        url: `http://127.0.0.1:${portUser}/${uri}`,
+        // headers: headers,
+        data: body
+    })
+        .then(response => {
+            res.status(200).json(response.data);
+            // Nếu yêu cầu Axios thành công, trả về dữ liệu từ response với mã trạng thái 200.
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+            // Nếu có lỗi xảy ra trong yêu cầu Axios, trả về lỗi với mã trạng thái 500.
+        });
+});
 
 
 app.get('/user', (req, res) => {

@@ -122,8 +122,6 @@ class NguoiDungUpdate(BaseModel):
     ngaysinh: Optional[str] = None
     sdt: Optional[str] = None
     diachi: Optional[str] = None
-    class Config:
-        orm_mode = True
 
 class DoiTacUpdate(BaseModel):
     tendoitac: Optional[str] = None
@@ -447,8 +445,8 @@ async def update_doitac_endpoint(doitac_id: int, update_data: DoiTacUpdate, db: 
         raise HTTPException(status_code=404, detail="Không tìm thấy đối tác")
     return updated_doitac
 
-def update_nguoidung(db:Session, user_id:int, update_data:NguoiDungUpdate):
-    nguoidung=db.query(models.NguoiDung).filter(models.NguoiDung.id_taikhoan==user_id).first()
+def update_nguoidung(db:Session, nguoidung_id:int, update_data:NguoiDungUpdate):
+    nguoidung=db.query(models.NguoiDung).filter(models.NguoiDung.id==nguoidung_id).first()
     if not nguoidung:
         return None
     for key,value in update_data.dict(exclude_unset=True).items():
@@ -457,12 +455,11 @@ def update_nguoidung(db:Session, user_id:int, update_data:NguoiDungUpdate):
     db.refresh(nguoidung)
     return nguoidung
 
-@app.put("/nguoidung/update/user_id={user_id}", response_model=NguoiDungBase)
-async def update_doitac_endpoint(user_id: int, update_data: NguoiDungUpdate, db: Session = Depends(get_db)):
-    updated_nguoidung = update_doitac(db, user_id, update_data)
+@app.put("/nguoidung/update/id={nguoidung_id}", response_model=NguoiDungBase)
+async def update_nguoidung_endpoint(nguoidung_id: int, update_data: NguoiDungUpdate, db: Session = Depends(get_db)):
+    updated_nguoidung = update_nguoidung(db, nguoidung_id, update_data)
     if updated_nguoidung is None:
-        raise HTTPException(status_code=404, detail="Không tìm thấy đối tác")
-    return update_nguoidung
-
+        raise HTTPException(status_code=404, detail="Không tìm thấy người dùng")
+    return updated_nguoidung
 if __name__ == "__main__":
     uvicorn.run(app, port=8006)  # Change the port here to 8006

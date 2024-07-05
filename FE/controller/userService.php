@@ -23,8 +23,13 @@ printf($url);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         }
+        if ($method == 'PUT') {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        }
 
         $response = curl_exec($ch);
+        printf($response);
         if (curl_errno($ch)) {
             printf($response);
         }
@@ -91,6 +96,64 @@ printf($url);
         } else {
             $data = "";
             $VIEW = "./view/dangKy.php";
+            require("./template/template.php");
+        }
+
+
+        // Điều hướng đến view và template
+
+    }
+    public function editProfile($uri)
+    {
+        
+        if (isset($_POST['editProfile'])) {
+            $data = [
+                'hoten' => $_POST['hoten'],
+                'sdt' => $_POST['sdt'],
+                'diachi' => $_POST['diachi'],
+                'gioitinh' => $_POST['gioitinh'],
+                'ngaysinh' => $_POST['ngaysinh']
+            ];
+            $answer = $this->getUserService($uri, 'PUT', $data);
+            $VIEW = "./view/khachHang/editProfile.php";
+            $uri_data="nguoidung/info/userid=" .$_SESSION['id'];
+            $profile = $this->getUserService($uri_data, 'GET');
+            require("./template/template.php");
+        } else {
+            $data = "";
+            $uri_data="nguoidung/info/userid=" .$_SESSION['id'];
+            $profile = $this->getUserService($uri_data, 'GET');
+            $VIEW = "./view/khachHang/editProfile.php";
+            require("./template/template.php");
+        }
+
+
+        // Điều hướng đến view và template
+
+    }
+    public function editDoanhNghiep($uri)
+    {
+        
+        if (isset($_POST['editDoanhNghiep'])) {
+            $data = [
+                'tendoitac' => $_POST['tendoitac'],
+                'sdt' => $_POST['sdt'],
+                'diachi' => $_POST['diachi'],
+                'email' => $_POST['email'],
+                'nguoidaidien' => $_POST['nguoidaidien'],
+                'masothue' => $_POST['masothue'],
+                'logo' => $_POST['logo'],
+            ];
+            $answer = $this->getUserService($uri, 'PUT', $data);
+            $VIEW = "./view/adminSuKien/editDoanhNghiep.php";
+            $uri_data="doitac/info/id=" .$_SESSION['id'];
+            $profile = $this->getUserService($uri_data, 'GET');
+            require("./template/template.php");
+        } else {
+            $data = "";
+            $uri_data="doitac/info/id=" .$_SESSION['id'];
+            $profile = $this->getUserService($uri_data, 'GET');
+            $VIEW = "./view/adminSuKien/editDoanhNghiep.php";
             require("./template/template.php");
         }
 
