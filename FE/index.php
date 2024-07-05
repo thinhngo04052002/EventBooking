@@ -32,15 +32,50 @@ switch ($action) {
         break;
         //khách hàng
     case "danhGia":
-        $controller = new CrmController();
-        $controller->danhGia($portGateway);
+        if (isset($_SESSION['id'])) {
+            $idNguoiDung = $_SESSION['id'];
+        $uri='vedamua/getAllVeDaMuaByIdNguoiDung/'. $idNguoiDung;
+        $controller = new ProductController();
+        $controller->getSuKien($uri);
+        
+        }
+        else {
+            // Xử lý trường hợp người dùng chưa đăng nhập
+            echo "Vui lòng đăng nhập để xem thông tin vé.";
+        }
         break;
 
-    case "filterSuKienCuaKH":
-        $controller = new CrmController();
-        $controller->filterSuKienCuaKH($portGateway);
+    case "danhGia1":
+        if (isset($_GET['idsk'])) {
+            $idsk = $_GET['idsk'];
+            $uri = 'get_danhgia_by_idsk/?idsk=' . $idsk;
+            $controller = new CrmController();
+            $controller->danhGia1($uri);
+        } else {
+            // Handle the case where idsk is not set
+            echo "ID sự kiện không hợp lệ.";
+        }
         break;
 
+    case "dsVe":
+        if (isset($_SESSION['id'])) {
+            $idNguoiDung = $_SESSION['id'];
+        $uri='vedamua/getAllVeDaMuaByIdNguoiDung/'. $idNguoiDung;
+        $controller = new ProductController();
+        $controller->getdsVe($uri);
+        
+        }
+        else {
+            // Xử lý trường hợp người dùng chưa đăng nhập
+            echo "Vui lòng đăng nhập để xem thông tin vé.";
+        }
+        break;
+        
+        case "submitDanhGia":
+            $uri='create_danhgia/';
+            $controller = new CrmController();
+            $controller->danhGiaSK($uri);
+            break;
 
         //admin sự kiện
     case "taoSuKien1":

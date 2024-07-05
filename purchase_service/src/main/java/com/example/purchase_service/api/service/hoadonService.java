@@ -227,7 +227,7 @@ public class hoadonService {
     // Hàm này sẽ được gọi khi Khách hàng bấm nút thanh toán
     public void GoiAPIThanhToan(goiAPIThanhToanDto dto) {
         // Lấy giá trị chiết khấu từ khuyến mãi
-        khuyenmai khuyenMai = khuyenMaiService.getKhuyenMaiByMakhuyenmai(dto.getMaKhuyenMai());
+        khuyenmai khuyenMai = khuyenMaiService.getKhuyenMaiByMakhuyenmai(dto.getMakhuyenmai());
         if (khuyenMai == null) {
             throw new RuntimeException("Không tồn tại khuyến mãi.");
         }

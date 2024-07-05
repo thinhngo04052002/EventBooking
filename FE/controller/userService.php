@@ -38,8 +38,6 @@ class UserController
 
     public function dangNhap($uri)
     {
-
-
         if (isset($_POST['login'])) {
             $data = [
                 'username' => $_POST['username'],

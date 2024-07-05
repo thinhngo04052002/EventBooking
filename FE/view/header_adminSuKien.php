@@ -6,7 +6,7 @@
   <div class="dropdown">
     <button class="dropbtn"><?php echo $_SESSION['username']?></button>
     <div class="dropdown-content">
-      <a href="index.php?action=dsVe">Vé đã mua</a>
+      <a href="#">Vé đã mua</a>
       <a href="#">Thông tin cá nhân</a>
       <a href="index.php?action=logout">Đăng xuất</a>
     </div>

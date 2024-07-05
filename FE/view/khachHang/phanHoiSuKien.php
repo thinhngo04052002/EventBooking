@@ -1,13 +1,15 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+
 }
-$answer;
+// $answer;
+
 ?>
 <?php
-if (isset($answer) && ($answer !== "")) {
-    print_r($answer);
-}
+// if (isset($answer) && ($answer !== "")) {
+//     print_r($answer);
+// }
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
@@ -64,6 +66,11 @@ if (isset($answer) && ($answer !== "")) {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    margin-bottom: 10px;
 }
 
 /* Đổi màu button khi hover */
@@ -86,7 +93,7 @@ body {
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     gap: 20px;
 }
 
@@ -97,6 +104,8 @@ body {
     overflow: hidden;
     width: 300px;
     margin: 10px;
+    padding: -10px;
+
 }
 
 .card img {
@@ -107,6 +116,10 @@ body {
 
 .card-content {
     padding: 15px;
+}
+
+.card-content h2{
+    text-align: center;
 }
 
 .card h2 {
@@ -141,27 +154,26 @@ body {
 
 
     <div class="container">
+    <?php if (isset($data['danhSachVeDaMua'])): ?>
+        <?php foreach ($data['danhSachVeDaMua'] as $ticket): ?>
             <div class="card">
-                <img src="your-image-url.jpg" alt="Event Image">
+                <!-- <img src="your-image-url.jpg" alt="Event Image"> -->
                 <div class="card-content">
-                    <h2>GlassTech Asia and Fenestration Asia 2024</h2>
-                    <p>Saigon Exhibition and Convention Center</p>
-                    <p>Free</p>
-                    <p>MMI Asia Pte. Ltd</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Đánh giá</button>
+                    <h2><?php echo htmlspecialchars($ticket['tenSuKien']); ?></h2>
+                    <p><?php echo htmlspecialchars($ticket['diaDiem']['noiToChuc']); ?> --- <?php echo htmlspecialchars($ticket['diaDiem']['thanhPho']); ?> --- <?php echo htmlspecialchars($ticket['diaDiem']['quocGia']); ?></p>
+                    <p><?php echo htmlspecialchars($ticket['thoiGian']['thoiDiemBatDau']); ?> - <?php echo htmlspecialchars($ticket['thoiGian']['thoiDiemKetThuc']); ?></p>
+                    <p><?php echo htmlspecialchars($ticket['loaiVe']); ?></p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-idnd="<?php echo htmlspecialchars($_SESSION['id']); ?>"
+                    data-idsk="<?php echo htmlspecialchars($ticket['iDSuKien']); ?>">Đánh giá</button>
+                    <a href="index.php?action=danhGia1&idsk=<?php echo $ticket['iDSuKien']; ?>" class="btn btn-primary">Xem đánh giá</a>
                 </div>
             </div>
-            <div class="card">
-                <img src="your-image-url.jpg" alt="Event Image">
-                <div class="card-content">
-                    <h2>HortEx Vietnam 2025</h2>
-                    <p>Wed, Mar 12 • 9:00 AM</p>
-                    <p>Saigon Exhibition and Convention Center</p>
-                    <p>Free</p>
-                    <p>Nova Exhibitions BV</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Đánh giá</button>
-                </div>
-            </div>
+            
+        <?php endforeach; ?>
+        <?php else: ?>
+            <p>Không có vé nào được tìm thấy.</p> 
+        <?php endif; ?>     
     </div>
 </div>
 
@@ -173,7 +185,9 @@ body {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="reviewForm" method="post" action="index.php?action=submitDanhGia">
+        <input type="hidden" name="idnd" id="idnd">
+        <input type="hidden" name="idsk" id="idsk">
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Message:</label>
             <textarea class="form-control" id="message-text"></textarea>
@@ -188,7 +202,8 @@ body {
   </div>
 </div>
 
-<script>
+
+<!-- <script>
     const exampleModal = document.getElementById('exampleModal')
     if (exampleModal) {
     exampleModal.addEventListener('show.bs.modal', event => {
@@ -198,6 +213,8 @@ body {
         // const recipient = button.getAttribute('data-bs-whatever')
         // If necessary, you could initiate an Ajax request here
         // and then do the updating in a callback.
+        const idnd = button.getAttribute('data-idnd');
+        const idsk = button.getAttribute('data-idsk');
 
         // Update the modal's content.
         const modalTitle = exampleModal.querySelector('.modal-title')
@@ -207,4 +224,25 @@ body {
         modalBodyInput.value = recipient
     })
     }
+</script> -->
+<script>
+    const exampleModal = document.getElementById('exampleModal');
+    if (exampleModal) {
+        exampleModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            const idnd = button.getAttribute('data-idnd');
+            const idsk = button.getAttribute('data-idsk');
+
+            const modal = exampleModal;
+            modal.querySelector('#idnd').value = idnd;
+            modal.querySelector('#idsk').value = idsk;
+        });
+
+        document.getElementById('submitReviewButton').addEventListener('click', () => {
+            document.getElementById('reviewForm').submit();
+        });
+    }
 </script>
+
+
+
