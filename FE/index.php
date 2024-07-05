@@ -109,8 +109,9 @@ switch ($action) {
 
         //admin sự kiện
     case "taoSuKien":
+       
         $controller = new ProductController();
-        $controller->getSuKien($uri);
+        $controller->getSuKien();
         
         
         break;
@@ -253,6 +254,11 @@ switch ($action) {
         $danhSachVe = $_REQUEST['danhSachVe'];
         $controller->goiAPIThanhToan($portGateway, $orderId, $orderinfo, $thanhTien, $makhuyenmai, $idtaikhoan, $danhSachVe);
         break;
+        case "listUser":
+            $uri = 'taikhoan/listALL';
+            $controller = new UserController();
+            $controller->listUser($uri);
+            break;
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";

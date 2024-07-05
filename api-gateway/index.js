@@ -69,7 +69,7 @@ app.get('/api/product', (req, res) => {
     // Lấy thông tin uri và port từ query parameters của yêu cầu GET.
     axios({
         method: 'GET',
-        url: `http://127.0.0.1:${portProduct}/api/product/${uri}`,
+        url: `http://127.0.0.1:${portProduct}/product/${uri}`,
     })
         .then(response => {
             res.status(200).json(response.data);

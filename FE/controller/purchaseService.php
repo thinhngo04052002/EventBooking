@@ -32,7 +32,7 @@ class PurchaseController
         }
         curl_close($ch);
 
-        return json_decode($response, true);
+        return json_decode($response, true);}
     public function postPurchaseService($uri, $method = 'POST', $data = [])
     {
 
@@ -64,7 +64,7 @@ class PurchaseController
         return json_decode($response, true);
     }
 
-    public function getPurchaseService($uri)
+    public function getPurchaseService2($uri)
     {
         $url = 'http://localhost:8001/purchase?uri=' . urlencode($uri);
         // echo " hàm chuyển url   $url";
