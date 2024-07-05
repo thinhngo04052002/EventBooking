@@ -33,19 +33,27 @@ class CrmController
 
         return json_decode($response, true);
     }
-    public function danhGia($portGateway)
+
+    public function danhGia1($uri)
     {
-        $portGateway;
+        $data = $this->getCRMService($uri);
         // Điều hướng đến view và template
-        $VIEW = "./view/khachHang/phanHoiSuKien.php";
+        $VIEW = "./view/khachHang/xemTatCaDanhGia.php";
         require("./template/template.php");
     }
 
-    public function filterSuKienCuaKH($portGateway)
+    public function danhGiaSK($uri)
     {
-        $portGateway;
+        if (isset($_POST['id']) && isset($_POST['idsk']) && isset($_POST['message-text'])) {           
+        $data= [
+            'IDTaiKhoan' => $_POST['id'],
+            'IDSukien' => $_POST['idsk'],
+            'SoSao' => $_POST['message-text']
+        ];
+        $answer = $this->getCRMService($uri, 'POST', $data);
         // Điều hướng đến view và template
         $VIEW = "./view/khachHang/phanHoiSuKien.php";
         require("./template/template.php");
+        }
     }
 }

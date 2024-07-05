@@ -4,7 +4,7 @@ class ProductController
     public function getProductService($uri, $method = 'GET', $data = [])
     {
 
-        $url = 'http://localhost:8001/product?uri=' . $uri;
+        $url = 'http://localhost:8001/api/product?uri=' . $uri;
         // echo " hàm chuyển url   $url";
         $ch = curl_init();
 
@@ -119,6 +119,21 @@ class ProductController
         $VIEW = "./view/trangchu.php";
         require ("./template/template.php");
     }
+
+    public function getSuKien($uri) {
+         
+        $data = $this->getProductService($uri);
+        $VIEW = "./view/khachHang/phanHoiSuKien.php";
+        require("./template/template.php");
+    }
+
+    public function getdsVe($uri) {
+         
+        $data = $this->getProductService($uri);
+        $VIEW = "./view/khachHang/xemDSVe.php";
+        require("./template/template.php");
+    }
+
     public function testTaoVe($portGateway)
     {
         $portGateway;

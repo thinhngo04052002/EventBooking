@@ -11,9 +11,9 @@ if (isset($_SESSION['role'])) {
 ?>
 <div class="header">
   <div class="nameShop"><a href="#">Ticketshop</a></div>
-  <div class="search">
+  <!-- <div class="search">
     <input placeholder="search" class="searchInput" type="text" value="" name="type">
-  </div>
+  </div> -->
   <div class="dropdown">
     <button class="dropbtn"><?php echo $_SESSION['username'] ?></button>
     <div class="dropdown-content">
