@@ -3,18 +3,6 @@
     <link rel="stylesheet" type="text/css" href="css\TuyetCSS\chuanBiThanhToan.css">
 </head>
 <?php
-$loaiVe1 = [
-    'tenLoaiVe' => 'Vé VIP',
-    'giaVe' => 1000000,
-    'soLuong' => 1
-];
-$loaiVe2 = [
-    'tenLoaiVe' => 'Vé Khu A',
-    'giaVe' => 800000,
-    'soLuong' => 2
-];
-$loaiVeDaChon = array($loaiVe1, $loaiVe2);
-
 // Tính tổng tiền đặt vé
 $tongTien = 0;
 foreach ($loaiVeDaChon as $veTT) {
@@ -28,11 +16,13 @@ foreach ($loaiVeDaChon as $veTT) {
         console.log('khuyen mai: ' + khuyenmai);
         if (khuyenmai != null) {
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function () {
+            xmlHttp.onreadystatechange = function() {
                 if (this.readyState == 4) { // Đã hoàn thành yêu cầu
                     var chietkhau = this.responseText;
+                    console.log('chiet khau:  ' + chietkhau);
                     if (!isNaN(chietkhau)) {
                         var ck = parseFloat(this.responseText);
+                        console.log('chiet khau:  ' + ck);
                         var tongTien = parseFloat(<?php echo $tongTien ?>);
                         var tienKhuyenMai = tongTien * 0.01 * ck;
                         var thanhTien = tongTien - tienKhuyenMai;
@@ -43,6 +33,9 @@ foreach ($loaiVeDaChon as $veTT) {
                         } else { // Lỗi
                             document.querySelector('#tong_tien_khuyen_mai .value').textContent = 'Đã xảy ra lỗi.';
                         }
+                    } else {
+                        document.querySelector('#tong_tien_khuyen_mai .value').textContent = '';
+                        document.querySelector('#thanh_tien .value').textContent = <?php echo $tongTien ?> + 'đ';
                     }
                 }
             }
@@ -66,9 +59,9 @@ foreach ($loaiVeDaChon as $veTT) {
 </script>
 <?php
 // Tạo chuỗi random cho orderId
-function generateRandomString($length = 10)
+function generateRandomString($length = 5)
 {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters = '0123456789';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
@@ -95,20 +88,14 @@ $orderId = generateRandomString();
                     <form>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email"
-                                placeholder="Vui lòng nhập email nhận thông tin thẻ" require>
+                            <input type="text" id="email" name="email" value="<?php echo $email ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại:</label>
-                            <input type="text" id="phone" name="phone" value="0334445556" readonly>
+                            <input type="text" id="phone" name="phone" value="<?php echo $sdt ?>" readonly>
                         </div>
                         <div class="form-group" id="pttt">
-                            <label>Phương thức thanh toán:</label>
-                            <div class="payment-methods">
-                                <label>
-                                    Ví MoMo
-                                </label>
-                            </div>
+                            <label>Phương thức thanh toán: Ví MoMo</label>
                         </div>
                     </form>
                 </div>
@@ -117,7 +104,7 @@ $orderId = generateRandomString();
                 <div class="order-details">
                     <div class="section">
                         <h3>Thông tin đặt vé</h3>
-                        <?php foreach ($loaiVeDaChon as $veTT): ?>
+                        <?php foreach ($loaiVeDaChon as $veTT) : ?>
                             <div class="detail">
                                 <span class="label">Loại vé:</span>
                                 <span class="value"><?php echo $veTT['tenLoaiVe']; ?></span>
@@ -147,17 +134,33 @@ $orderId = generateRandomString();
                         </div>
                     </div>
                 </div>
-                <div class="form-actions" method="GET" action="index.php">
+                <form class="form-actions" method="GET" action="index.php" onsubmit="updateFormValues();">
                     <input type="hidden" name="action" value="goiAPIThanhToan" />
                     <button type="submit" class="btn btn-primary">Thanh toán</button>
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>" />
+                    <input type="hidden" name="idsuKien" value="<?php echo $sukien['idsuKien']; ?>" />
+                    <input type="hidden" name="iddoiTac" value="<?php echo $sukien['iddoiTac']; ?>" />
                     <input type="hidden" name="orderinfo" value="mua vé xem sự kiện" />
-                    <input type="hidden" name="thanhTien" value="1980000" />
-                    <input type="hidden" name="makhuyenmai" value="km111" />
+                    <input type="hidden" name="thanhTien" id="hiddenThanhTien" />
+                    <input type="hidden" name="makhuyenmai" id="hiddenMaKhuyenMai" />
                     <input type="hidden" name="idtaikhoan" value="<?php echo $_SESSION['id'] ?>" />
-                    <input type="hidden" name="danhSachVe" value="[]" />
-                </div>
+                    <input type="hidden" name="danhSachVe" value="<?php echo htmlspecialchars(json_encode($loaiVeDaChon), ENT_QUOTES, 'UTF-8'); ?>" />
+                </form>
             </td>
         </tr>
     </table>
 </div>
+<script>
+    function updateFormValues() {
+        // Lấy giá trị của thành tiền và mã khuyến mãi
+        var thanhTienElement = document.querySelector('#thanh_tien .value');
+        var thanhTien = thanhTienElement.textContent.trim().replace('đ', '').replace(/,/g, '');
+
+        var maKhuyenMaiElement = document.querySelector('.input-ma-khuyen-mai');
+        var maKhuyenMai = maKhuyenMaiElement.value.trim();
+
+        // Cập nhật giá trị vào các input ẩn
+        document.getElementById('hiddenThanhTien').value = thanhTien;
+        document.getElementById('hiddenMaKhuyenMai').value = maKhuyenMai;
+    }
+</script>

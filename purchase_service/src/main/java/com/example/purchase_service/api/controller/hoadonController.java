@@ -59,8 +59,11 @@ public class hoadonController {
     @PostMapping("/goiAPIThanhToan")
     public ResponseEntity<?> GoiAPIThanhToan(@RequestBody goiAPIThanhToanDto dto) {
         try {
-            hoadonService.GoiAPIThanhToan(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(null);
+            if (hoadonService.GoiAPIThanhToan(dto) == true) {
+                return ResponseEntity.status(HttpStatus.CREATED).body(null);
+            } else {
+                return ResponseEntity.badRequest().body("Không thể gửi thông tin");
+            }
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Không thể gửi thông tin: " + e.getMessage());
         }

@@ -6,8 +6,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,9 @@ import com.example.purchase_service.api.model.khuyenmai;
 import com.example.purchase_service.api.repository.hoadonRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.Channel;
 
 @Service
 public class hoadonService {
@@ -225,25 +231,49 @@ public class hoadonService {
     }
 
     // Hàm này sẽ được gọi khi Khách hàng bấm nút thanh toán
-    public void GoiAPIThanhToan(goiAPIThanhToanDto dto) {
+    public boolean GoiAPIThanhToan(goiAPIThanhToanDto dto) {
         // Lấy giá trị chiết khấu từ khuyến mãi
         khuyenmai khuyenMai = khuyenMaiService.getKhuyenMaiByMakhuyenmai(dto.getMakhuyenmai());
         if (khuyenMai == null) {
             throw new RuntimeException("Không tồn tại khuyến mãi.");
         }
         int chietkhau = khuyenMai.getChietkhau();
-        // Thời điểm hết hạn thanh toán
-        long expiresAtTimestamp = System.currentTimeMillis() / 1000 + 15 * 60; // Timestamp UNIX sau 15 phút
         // Chuyển đổi dto sang JSON
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String jsonString = objectMapper.writeValueAsString(dto);
             System.out.println(jsonString);
+
+            try {
+                ConnectionFactory factory = new ConnectionFactory();
+                factory.setHost("localhost");
+                Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel();
+
+                String queue = "payment";
+                String message = jsonString;
+
+                // Khai báo hàng đợi "payment" với các thuộc tính tương tự như trong PHP
+                Map<String, Object> arguments = new HashMap<>();
+                channel.queueDeclare(queue, true, false, false, arguments);
+                channel.basicPublish("", queue, null, message.getBytes());
+
+                System.out.println(" [x] Sent '" + message + "'");
+
+                channel.close();
+                connection.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
+            return true;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
+        return false;
         // //Code decode trong php:
-        // //$expiresAt = (new DateTime())->setTimestamp($expiresAtTimestamp);
         // Nối chuỗi kiểu json
         // truyền message lên RabbitMQ
     }

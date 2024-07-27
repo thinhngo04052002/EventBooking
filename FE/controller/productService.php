@@ -138,7 +138,9 @@ class ProductController
     }
     public function taoSuKien()
     {
-        $iddoitac = $this->getUserService('doitac/info/idtaikhoan=' . $_SESSION['id']);
+        $doitac = $this->getUserService('doitac/info/idtaikhoan=' . $_SESSION['id']);
+        // print_r($iddoitac);
+        $iddoitac = $doitac["id"];
         $uri = "khuyenmai/GetKhuyenMaiChuaSuDungByIDDoiTac/$iddoitac";
         $dataKhuyenMai = $this->getPurchaseService($uri);
         // Điều hướng đến view và template
@@ -148,36 +150,89 @@ class ProductController
 
     public function taoSuKienClick($uri)
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+        $doitac = $this->getUserService('doitac/info/idtaikhoan=' . $_SESSION['id']);
         //lưu thông tin
-        $_SESSION["eventImageInput"] = $_FILES['eventImageInput'];
-        $_SESSION["TenSuKien"] = $_POST["TenSuKien"];
-        $_SESSION["TheLoai"] = $_POST["TheLoai"];
-        $_SESSION["QuocGia"] = $_POST["QuocGia"];
-        $_SESSION["ThanhPho"] = $_POST["ThanhPho"];
-        $_SESSION["DiaChi"] = $_POST["soNhaTenDuong"] . ', ' . $_POST["PhuongXa"] . ', ' . $_POST["QuanHuyen"] . ', ' . $_POST["ThanhPho"] . ', ' . $_POST["QuocGia"];
-        $_SESSION["NoiToChuc"] = $_POST["NoiToChuc"];
-        $_SESSION["ThongTinSuKien"] = $_POST["ThongTinSuKien"];
+        $iddoitac = $doitac["id"];
+        // // echo 
+        // $file = $_FILES['anhNenSuKien'];
+        // $file_name_nen = $file['name'];
+        // $file_tmp_nen = $file['tmp_name'];
+        // $file_size_nen = $file['size'];
+        // $file_type_nen = $file['type'];
 
+        // // Đọc dữ liệu file ảnh
+        // $file_data_nen = file_get_contents($file_tmp_nen);
+
+
+        // $file2 = $_FILES['anhSoDoGhe'];
+        // $file_name_2 = $file2['name'];
+        // $file_tmp_2 = $file2['tmp_name'];
+        // $file_size_2 = $file2['size'];
+        // $file_type_2 = $file2['type'];
+
+        // // Đọc dữ liệu file ảnh
+        // $file_data_2 = file_get_contents($file_tmp_2);
+
+        $nguoiThamGia = $_POST["nguoiThamGia"];
+        $nguoiThamGiaArray = explode(", ", $nguoiThamGia);
         $data = [
-            'idve' => $_REQUEST["idve"],
-            'idloaiVe' => $_REQUEST["idloaiVe"],
-            'idSuatDien' => $_REQUEST["idSuatDien"],
-            'idDoiTac' => $_REQUEST["idDoiTac"],
-            'trangThaiBan' => $_REQUEST["trangThaiBan"],
-            'soSeri' => $_REQUEST["soSeri"],
-            'trangThaiDung' => $_REQUEST["trangThaiDung"],
-            'idsuKien' => $_REQUEST["idsuKien"]
-        ];
-        $answer = $this->getProductService($uri, 'POST', $data);
+            "anhNenSuKien" => "gsfdgfdg",
+            "diaChi" => $_POST["soNhaTenDuong"] . ', ' . $_POST["PhuongXa"] . ', ' . $_POST["QuanHuyen"] . ', ' . $_POST["ThanhPho"] . ', ' . $_POST["QuocGia"],
+            "thongTinSuKien" => $_POST["ThongTinSuKien"],
+            "tenSuKien" => $_POST["TenSuKien"],
+            "diaDiem" => [
+                "noiToChuc" => $_POST["NoiToChuc"],
+                "quocGia" => $_POST["QuocGia"],
+                "thanhPho" => $_POST["ThanhPho"]
+            ],
+            "iddoiTac" => $iddoitac,
+            "duongDan" => "khongcoduongdan",
+            "loiCamOn" => $_POST["loiCamOn"],
+            "theLoai" => $_POST["TheLoai"],
+            "suatDienItemDTO" => [
+                [
+                    "thoiGianBatDau" => $_POST["date_bd"] . ' ' . $_POST["time_bd"],
+                    "thoiGianKetThuc" => $_POST["date_kt"] . ' ' . $_POST["time_kt"],
+                    "agenda" => [
+                        $_POST["agendaList"]
+                    ],
+                    "loaiVe" => [
+                        $_POST["loaiVeList"]
 
+                    ],
+                    "nguoiThamGia" => [
+                        $nguoiThamGiaArray
+                    ],
+                    "nhanSu" => [
+                        $_POST["NhanSuList"]
+                    ]
+                ]
+            ],
+            "anhSoDoGhe" => "gsdfghdsfht"
+        ];
+        echo "data";
+        print_r($data);
+        $answer = 0;
+        $answer1 = $this->getProductService($uri, 'POST', $data);
+        //thêm vô bảng khuyến mãi
+        if ($answer1 == 1) {
+            echo "vô khuyến mãi";
+            $dataSuKien = $this->getProductService("sukien/getSuKienByIdDoiTac/$iddoitac");
+            $idsuKienNew = count($dataSuKien);
+            if (isset($_POST["khuyenMaiList"]) && $_POST["khuyenMaiList"] != null) {
+                $idList = $_POST["khuyenMaiList"];
+                $idArray = json_decode($idList, true);
+
+                foreach ($idArray as $id) {
+                    // echo "ID: " . $id . "<br>";
+                    $urikm = "khuyenmai/UpdateIDSuKien/$id/$idsuKienNew";
+                    $this->getPurchaseService($urikm, 'POST', $data);
+                    $answer = 1;
+                }
+            }
+        }
         // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/testTaoVe.php";
-        require("./template/template.php");
-        // Điều hướng đến view và template
-        $VIEW = "./view/adminSuKien/taoSuKien2.php";
+        $VIEW = "./view/adminSuKien/taoSuKien.php";
         require("./template/template.php");
     }
 
@@ -199,15 +254,17 @@ class ProductController
         require("./template/template.php");
     }
 
-    public function getSuKien($uri) {
-         
+    public function getSuKien($uri)
+    {
+
         $data = $this->getProductService($uri);
         $VIEW = "./view/khachHang/phanHoiSuKien.php";
         require("./template/template.php");
     }
 
-    public function getdsVe($uri) {
-         
+    public function getdsVe($uri)
+    {
+
         $data = $this->getProductService($uri);
         $VIEW = "./view/khachHang/xemDSVe.php";
         require("./template/template.php");
@@ -245,6 +302,7 @@ class ProductController
     {
         // Gọi đến API Gateway để lấy dữ liệu
         $sukien = $this->getProductService("sukien/getAllSuKien");
+        // echo $sukien;
         foreach ($sukien as &$sk) {
             $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=" . $sk['idsuKien'] . "&IDDoiTac=" . $sk['iddoiTac'];
             $suatdien = $this->getProductService2($uri);
@@ -304,7 +362,7 @@ class ProductController
         }
         // Điều hướng đến view và template
         $VIEW = "./view/chiTietSuKien.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
     public function chonSuatDienLoaiVe($portGateway, $idsuKien, $iddoiTac)
     {
@@ -314,7 +372,7 @@ class ProductController
         $suatdien = $this->getProductService2($uri);
         // Điều hướng đến view và template
         $VIEW = "./view/khachHang/chonSuatDienLoaiVe.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
 
     public function chiTietVe($portGateway, $idVe, $idsuKien, $iddoiTac)
@@ -331,66 +389,66 @@ class ProductController
         ];
         // Điều hướng đến view và template
         $VIEW = "./view/khachHang/chiTietVe.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
 
-//     public function chiTietSuKien($portGateway, $idsuKien, $iddoiTac)
-//     {
-//         // Gọi đến API Gateway để lấy dữ liệu
-//         $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
-//         $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
-//         $suatdien = $this->getProductService2($uri);
-//         $minStartTime = PHP_INT_MAX;
-//         $maxEndTime = 0;
-//         if (!$suatdien == null) {
-//             foreach ($suatdien['suatDienItemDTO'] as $item) {
-//                 // Chuyển đổi định dạng thời gian
-//                 $startTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianBatDau']);
-//                 $startTime = $startTime->getTimestamp();
-//                 $endTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianKetThuc']);
-//                 $endTime = $endTime->getTimestamp();
+    //     public function chiTietSuKien($portGateway, $idsuKien, $iddoiTac)
+    //     {
+    //         // Gọi đến API Gateway để lấy dữ liệu
+    //         $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+    //         $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+    //         $suatdien = $this->getProductService2($uri);
+    //         $minStartTime = PHP_INT_MAX;
+    //         $maxEndTime = 0;
+    //         if (!$suatdien == null) {
+    //             foreach ($suatdien['suatDienItemDTO'] as $item) {
+    //                 // Chuyển đổi định dạng thời gian
+    //                 $startTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianBatDau']);
+    //                 $startTime = $startTime->getTimestamp();
+    //                 $endTime = date_create_from_format('d/m/Y H:i:s', $item['thoiGianKetThuc']);
+    //                 $endTime = $endTime->getTimestamp();
 
-//                 if ($startTime < $minStartTime) {
-//                     $minStartTime = $startTime;
-//                 }
-//                 if ($endTime > $maxEndTime) {
-//                     $maxEndTime = $endTime;
-//                 }
-//             }
-//             // Gán các giá trị vào $sukien
-//             $sukien['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
-//             $sukien['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
-//         }
-//         // Điều hướng đến view và template
-//         $VIEW = "./view/chiTietSuKien.php";
-//         require ("./template/template.php");
-//     }
-//     public function chonSuatDienLoaiVe($portGateway, $idsuKien, $iddoiTac)
-//     {
-//         // Gọi đến API Gateway để lấy dữ liệu
-//         $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
-//         $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
-//         $suatdien = $this->getProductService2($uri);
-//         // Điều hướng đến view và template
-//         $VIEW = "./view/khachHang/chonSuatDienLoaiVe.php";
-//         require ("./template/template.php");
-//     }
+    //                 if ($startTime < $minStartTime) {
+    //                     $minStartTime = $startTime;
+    //                 }
+    //                 if ($endTime > $maxEndTime) {
+    //                     $maxEndTime = $endTime;
+    //                 }
+    //             }
+    //             // Gán các giá trị vào $sukien
+    //             $sukien['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
+    //             $sukien['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
+    //         }
+    //         // Điều hướng đến view và template
+    //         $VIEW = "./view/chiTietSuKien.php";
+    //         require ("./template/template.php");
+    //     }
+    //     public function chonSuatDienLoaiVe($portGateway, $idsuKien, $iddoiTac)
+    //     {
+    //         // Gọi đến API Gateway để lấy dữ liệu
+    //         $sukien = $this->getProductService2("sukien/getSuKienByIDSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac");
+    //         $uri = "suatdien/getSuatDienByIdSuKien-IdDoiTac?IDSuKien=$idsuKien&IDDoiTac=$iddoiTac";
+    //         $suatdien = $this->getProductService2($uri);
+    //         // Điều hướng đến view và template
+    //         $VIEW = "./view/khachHang/chonSuatDienLoaiVe.php";
+    //         require ("./template/template.php");
+    //     }
 
-//     public function chiTietVe($portGateway, $idVe, $idsuKien, $iddoiTac)
-//     {
-//         $_SESSION['id_nguoidung'] = 1;
-//         $idnguoidung = $_SESSION['id_nguoidung'];
-//         $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idnguoidung;
-//         // Gọi đến API Gateway để lấy dữ liệu
-//         $data = $this->getProductService($uri);
-//         $thongTinVe = [
-//             'idVe' => $idVe,
-//             'idsuKien' => $idsuKien,
-//             'iddoiTac' => $iddoiTac
-//         ];
-//         // Điều hướng đến view và template
-//         $VIEW = "./view/khachHang/chiTietVe.php";
-//         require ("./template/template.php");
-//     }
-// }
+    //     public function chiTietVe($portGateway, $idVe, $idsuKien, $iddoiTac)
+    //     {
+    //         $_SESSION['id_nguoidung'] = 1;
+    //         $idnguoidung = $_SESSION['id_nguoidung'];
+    //         $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idnguoidung;
+    //         // Gọi đến API Gateway để lấy dữ liệu
+    //         $data = $this->getProductService($uri);
+    //         $thongTinVe = [
+    //             'idVe' => $idVe,
+    //             'idsuKien' => $idsuKien,
+    //             'iddoiTac' => $iddoiTac
+    //         ];
+    //         // Điều hướng đến view và template
+    //         $VIEW = "./view/khachHang/chiTietVe.php";
+    //         require ("./template/template.php");
+    //     }
+    // }
 }

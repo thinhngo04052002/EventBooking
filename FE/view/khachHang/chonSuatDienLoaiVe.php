@@ -5,100 +5,111 @@
 
 
 <?php
+// Kiểm tra xem người dùng đã đăng nhập chưa, nếu chưa chuyển hướng đến trang đăng nhập
+if (!isset($_SESSION['id'])) {
+    // Chuyển hướng đến trang index.php
+    header("Location: index.php?action=dangNhap");
+    exit(); // Dừng thực thi các đoạn mã khác sau khi chuyển hướng
+}
 // Kiểm tra xem $suatdien có chứa dữ liệu không
 if (isset($suatdien) && is_array($suatdien) && isset($suatdien['suatDienItemDTO']) && is_array($suatdien['suatDienItemDTO'])) {
     // Lấy thông tin về các loại vé
     $loaiVe = $suatdien['suatDienItemDTO'][0]['loaiVe'];
 
-    ?>
-<div class="primary-container">
-    <h2>Chọn suất diễn và loại vé cho sự kiện "<?php echo $sukien['tenSuKien'] ?>"</h2>
-    <div class="choice">
-        <div>
-            <label for="showtime">Chọn suất diễn:</label>
-            <br>
-            <br>
-            <select id="showtime">
-                <option value="">Chọn suất diễn</option>
-                <?php
-                    foreach ($suatdien['suatDienItemDTO'] as $show) {
+?>
+    <script>
+        function updateSelectedShowtime() {
+            var showtimeSelect = document.getElementById('showtime');
+            var selectedShowtime = showtimeSelect.options[showtimeSelect.selectedIndex].value;
+            document.getElementById('selectedShowtime').value = selectedShowtime;
+        }
+
+        function updateQuantity(button, change) {
+            var quantityInput = button.parentElement.querySelector('.ticket-quantity');
+            var currentQuantity = parseInt(quantityInput.value);
+            var newQuantity = currentQuantity + change;
+            if (newQuantity >= 0) {
+                quantityInput.value = newQuantity;
+            }
+        }
+
+        function submitForm() {
+            var ticketQuantities = document.querySelectorAll('.ticket-quantity');
+            var ticketData = [];
+
+            ticketQuantities.forEach(function(input) {
+                var ticketId = input.getAttribute('data-id');
+                var quantity = input.value;
+                if (quantity > 0) {
+                    var price = input.parentElement.previousElementSibling.getAttribute('data-price');
+                    var name = input.parentElement.previousElementSibling.previousElementSibling.getAttribute(
+                        'data-name');
+                    ticketData.push({
+                        id: ticketId,
+                        soLuong: quantity,
+                        giaVe: price,
+                        tenLoaiVe: name
+                    });
+                }
+            });
+
+            document.getElementById('ticketData').value = JSON.stringify(ticketData);
+            document.getElementById('ticketForm').submit();
+        }
+    </script>
+    <div class="primary-container">
+        <h2>Chọn suất diễn và loại vé cho sự kiện "<?php echo $sukien['tenSuKien'] ?>"</h2>
+        <div class="ccce">
+            <div>
+                <select id="showtime" onchange="updateSelectedShowtime()">
+                    <option value="">Chọn suất diễn</option>
+                    <?php foreach ($suatdien['suatDienItemDTO'] as $show) {
                         echo "<option value='" . $show['soThuTu'] . "'>" . $show['thoiGianBatDau'] . " - " . $show['thoiGianKetThuc'] . "</option>";
+                    } ?>
+                </select>
+            </div>
+            <!-- <?php
+                    // foreach ($suatdien['suatDienItemDTO'][0]['loaiVe'] as $type) {
+                    //     echo "<option value='" . $type['iDLoaiVe'] . "'>" . $type['tenLoaiVe'] . " - " . $type['giaVe'] . " VND</option>";
+                    // }
+                    ?> -->
+            <table id="chon_ve">
+                <thead>
+                    <tr>
+                        <th>Loại vé</th>
+                        <th>Giá bán</th>
+                        <th>Số lượng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($loaiVe as $type) {
+                        echo "<tr>";
+                        echo "<td class='ticket-price' data-name='" . $type['tenLoaiVe'] . "'>" . $type['tenLoaiVe'] . "</td>";
+                        echo "<td class='ticket-price' data-price='" . $type['giaVe'] . "'>" . $type['giaVe'] . " VND</td>";
+                        echo "<td> 
+                            <button type='button' class='minus-btn' onclick='updateQuantity(this, -1)'>-</button> 
+                            <input type='text' value='0' class='ticket-quantity' data-id='" . $type['iDLoaiVe'] . "' readonly> 
+                            <button type='button' class='plus-btn' onclick='updateQuantity(this, 1)'>+</button> 
+                          </td>";
+                        echo "</tr>";
                     }
                     ?>
-            </select>
+                </tbody>
+            </table>
+            <form method="get" action="index.php" id="ticketForm">
+                <input type="hidden" name="action" value="chuanBiThanhToan" />
+                <input type="hidden" name="idsuKien" value="<?php echo $sukien['idsuKien']; ?>" />
+                <input type="hidden" name="iddoiTac" value="<?php echo $sukien['iddoiTac']; ?>" />
+                <input type="hidden" name="idsuatdien" id="selectedShowtime" />
+                <input type="hidden" name="veDaChon" id="ticketData" />
+
+                <div class="button-container">
+                    <button class="buttonMuaVe" type="button" onclick="submitForm()"><b>Mua vé</b></button>
+                </div>
+            </form>
         </div>
-        <!-- <div>
-            <label for="ticket-type">Chọn loại vé:</label>
-            <br>
-            <br>
-            <select id="ticket-type">
-                <option value="">Chọn loại vé</option>
-                <?php
-                foreach ($suatdien['suatDienItemDTO'][0]['loaiVe'] as $type) {
-                    echo "<option value='" . $type['iDLoaiVe'] . "'>" . $type['tenLoaiVe'] . " - " . $type['giaVe'] . " VND</option>";
-                }
-                ?>
-            </select>
-        </div> -->
-        <table id="chon_ve">
-            <thead>
-                <tr>
-                    <th>Loại vé</th>
-                    <th>Giá bán</th>
-                    <th>Số lượng</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($loaiVe as $type) {
-                        echo "<tr>";
-                        echo "<td>" . $type['tenLoaiVe'] . "</td>";
-                        echo "<td>" . $type['giaVe'] . " VND</td>";
-                        echo "<td> <button class='minus-btn'>-</button> 
-                            <input type='text' value='0' class='ticket-quantity'> 
-                            <button class='plus-btn'>+</button> </td>";
-                        echo "</tr>";
-                    } ?>
-            </tbody>
-        </table>
-        <form method="get" action="index.php">
-            <input type="hidden" name="action" value="chuanBiThanhToan" />
-            <div class="button-container">
-                <button class="buttonMuaVe"><b>Mua vé</b></button>
-            </div>
-            <input type="hidden" name="idsuKien" value="<?php echo $sukien['idsuKien']; ?>" />
-            <input type="hidden" name="iddoiTac" value="<?php echo $sukien['iddoiTac']; ?>" />
-        </form>
     </div>
-</div>
-<script>
-// Thêm event listener cho các combobox
-document.getElementById('showtime').addEventListener('change', function() {
-    // Xử lý sự kiện khi người dùng chọn suất diễn
-    console.log('Suất diễn được chọn: ', this.value);
-});
-
-// Lấy các nút tăng/giảm và số lượng
-const minusBtn = document.querySelectorAll('.minus-btn');
-const plusBtn = document.querySelectorAll('.plus-btn');
-const quantityInput = document.querySelectorAll('.ticket-quantity');
-
-// Thêm sự kiện click cho các nút tăng/giảm
-minusBtn.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-        let quantity = parseInt(quantityInput[index].value);
-        if (quantity > 0) {
-            quantityInput[index].value = quantity - 1;
-        }
-    });
-});
-
-plusBtn.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-        let quantity = parseInt(quantityInput[index].value);
-        quantityInput[index].value = quantity + 1;
-    });
-});
-</script>
 <?php
 } else {
     echo '<div class="primary-container">';

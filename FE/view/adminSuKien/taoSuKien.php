@@ -1,5 +1,7 @@
 <?php
-$dataKhuyenMai; ?>
+$dataKhuyenMai;
+$answer;
+?>
 <?php
 //việt nam
 $jsonContent_vietNam = file_get_contents('vietNam.json');
@@ -17,7 +19,7 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
 ?>
 <script>
     var citycodeGlobal = "";
-    var iDLoaiVe = 1;
+    var getiDLoaiVe = 1;
 </script>
 
 <style>
@@ -64,7 +66,31 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
         margin-bottom: 10px;
     }
 
-    .agenda-item,
+    .agenda {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .agenda label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #agenda-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 50%;
+        margin-bottom: 10px;
+    }
+
+    .agenda-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+
     .ticket-item,
     .staff-item {
         margin-bottom: 10px;
@@ -81,10 +107,25 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
         width: 100%;
         margin-bottom: 5px;
     }
+
+    .ticket-item {
+        border-radius: 4px;
+        /* background-color: ; */
+    }
 </style>
+<?php
+if (isset($answer) && ($answer == 1)) {
+?>
+    <p class="success-message">Tạo thành công</p>
+<?php
+} else if (isset($answer) && ($answer != 1)) {
+?>
+    <p class="error-message">Tạo không thành công</p>
+<?php
+} ?>
 <h1>Tạo sự kiện</h1>
 
-<form class="form-container" style="padding: 20px 20px 59px 20px  ;" action="index.php" method="post" enctype="multipart/form-data">
+<form id="taoSuKien" class="form-container" style="padding: 20px 20px 59px 20px  ;" action="index.php" method="post" enctype="multipart/form-data">
     <div class="section-container">
         <h2 class="section-title">Thông tin sự kiện</h2>
         <div class="section-content">
@@ -167,13 +208,13 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
                 <div class="datetime-picker">
                     <div>
                         <label>Thời gian bắt đầu chương trình</label>
-                        <input type="date" name="date_bd" required>
-                        <input type="time" name="time_bd" required>
+                        <input type="date" id="date_bd" name="date_bd" required>
+                        <input type="time" id="time_bd" name="time_bd" required>
                     </div>
                     <div>
                         <label>Thời gian kết thúc chương trình</label>
-                        <input type="date" name="date_kt" required>
-                        <input type="time" name="time_kt" required>
+                        <input type="date" id="date_kt" name="date_kt" required>
+                        <input type="time" id="time_kt" name="time_kt" required>
                     </div>
                 </div>
 
@@ -181,8 +222,8 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
                     <label>Agenda</label>
                     <div id="agenda-container">
                         <div class="agenda-item">
-                            <input type="text" name="agenda_time" placeholder="Thời gian">
-                            <input type="text" name="agenda_activity" placeholder="Hoạt động">
+                            <input type="text" id="agenda_time" name="agenda_time" placeholder="Thời gian">
+                            <input type="text" id="agenda_activity" name="agenda_activity" placeholder="Hoạt động">
                             <button class="btn red" onclick="removeAgendaItem(this)">Xóa</button>
                         </div>
                     </div>
@@ -224,6 +265,7 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
                 <div class="participants">
                     <label>Người tham gia</label>
                     <input type="text" id="nguoiThamGia" name="nguoiThamGia" placeholder="Ví dụ: JiSoo, Lisa, Rose, Jenney">
+                    <input type="hidden" name="nguoiThamGiaList" id="nguoiThamGiaList" value="">
                 </div>
 
                 <div class="staff">
@@ -260,7 +302,7 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
     <div class="section-container">
         <h2 class="section-title">Sơ đồ ghế</h2>
         <div class="section-content">
-            <div class="upload-container">
+            <div class="upload-container" style="width: 1300px; height: 1050px;">
                 <input name="anhSoDoGhe" type="file" id="anhSoDoGhe" style="display:none;" accept="image/*" />
                 <div class="upload-box" style="width: 1280px; height: 1000px;" id="uploadBox-soDoGhe">
                     <img src="css/images/image_icon.png" alt="Icon" class="upload-icon" id="uploadIcon">
@@ -276,11 +318,20 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
         <h2 class="section-title">Áp dụng khuyến mãi</h2>
         <div class="section-content">
             <table>
-                <tr>
-                    <td><input type='checkbox' name="khuyenMaiCheck" onclick='checkKhuyenMai()' value="<?php echo $dataKhuyenMai['id']; ?>" /></td>
-                    <td><?php echo $dataKhuyenMai["makhuyenmai"] ?><?php echo " - chiết khấu " ?><?php echo $dataKhuyenMai["chietkhau"] ?></td>
+                <?php if (isset($dataKhuyenMai) && $dataKhuyenMai != null) {
+                    foreach ($dataKhuyenMai as $km) {
+                ?>
+                        <tr>
+                            <td><input type='checkbox' name="khuyenMaiCheck" onclick='checkKhuyenMai()' value="<?php echo $km['id']; ?>" /></td>
+                            <td><?php echo $km["makhuyenmai"] ?><?php echo " - chiết khấu " ?><?php echo $km["chietkhau"] ?></td>
 
-                </tr>
+                        </tr>
+                    <?php
+                    }
+                } else { ?>
+                    <h4>không có khuyến mãi chưa sử dụng</h4>
+                <?php } ?>
+
             </table>
             <input type="hidden" name="khuyenMaiList" id="selectKhuyenMaiID" value="">
         </div>
@@ -424,7 +475,11 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
         saveTicketItem();
         saveNhanSuItem();
 
+
+
         //lấy thông tin section 1
+        console.log("trước khi lấy thông tin");
+        console.log()
         var TenSuKien = document.getElementById('TenSuKien').value;
         var TheLoai = document.getElementById('TheLoai').value;
         var QuocGia = document.getElementById('QuocGia').value;
@@ -442,10 +497,13 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
         var time_kt = document.getElementById('time_kt').value;
         var agendaList = document.getElementById('agendaList').value;
         var loaiVeList = document.getElementById('loaiVeList').value;
-        var nguoiThamGia = document.getElementById('nguoiThamGia').value;
+        // console.log("trước người tham gia");
+        // var nguoiThamGia = document.getElementById('nguoiThamGia').value;
+        // const mangNguoiThamGia = nguoiThamGia.split(", ");
+        // document.getElementById('nguoiThamGiaList').value = JSON.stringify(mangNguoiThamGia);
         var NhanSuList = document.getElementById('NhanSuList').value;
 
-
+        console.log("sau khi lấy thông tin");
         //lấy thông tin section 3
 
         //lấy thông tin section 4
@@ -567,7 +625,14 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
             alert("Thông tin sự kiện không hợp lệ!");
             return false;
         }
-        document.getElementById('taoSuKien1').submit();
+        // const suatDienList = [];
+        // suatDienList.push({
+        //     time,
+        //     activity
+        // });
+        // document.getElementById('SuatDienList').value = JSON.stringify(SuatDienList);
+
+        document.getElementById('taoSuKien').submit();
     }
 </script>
 <!-- hàm lấy thông tin hành chính địa lý -->
@@ -726,12 +791,12 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
         const agendaList = [];
 
         agendaItems.forEach(item => {
-            const time = item.querySelector('input[name="agenda_time"]').value;
-            const activity = item.querySelector('input[name="agenda_activity"]').value;
-            if (time && activity) {
+            const thoiGian = item.querySelector('input[name="agenda_time"]').value;
+            const hoatDong = item.querySelector('input[name="agenda_activity"]').value;
+            if (thoiGian && hoatDong) {
                 agendaList.push({
-                    time,
-                    activity
+                    thoiGian,
+                    hoatDong
                 });
             }
         });
@@ -789,22 +854,22 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
             const time_kt_banve = item.querySelector('input[name="time_kt_banve"]').value;
             const date_kt_banve = item.querySelector('input[name="date_kt_banve"]').value;
 
+            const thoiGianBatDauBanVe = date_bd_banve + ' ' + time_bd_banve;
+            const thoiGianKetThucBanVe = date_kt_banve + ' ' + time_kt_banve;
             if (tenLoaiVe && moTa && giaVe && soLuong && soVeToiDaTrongMotDonHang && time_bd_banve && date_bd_banve && time_kt_banve && date_kt_banve) {
                 loaiVeList.push({
-                    iDLoaiVe,
+                    getiDLoaiVe,
                     tenLoaiVe,
                     moTa,
                     giaVe,
                     soLuong,
                     soVeToiDaTrongMotDonHang,
-                    time_bd_banve,
-                    date_bd_banve,
-                    time_kt_banve,
-                    date_kt_banve
+                    thoiGianBatDauBanVe,
+                    thoiGianKetThucBanVe
                 });
             }
         });
-        iDLoaiVe = 2;
+        getiDLoaiVe = 2;
         document.getElementById('loaiVeList').value = JSON.stringify(loaiVeList);
         console.log('Saved Ticket List:', loaiVeList);
         // alert('Đã lưu loại vé!');
@@ -862,7 +927,7 @@ if ($data_country === null && json_last_error() !== JSON_ERROR_NONE) {
 
         document.getElementById('NhanSuList').value = JSON.stringify(NhanSuList);
         console.log('Saved Staff List:', NhanSuList);
-        alert('Đã lưu nhân sự!');
+        // alert('Đã lưu nhân sự!');
     }
 </script>
 <!-- hàm ngăn load lại trang -->

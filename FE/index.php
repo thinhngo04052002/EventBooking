@@ -15,10 +15,10 @@ require_once("./controller/purchaseService.php");
 
 $portGateway = 8001;
 
-$action = "thongTinDoanhNghiep";
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
-// $action = "thongTinDoanhNghiep";
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "thongTinDoanhNghiep";
+$action = "home";
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "home";
+// $action = "home";
+// $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "home";
 
 
 switch ($action) {
@@ -28,6 +28,7 @@ switch ($action) {
         $controller = new UserController();
         $controller->dangNhap($uri);
         break;
+
     case "logout":
         $controller = new UserController();
         $controller->logOut();
@@ -47,12 +48,10 @@ switch ($action) {
     case "danhGia":
         if (isset($_SESSION['id'])) {
             $idNguoiDung = $_SESSION['id'];
-        $uri='vedamua/getAllVeDaMuaByIdNguoiDung/'. $idNguoiDung;
-        $controller = new ProductController();
-        $controller->getSuKien($uri);
-        
-        }
-        else {
+            $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idNguoiDung;
+            $controller = new ProductController();
+            $controller->getSuKien($uri);
+        } else {
             // Xử lý trường hợp người dùng chưa đăng nhập
             echo "Vui lòng đăng nhập để xem thông tin vé.";
         }
@@ -75,12 +74,12 @@ switch ($action) {
         $controller->createProfile($uri);
         break;
     case 'edit_profile':
-        $uri="nguoidung/update/id=" . $_SESSION['id_nguoidung'];
+        $uri = "nguoidung/update/id=" . $_SESSION['id_nguoidung'];
         $controller = new UserController();
         $controller->editProfile($uri);
         break;
     case 'editDoanhNghiep':
-        $uri="doitac/update/id=". $_SESSION['idDoitac'];
+        $uri = "doitac/update/id=" . $_SESSION['idDoitac'];
         $controller = new UserController();
         $controller->editDoanhNghiep($uri);
         break;
@@ -90,31 +89,23 @@ switch ($action) {
     case "dsVe":
         if (isset($_SESSION['id'])) {
             $idNguoiDung = $_SESSION['id'];
-        $uri='vedamua/getAllVeDaMuaByIdNguoiDung/'. $idNguoiDung;
-        $controller = new ProductController();
-        $controller->getdsVe($uri);
-        
-        }
-        else {
+            $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idNguoiDung;
+            $controller = new ProductController();
+            $controller->getdsVe($uri);
+        } else {
             // Xử lý trường hợp người dùng chưa đăng nhập
             echo "Vui lòng đăng nhập để xem thông tin vé.";
         }
         break;
-        
-        case "submitDanhGia":
-            $uri='create_danhgia/';
-            $controller = new CrmController();
-            $controller->danhGiaSK($uri);
-            break;
+
+    case "submitDanhGia":
+        $uri = 'create_danhgia/';
+        $controller = new CrmController();
+        $controller->danhGiaSK($uri);
+        break;
 
         //admin sự kiện
-    case "taoSuKien":
-       
-        $controller = new ProductController();
-        $controller->getSuKien();
-        
-        
-        break;
+
 
     case "danhGia1":
         if (isset($_GET['idsk'])) {
@@ -133,11 +124,11 @@ switch ($action) {
         $controller->createProfile($uri);
         break;
     case 'edit_profile':
-        $uri="nguoidung/update/id=" . $_SESSION['id_nguoidung'];
+        $uri = "nguoidung/update/id=" . $_SESSION['id_nguoidung'];
         $controller = new UserController();
         $controller->editProfile($uri);
     case 'editDoanhNghiep':
-        $uri="doitac/update/id=". $_SESSION['idDoitac'];
+        $uri = "doitac/update/id=" . $_SESSION['idDoitac'];
         $controller = new UserController();
         $controller->editDoanhNghiep($uri);
 
@@ -146,22 +137,20 @@ switch ($action) {
     case "dsVe":
         if (isset($_SESSION['id'])) {
             $idNguoiDung = $_SESSION['id'];
-        $uri='vedamua/getAllVeDaMuaByIdNguoiDung/'. $idNguoiDung;
-        $controller = new ProductController();
-        $controller->getdsVe($uri);
-        
-        }
-        else {
+            $uri = 'vedamua/getAllVeDaMuaByIdNguoiDung/' . $idNguoiDung;
+            $controller = new ProductController();
+            $controller->getdsVe($uri);
+        } else {
             // Xử lý trường hợp người dùng chưa đăng nhập
             echo "Vui lòng đăng nhập để xem thông tin vé.";
         }
         break;
-        
-        case "submitDanhGia":
-            $uri='create_danhgia/';
-            $controller = new CrmController();
-            $controller->danhGiaSK($uri);
-            break;
+
+    case "submitDanhGia":
+        $uri = 'create_danhgia/';
+        $controller = new CrmController();
+        $controller->danhGiaSK($uri);
+        break;
 
         //admin sự kiện
     case "taoSuKien":
@@ -171,7 +160,7 @@ switch ($action) {
 
     case "taoSuKienClick":
         $controller = new ProductController();
-        $uri = "sukien/postThemSuKien";
+        $uri = "sukien/themSuKien";
         $controller->taoSuKienClick($uri);
         break;
         // case "dangKyDoiTac":
@@ -198,11 +187,7 @@ switch ($action) {
         $uri = "doitac/create";
         $controller->thongTinDoanhNghiepClick($uri);
         break;
-    //admin hệ thống
 
-
-        //demo
-        //get
     case "home":
         $controller = new ProductController();
         $controller->getAllSuKienSuatDien();
@@ -218,7 +203,7 @@ switch ($action) {
         $uri = "ve/postVe";
         $controller->testTaoVeClick($uri);
         break;
-    //post qua tham số thì cứ chỉnh url cho khớp giống swagger
+        //post qua tham số thì cứ chỉnh url cho khớp giống swagger
     case "chiTietSuKien":
         $controller = new ProductController();
         $idsuKien = $_REQUEST['idsuKien'];
@@ -235,7 +220,9 @@ switch ($action) {
         $controller = new PurchaseController();
         $idsuKien = $_REQUEST['idsuKien'];
         $iddoiTac = $_REQUEST['iddoiTac'];
-        $controller->chuanBiThanhToan($portGateway, $idsuKien, $iddoiTac);
+        $idsuatDien = $_REQUEST['idsuatdien'];
+        $veDaChon = $_REQUEST['veDaChon'];
+        $controller->chuanBiThanhToan($portGateway, $idsuKien, $iddoiTac, $idsuatDien, $veDaChon);
         break;
     case "chiTietVe":
         $controller = new ProductController();
@@ -248,17 +235,19 @@ switch ($action) {
         $controller = new PurchaseController();
         $orderId = $_REQUEST['orderId'];
         $orderinfo = $_REQUEST['orderinfo'];
+        $idsuKien = $_REQUEST['idsuKien'];
+        $iddoiTac = $_REQUEST['iddoiTac'];
         $thanhTien = $_REQUEST['thanhTien'];
         $makhuyenmai = $_REQUEST['makhuyenmai'];
         $idtaikhoan = $_REQUEST['idtaikhoan'];
         $danhSachVe = $_REQUEST['danhSachVe'];
-        $controller->goiAPIThanhToan($portGateway, $orderId, $orderinfo, $thanhTien, $makhuyenmai, $idtaikhoan, $danhSachVe);
+        $controller->goiAPIThanhToan($portGateway, $orderId, $orderinfo, $idsuKien, $iddoiTac, $thanhTien, $makhuyenmai, $idtaikhoan, $danhSachVe);
         break;
-        case "listUser":
-            $uri = 'taikhoan/listALL';
-            $controller = new UserController();
-            $controller->listUser($uri);
-            break;
+    case "listUser":
+        $uri = 'taikhoan/listALL';
+        $controller = new UserController();
+        $controller->listUser($uri);
+        break;
     default:
         $controller = new ProductController();
         $uri = "sukien/getAllSuKien";

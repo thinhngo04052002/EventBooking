@@ -1,5 +1,5 @@
 <?php
-require_once ('productService.php');
+require_once('productService.php');
 class PurchaseController
 {
     public function getPurchaseService($uri, $method = 'GET', $data = [])
@@ -32,7 +32,8 @@ class PurchaseController
         }
         curl_close($ch);
 
-        return json_decode($response, true);}
+        return json_decode($response, true);
+    }
     public function postPurchaseService($uri, $method = 'POST', $data = [])
     {
 
@@ -90,7 +91,7 @@ class PurchaseController
 
 
 
-    public function chuanBiThanhToan($portGateway, $idsuKien, $iddoiTac)
+    public function chuanBiThanhToan($portGateway, $idsuKien, $iddoiTac, $idsuatDien, $veDaChon)
     {
         $productController = new ProductController();
         // Gọi đến API Gateway để lấy dữ liệu
@@ -118,30 +119,45 @@ class PurchaseController
             $sukien['thoiGianBatDau'] = date('d/m/Y H:i:s', $minStartTime);
             $sukien['thoiGianKetThuc'] = date('d/m/Y H:i:s', $maxEndTime);
         }
+        // Chuyển chuỗi JSON thành mảng PHP
+        $loaiVeDaChon = json_decode($veDaChon, true);
+        $userController = new UserController();
+        $taikhoan = $userController->getUserService2("taikhoan/search/userid=" . $_SESSION['id']);
+        $email = $taikhoan['data']['email'];
+        $nguoidung = $userController->getUserService2("nguoidung/info/userid=" . $_SESSION['id']);
+        $sdt = $nguoidung['data']['sdt'];
         // Điều hướng đến view và template
         $VIEW = "./view/khachHang/chuanBiThanhToan.php";
-        require ("./template/template.php");
+        require("./template/template.php");
     }
 
-    public function goiAPIThanhToan($portGateway, $orderId, $orderinfo, $thanhTien, $makhuyenmai, $idtaikhoan, $danhSachVe)
+    public function goiAPIThanhToan($portGateway, $orderId, $orderinfo, $idsuKien, $iddoiTac, $thanhTien, $makhuyenmai, $idtaikhoan, $danhSachVe)
     {
+        // Chuẩn bị dữ liệu danh sách vé
+        $dsv = json_decode($danhSachVe, true);
+        $veArray = [];
+        foreach ($dsv as $ve) {
+            $veArray[] = [
+                'idsuKien' => $idsuKien,
+                'iddoiTac' => $iddoiTac,
+                'idve' => $ve['id']
+            ];
+        }
         $data = [
             'orderId' => $orderId,
             'orderinfo' => $orderinfo,
-            'thanhTien' => $thanhTien,
+            'amount' => $thanhTien,
             'makhuyenmai' => $makhuyenmai,
             'idtaikhoan' => $idtaikhoan,
-            'danhSachVe' => [
-                'idve' => 1,
-                'idsuKien' => 1,
-                'iddoiTac' => 1
-            ]
+            'danhSachVe' => $veArray
         ];
-
+        $jdata = json_encode($data);
         // Gọi đến API Gateway để lấy dữ liệu
-        $sukien = $this->postPurchaseService("hoadon/goiAPIThanhToan", $data);
-
-        $VIEW = "./view/trangChu.php";
-        require ("./template/template.php");
+        $answer = $this->postPurchaseService("hoadon/goiAPIThanhToan", "POST", $data);
+        if (isset($answer['error'])) {
+            header('Location: index.php?action=home');
+        }
+        // $VIEW = "./view/trangChu.php";
+        // require ("./template/template.php");
     }
 }
